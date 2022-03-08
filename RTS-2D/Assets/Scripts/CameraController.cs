@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] Camera controlledCamera;
     [SerializeField] private BoxCollider2D boundingBox;
-    [SerializeField] private Transform cameraMovement;
+    [SerializeField] private Transform cameraMoveTransform;
 
     private Vector2 cameraPosDelta;
     private Vector2 edgeScrollVector;
@@ -39,20 +39,20 @@ public class CameraController : MonoBehaviour
     private void MoveCamera()
     {
         // Obecna pozycja kamery
-        Vector2 newCamPos = cameraMovement.position;
+        Vector2 newCamPos = cameraMoveTransform.position;
 
         // Pozycja kamery po dodaniu różnicy na osi X
         newCamPos.x += cameraPosDelta.x + edgeScrollVector.x;
         if (!IsInBounds(newCamPos))
-            newCamPos.x = cameraMovement.position.x;
+            newCamPos.x = cameraMoveTransform.position.x;
 
         // Pozycja kamery po dodaniu różnicy na osi Y
         newCamPos.y += cameraPosDelta.y + edgeScrollVector.y;
         if (!IsInBounds(newCamPos))
-            newCamPos.y = cameraMovement.position.y;
+            newCamPos.y = cameraMoveTransform.position.y;
 
         // Ostateczna pozycja kamery
-        cameraMovement.position = newCamPos;
+        cameraMoveTransform.position = newCamPos;
     }
 
     /* Metoda obliczająca, czy podany punkt znajduje się w granicach obiektu BoudingBox2D */
