@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
+    [SerializeField] private float edgeScrollSpeed = 1f;
     [SerializeField] Camera controlledCamera;
     [SerializeField] private BoxCollider2D boundingBox;
     [SerializeField] private Transform cameraMoveTransform;
 
-    private Vector2 cameraPosDelta;
-    private Vector2 edgeScrollVector;
+    private Vector2 camDeltaFromInput;
+    private Vector2 camDeltaFromEdge;
     private float camHalfHeight;
     private float camHalfWidth;
 
@@ -29,25 +30,29 @@ public class CameraController : MonoBehaviour
         MoveCamera();
     }
 
-    /* Metoda wysoływana asynchronicznie w momencie wykrycia nacisnięcia kalwisza  */
+    /* 
+     * Metoda wysoływana w momencie wykrycia nacisnięcia kalwisza
+     */
     public void OnCameraMove(InputAction.CallbackContext ctx)
     {
-        Vector2 moveVec = ctx.ReadValue<Vector2>();
-        cameraPosDelta = moveVec * speed * 0.1f;
+        camDeltaFromInput = ctx.ReadValue<Vector2>();
     }
 
     private void MoveCamera()
     {
         // Obecna pozycja kamery
         Vector2 newCamPos = cameraMoveTransform.position;
+        Vector2 camPosDelta = ( (camDeltaFromInput * speed) + (camDeltaFromEdge * edgeScrollSpeed) ) * Time.deltaTime;
+
+        Debug.Log(camPosDelta.x + " " + camPosDelta.y);
 
         // Pozycja kamery po dodaniu różnicy na osi X
-        newCamPos.x += cameraPosDelta.x + edgeScrollVector.x;
+        newCamPos.x += camPosDelta.x;
         if (!IsInBounds(newCamPos))
             newCamPos.x = cameraMoveTransform.position.x;
 
         // Pozycja kamery po dodaniu różnicy na osi Y
-        newCamPos.y += cameraPosDelta.y + edgeScrollVector.y;
+        newCamPos.y += camPosDelta.y;
         if (!IsInBounds(newCamPos))
             newCamPos.y = cameraMoveTransform.position.y;
 
@@ -55,7 +60,9 @@ public class CameraController : MonoBehaviour
         cameraMoveTransform.position = newCamPos;
     }
 
-    /* Metoda obliczająca, czy podany punkt znajduje się w granicach obiektu BoudingBox2D */
+    /* 
+     * Metoda obliczająca, czy podany punkt znajduje się w granicach obiektu boundingBox
+     */
     private bool IsInBounds(Vector2 position)
     {
         Vector2 topRight = new Vector2(position.x + camHalfWidth, position.y + camHalfHeight);
@@ -66,7 +73,9 @@ public class CameraController : MonoBehaviour
         return false;
     }
 
-    /* Oblicza wysokość i szerokość obrazu kamery w jednostkach Unity */
+    /* 
+     * Oblicza wysokość i szerokość obrazu kamery w jednostkach Unity
+     */
     private void CalculateCameraWorldDimentions()
     {
         camHalfHeight = controlledCamera.orthographicSize;
@@ -74,6 +83,6 @@ public class CameraController : MonoBehaviour
     }
     private void EventManager_UpdateEgdeScroll(Vector2 value)
     {
-        edgeScrollVector += value;
+        camDeltaFromEdge += value;
     }
 }

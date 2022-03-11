@@ -749,7 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4c4328a42c89940ad9cd1a2bab2636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
+  edgeScrollSpeed: 50
   controlledCamera: {fileID: 0}
   boundingBox: {fileID: 6350056759204473232}
   cameraMoveTransform: {fileID: 6350056759232895881}
