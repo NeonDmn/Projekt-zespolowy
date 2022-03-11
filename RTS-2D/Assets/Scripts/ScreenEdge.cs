@@ -8,10 +8,12 @@ public class ScreenEdge : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private Vector2 cameraMoveDelta;
     [SerializeField] bool show = false;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("Camera moving on screen ledge: " + name);
         UpdateCameraDelta(cameraMoveDelta);
-        //Debug.Log("Mouse Enter");
+        //
     }
 
     public void OnPointerExit(PointerEventData eventData)
