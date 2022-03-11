@@ -44,8 +44,6 @@ public class CameraController : MonoBehaviour
         Vector2 newCamPos = cameraMoveTransform.position;
         Vector2 camPosDelta = ( (camDeltaFromInput * speed) + (camDeltaFromEdge * edgeScrollSpeed) ) * Time.deltaTime;
 
-        Debug.Log(camPosDelta.x + " " + camPosDelta.y);
-
         // Pozycja kamery po dodaniu różnicy na osi X
         newCamPos.x += camPosDelta.x;
         if (!IsInBounds(newCamPos))

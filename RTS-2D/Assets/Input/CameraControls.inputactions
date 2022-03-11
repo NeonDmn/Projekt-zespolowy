@@ -127,6 +127,74 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Cursor",
+            "id": "dd66fc18-92f5-42be-9220-b53f3dbd50c3",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "636bec7c-d615-4d77-818c-ec271002f8fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "22700029-cf89-4d51-8276-70ae97b1e573",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Check",
+                    "type": "Button",
+                    "id": "ca87830b-38d9-4d31-805d-f86a856d1122",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bde1864e-ca82-47a6-bd93-e9ad8d1a11f4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9ab92db-8b07-4a11-b39d-b5aa8cacc92b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b22de6b5-2184-4456-8f64-753482ad9c27",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Check",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

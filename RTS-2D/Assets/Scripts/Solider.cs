@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Solider : MonoBehaviour
 {
@@ -15,12 +16,38 @@ public class Solider : MonoBehaviour
 
     private float dragOffsetX, dragOffsetY;
 
+    private bool inputActionDown = false;
+    private bool inputSelectDown = false;
+
     void Start()
     {
         sprRenderer = GetComponent<SpriteRenderer>();
         soliderSelected = false;
         dragSelectedSolidersAllowed = false;
         mouseOverSolider = false;
+    }
+
+    public void ActionInput(InputAction.CallbackContext ctx)
+    {
+        inputActionDown = ctx.ReadValueAsButton();
+
+        if (inputActionDown)
+        {
+            soliderSelected = false;
+            dragSelectedSolidersAllowed = false;
+            sprRenderer.color = new Color(1f, 1f, 1f, 1f);
+        }
+    }
+
+    public void SelectInput(InputAction.CallbackContext ctx)
+    {
+        inputSelectDown = ctx.ReadValueAsButton();
+
+        if (inputSelectDown)
+        {
+            dragOffsetX = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).x - transform.position.x;
+            dragOffsetY = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()).y - transform.position.y;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +62,7 @@ public class Solider : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<MouseInputs>() && Input.GetMouseButton(0))
+        if (collision.gameObject.GetComponent<MouseInputs>() && inputSelectDown)
         {
             sprRenderer.color = new Color(1f, 1f, 1f, 1f);
             soliderSelected = false;
@@ -45,27 +72,16 @@ public class Solider : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            dragOffsetX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
-            dragOffsetY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - transform.position.y;
-        }
+        
 
-        if(Input.GetMouseButton(0))
+        if(inputSelectDown)
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
         if(soliderSelected && dragSelectedSolidersAllowed)
         {
             transform.position = new Vector2(mousePos.x - dragOffsetX, mousePos.y - dragOffsetY);
-        }
-
-        if(Input.GetMouseButtonDown(1))
-        {
-            soliderSelected = false;
-            dragSelectedSolidersAllowed = false;
-            sprRenderer.color = new Color(1f,1f,1f,1f);
         }
     }
 
@@ -89,7 +105,7 @@ public class Solider : MonoBehaviour
             dragSelectedSolidersAllowed = false;
         }
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         transform.position = new Vector2(mousePos.x - dragOffsetX , mousePos.y - dragOffsetY);
     }
 }
