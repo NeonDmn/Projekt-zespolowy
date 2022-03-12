@@ -17,11 +17,17 @@ public class Unit : MonoBehaviour
         Selection.Instance.unitList.Add(this.gameObject);
     }
 
+    /*
+     * Wykonywana gdy jednostka jest zaznaczana przez skrypt Selection
+     */
     private void OnSelect()
     {
         sprRenderer.color = new Color(1f, 0f, 0f, 1f);
     }
 
+    /*
+     * Wykonywana gdy jednostka jest odznaczana przez skrypt Selection
+     */
     private void OnDeselect()
     {
         sprRenderer.color = new Color(1f, 1f, 1f, 1f);

@@ -56,6 +56,8 @@ public class Selection : MonoBehaviour
 
     public void DeselectAll()
     {
+        if (unitsSelected.Count < 1) return;
+
         foreach (var unit in unitsSelected)
         {
             unit.SendMessage("OnDeselect");

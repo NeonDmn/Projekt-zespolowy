@@ -133,8 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 175001162}
   - component: {fileID: 175001161}
+  - component: {fileID: 175001163}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Singletons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,6 +167,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175001163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175001160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889f0c5d66b171e4bab44f67bd89839c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitList: []
+  unitsSelected: []
 --- !u!1 &390089925
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +917,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1939828009}
   - component: {fileID: 1939828010}
-  - component: {fileID: 1939828013}
   - component: {fileID: 1939828008}
   - component: {fileID: 1939828011}
   - component: {fileID: 1939828012}
@@ -1038,6 +1052,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  selectable:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!114 &1939828011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1131,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1939828010}
         m_TargetAssemblyTypeName: MouseInputs, Assembly-CSharp
-        m_MethodName: ChecktInput
+        m_MethodName: ShiftSelectInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1113,8 +1141,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ca87830b-38d9-4d31-805d-f86a856d1122
-    m_ActionName: Cursor/Check[/Mouse/middleButton]
+    m_ActionId: 2610faee-4841-462d-b89a-2b02b4cf16b1
+    m_ActionName: Cursor/ShiftSelect[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Cursor
@@ -1130,7 +1158,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.3371387, y: -0.34551862}
@@ -1146,15 +1174,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.05}
   m_EdgeRadius: 0
---- !u!114 &1939828013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939828007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 889f0c5d66b171e4bab44f67bd89839c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

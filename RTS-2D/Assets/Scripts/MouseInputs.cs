@@ -63,11 +63,8 @@ public class MouseInputs : MonoBehaviour
     {
         inputActionDown = ctx.ReadValueAsButton();
 
-        if (inputActionDown)
+        if (inputActionDown && ctx.started)
         {
-            //Debug.Log("Right Click");
-            //Debug.Log("Screen Point: " + mainCamera.WorldToScreenPoint(Mouse.current.position.ReadValue()));
-            //Debug.Log("World Point: " + mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
             initialMousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             RaycastHit2D hit = Physics2D.Raycast(initialMousePosition, Vector2.zero);
@@ -111,15 +108,9 @@ public class MouseInputs : MonoBehaviour
                     }
                 }
             }
-            else if (shiftSelectingActive)
+            else if (!shiftSelectingActive)
             {
-
-            }
-            else
-            {
-                // Nie natrafiliœmy na nic interaktywnego i nie zaznaczamy z pomoc¹ shift
-                if (!shiftSelectingActive)
-                    Selection.Instance.DeselectAll();
+                Selection.Instance.DeselectAll();
             }
         }
 

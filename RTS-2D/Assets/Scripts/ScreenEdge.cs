@@ -11,15 +11,13 @@ public class ScreenEdge : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Camera moving on screen ledge: " + name);
+        //Debug.Log("Camera moving on screen ledge: " + name);
         UpdateCameraDelta(cameraMoveDelta);
-        //
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         UpdateCameraDelta(-cameraMoveDelta);
-        //Debug.Log("Mouse Exit");
     }
 
     private void UpdateCameraDelta(Vector2 value)
