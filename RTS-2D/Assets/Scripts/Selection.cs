@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class Selection : MonoBehaviour
 {
     public List<GameObject> unitList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
 
     private static Selection _instance;
+    public MouseInputs mouseInputs;
     public static Selection Instance { get { return _instance; } }
 
     private void Awake()
@@ -22,6 +24,7 @@ public class Selection : MonoBehaviour
 
     public void ClickSelect(GameObject unitToAdd)
     {
+        
         DeselectAll();
         Select(unitToAdd);
     }
@@ -56,7 +59,42 @@ public class Selection : MonoBehaviour
 
     public void DeselectAll()
     {
+
+
         if (unitsSelected.Count < 1) return;
+
+        
+        foreach(GameObject it in unitsSelected){
+            Debug.Log(it.transform.position);
+        }
+
+        foreach (var unit in unitsSelected)
+        {
+            unit.SendMessage("OnDeselect");
+        }
+        unitsSelected.Clear();
+        Debug.Log("Deselected ALL units!");
+    }
+    public void DeselectAll(Vector2 currentMousePosition)
+    {
+
+
+        if (unitsSelected.Count < 1) return;
+
+        Debug.Log(currentMousePosition);
+        foreach(GameObject it in unitsSelected){
+            Debug.Log("MAJSTER___-");
+            Debug.Log(it.transform.position);
+
+            Point _from = new Point( (int)it.transform.position.x, (int)it.transform.position.y);
+            Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
+
+
+
+            Unit unit = it.GetComponent<Unit>(); 
+            unit.CreatePath(_from,_to,currentMousePosition);
+    
+        }
 
         foreach (var unit in unitsSelected)
         {
@@ -69,6 +107,7 @@ public class Selection : MonoBehaviour
     private void Select(GameObject unit)
     {
         unitsSelected.Add(unit);
+
         unit.SendMessage("OnSelect");
         Debug.Log("Unit " + unit.name + " selected");
     }

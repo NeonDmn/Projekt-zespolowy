@@ -76,8 +76,8 @@ public class MouseInputs : MonoBehaviour
     }
 
     /*
-     * Input s³u¿¹cy do zaznaczania pojedynczych jednostek i budynków, oraz wielu jednostek 
-     * przeci¹gaj¹c kursor po ekranie.
+     * Input sï¿½uï¿½ï¿½cy do zaznaczania pojedynczych jednostek i budynkï¿½w, oraz wielu jednostek 
+     * przeciï¿½gajï¿½c kursor po ekranie.
      */
     public void SelectInput(InputAction.CallbackContext ctx)
     {
@@ -91,7 +91,7 @@ public class MouseInputs : MonoBehaviour
         {
             if (hits.Count > 0)
             {
-                // Natrafiliœmy na coœ co mo¿na nacisn¹æ
+                // Natrafiliï¿½my na coï¿½ co moï¿½na nacisnï¿½ï¿½
                 // Czy trzymamy shift?
                 if (shiftSelectingActive)
                 {
@@ -110,11 +110,11 @@ public class MouseInputs : MonoBehaviour
             }
             else if (!shiftSelectingActive)
             {
-                Selection.Instance.DeselectAll();
+                Selection.Instance.DeselectAll(initialMousePosition);
             }
         }
 
-        // Koñczymy zaznaczanie
+        // Koï¿½czymy zaznaczanie
         if (!inputSelectDown && isDragging)
         {
             EnableSelectionVisuals(false);
@@ -161,7 +161,7 @@ public class MouseInputs : MonoBehaviour
 
     private void UpdateSelectedUnits()
     {
-        // Pêtla przez wszystkie jednostki na mapie
+        // Pï¿½tla przez wszystkie jednostki na mapie
         foreach (var unit in Selection.Instance.unitList)
         {
             // Czy jednostka jest zaznaczona?
@@ -184,5 +184,9 @@ public class MouseInputs : MonoBehaviour
         lineRenderer.SetPosition(1, new Vector2(initialMousePosition.x, currentMousePosition.y));
         lineRenderer.SetPosition(2, new Vector2(currentMousePosition.x, currentMousePosition.y));
         lineRenderer.SetPosition(3, new Vector2(currentMousePosition.x, initialMousePosition.y));
+    }
+
+    public Vector2 GetMousePos(){
+        return currentMousePosition;
     }
 }
