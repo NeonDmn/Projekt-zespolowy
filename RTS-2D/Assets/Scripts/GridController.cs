@@ -10,6 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Tilemaps;
+
+
+
+
 public class GridController : MonoBehaviour
 {
     [SerializeField] public Vector2Int gridSize;
@@ -27,6 +31,42 @@ public class GridController : MonoBehaviour
         // set values here....
         // every float in the array represent the cost of passing the tile at that position.
         // use 0.0f for blocking tiles.
+
+
+        ///     0.0f = Unwalkable tile.
+        ///     1.0f = Normal tile.
+        ///     > 1.0f = costy tile.
+        ///     < 1.0f = cheap tile.
+
+        GameObject it = GameObject.Find("Grid");
+        GameObject second = it.gameObject.transform.GetChild(1).gameObject;
+        
+        Tilemap test = second.GetComponent<Tilemap>();
+
+
+        for (int i = 0; i < gridSize.x; ++i)
+        {
+            for (int j = 0; j < gridSize.y; ++j)
+            {
+                tilesmap[i, j] = 1.0f;
+            }
+        }
+
+        foreach (var position in test.cellBounds.allPositionsWithin)
+        {
+            if (!test.HasTile(position))
+            {
+                continue;
+            }else{
+                Debug.Log(position);
+                tilesmap[(int)position.x,(int)position.y] =0.0f;
+                Debug.Log(tilesmap[(int)position.x, (int)position.y]);
+            }
+
+            // Tile is not empty; do stuff
+        }
+
+
 
         //Tilemap tilemap = GetComponent<Tilemap>();
         //
@@ -49,17 +89,6 @@ public class GridController : MonoBehaviour
         //    }
         //}
         //
-
-
-
-        System.Random _rand = new System.Random();
-        for (int i = 0; i < gridSize.x; ++i)
-        {
-            for (int j = 0; j < gridSize.y; ++j)
-            {
-                tilesmap[i, j] = (float)_rand.NextDouble();
-            }
-        }
 
         // create a grid
         grid = new Cell(tilesmap);

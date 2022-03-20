@@ -9,9 +9,13 @@ public class Unit : MonoBehaviour
     private GridController gridController;
     private Rigidbody2D body;
     List<Point> path;
+
+    bool isMoving;
     void Start()
     {
 
+
+        isMoving =false;
         GameObject it = GameObject.Find("GridController");
         body = this.GetComponent<Rigidbody2D>();
         gridController = it.GetComponent<GridController>();
@@ -26,13 +30,18 @@ public class Unit : MonoBehaviour
 
         // get path
         // path will either be a list of Points (x, y), or an empty list if no path is found.
+
     }
 
-    private void Update()
+    private async void Update()
     {
-        UnitMovement();
-
-
+        if(isMoving){
+         //   Debug.Log("____________HEY____________");
+        foreach (var it in path)
+        {
+            UnitMovement(new Vector2((it.x),(it.y)));
+        }
+        }
     }
     private void OnDestroy()
     {
@@ -57,18 +66,24 @@ public class Unit : MonoBehaviour
 
     public void CreatePath(Point _from, Point _to, Vector2 mousePos)
     {
+        //Debug.Log("PATH---->");
         endPoint = mousePos;
         path = Pathfinding.FindPath(gridController.grid, _from, _to);
         foreach (var it in path)
         {
-            Debug.Log(it.x);
+            Debug.Log(new Vector2(it.x,it.y));
         }
+        //Debug.Log("SUPEEER END PATH---->");
+        isMoving =true;
 
     }
 
-    public void UnitMovement()
+    public void UnitMovement(Vector2 end)
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 5 * Time.deltaTime);
+        Debug.Log("TO MOVEING______>");
+        end= new Vector2(end.x+0.5f,end.x + 0.5f );
+        Debug.Log(end);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(end.x, end.y, 0), 5 * Time.deltaTime);
         body.MovePosition(pos);
     }
 
