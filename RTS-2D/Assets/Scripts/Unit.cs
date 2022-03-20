@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
 
     }
 
-    private async void Update()
+    private void Update()
     {
         if(isMoving){
          //   Debug.Log("____________HEY____________");
@@ -66,24 +66,22 @@ public class Unit : MonoBehaviour
 
     public void CreatePath(Point _from, Point _to, Vector2 mousePos)
     {
-        //Debug.Log("PATH---->");
+        Debug.Log("PATH---->");
         endPoint = mousePos;
         path = Pathfinding.FindPath(gridController.grid, _from, _to);
         foreach (var it in path)
         {
             Debug.Log(new Vector2(it.x,it.y));
         }
-        //Debug.Log("SUPEEER END PATH---->");
+        Debug.Log("SUPEEER END PATH---->");
         isMoving =true;
 
     }
 
     public void UnitMovement(Vector2 end)
     {
-        Debug.Log("TO MOVEING______>");
-        end= new Vector2(end.x+0.5f,end.x + 0.5f );
-        Debug.Log(end);
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(end.x, end.y, 0), 5 * Time.deltaTime);
+        end= new Vector2(end.x,end.y);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(end.x, end.y, 0), 10 * Time.deltaTime);
         body.MovePosition(pos);
     }
 
