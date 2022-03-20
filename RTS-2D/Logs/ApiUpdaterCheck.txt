@@ -278,43 +278,23 @@ C# parse time         : 314ms
 candidates check time : 52ms
 console write time    : 0ms
 
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:51:39 PM : Starting /home/dynio/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 20.03.2022 21:28:34 : Starting C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
 [api-updater (non-obsolete-error-filter)] 
 ----------------------------------
-jit/startup time      : 59.391ms
-moved types parse time: 47ms
-candidates parse time : 0ms
-C# parse time         : 230ms
-candidates check time : 40ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 10:59:52 PM : Starting /home/dynio/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 54.916ms
-moved types parse time: 51ms
+jit/startup time      : 908,0079ms
+moved types parse time: 61ms
 candidates parse time : 1ms
-C# parse time         : 221ms
-candidates check time : 60ms
-console write time    : 0ms
+C# parse time         : 710ms
+candidates check time : 47ms
+console write time    : 1ms
 
-[api-updater (non-obsolete-error-filter)] 3/19/2022 11:00:10 PM : Starting /home/dynio/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 20.03.2022 21:28:48 : Starting C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
 [api-updater (non-obsolete-error-filter)] 
 ----------------------------------
-jit/startup time      : 36.247ms
-moved types parse time: 46ms
+jit/startup time      : 76,0689ms
+moved types parse time: 57ms
 candidates parse time : 1ms
-C# parse time         : 211ms
-candidates check time : 51ms
-console write time    : 0ms
-
-[api-updater (non-obsolete-error-filter)] 3/19/2022 11:00:29 PM : Starting /home/dynio/Unity/Hub/Editor/2020.3.30f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
-[api-updater (non-obsolete-error-filter)] 
-----------------------------------
-jit/startup time      : 38.174ms
-moved types parse time: 52ms
-candidates parse time : 0ms
-C# parse time         : 218ms
-candidates check time : 50ms
+C# parse time         : 225ms
+candidates check time : 34ms
 console write time    : 0ms
 

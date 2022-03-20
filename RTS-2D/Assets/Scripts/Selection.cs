@@ -24,7 +24,7 @@ public class Selection : MonoBehaviour
 
     public void ClickSelect(GameObject unitToAdd)
     {
-        
+
         DeselectAll();
         Select(unitToAdd);
     }
@@ -63,9 +63,10 @@ public class Selection : MonoBehaviour
 
         if (unitsSelected.Count < 1) return;
 
-        
-        foreach(GameObject it in unitsSelected){
-            Debug.Log(it.transform.position);
+
+        foreach (GameObject it in unitsSelected)
+        {
+            //Debug.Log(it.transform.position);
         }
 
         foreach (var unit in unitsSelected)
@@ -75,34 +76,36 @@ public class Selection : MonoBehaviour
         unitsSelected.Clear();
         Debug.Log("Deselected ALL units!");
     }
-    public void DeselectAll(Vector2 currentMousePosition)
+    public void PathFindAllSelected(Vector2 currentMousePosition)
     {
 
+        foreach (GameObject it in unitsSelected)
+        {
+            //Debug.Log("MAJSTER___-");
+            //Debug.Log(it.transform.position);
 
-        if (unitsSelected.Count < 1) return;
-
-        Debug.Log(currentMousePosition);
-        foreach(GameObject it in unitsSelected){
-            Debug.Log("MAJSTER___-");
-            Debug.Log(it.transform.position);
-
-            Point _from = new Point( (int)it.transform.position.x, (int)it.transform.position.y);
+            Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
             Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
 
+            Unit unit = it.GetComponent<Unit>();
+            unit.CreatePath(_from, _to, currentMousePosition);
 
-
-            Unit unit = it.GetComponent<Unit>(); 
-            unit.CreatePath(_from,_to,currentMousePosition);
-    
         }
-
-        foreach (var unit in unitsSelected)
-        {
-            unit.SendMessage("OnDeselect");
-        }
-        unitsSelected.Clear();
-        Debug.Log("Deselected ALL units!");
     }
+    // foreach (GameObject it in unitsSelected)
+    // {
+    //     Debug.Log("MAJSTER___-");
+    //     Debug.Log(it.transform.position);
+
+    //     Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
+    //     Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
+
+
+
+    //     Unit unit = it.GetComponent<Unit>();
+    //     unit.CreatePath(_from, _to, currentMousePosition);
+
+    // }
 
     private void Select(GameObject unit)
     {

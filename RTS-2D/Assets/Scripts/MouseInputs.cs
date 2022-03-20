@@ -56,7 +56,7 @@ public class MouseInputs : MonoBehaviour
             Mathf.Abs(initialMousePosition.x - currentMousePosition.x),
             Mathf.Abs(initialMousePosition.y - currentMousePosition.y)
             );
-        return (dragDelta.x > 0.1f ||dragDelta.y > 0.1f);
+        return (dragDelta.x > 0.1f || dragDelta.y > 0.1f);
     }
 
     public void ActionInput(InputAction.CallbackContext ctx)
@@ -71,6 +71,11 @@ public class MouseInputs : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log(hit.collider.gameObject.name + " select");
+                if (Selection.Instance.unitsSelected.Count > 0)
+                {
+                    Selection.Instance.PathFindAllSelected(initialMousePosition);
+                }
+
             }
         }
     }
@@ -96,21 +101,23 @@ public class MouseInputs : MonoBehaviour
                 if (shiftSelectingActive)
                 {
                     // Tak
-                    foreach (var hit in hits) {
+                    foreach (var hit in hits)
+                    {
                         Selection.Instance.ShiftClickSelect(hit.collider.gameObject);
                     }
                 }
                 else
                 {
                     // Nie
-                    foreach (var hit in hits) {
+                    foreach (var hit in hits)
+                    {
                         Selection.Instance.ClickSelect(hit.collider.gameObject);
                     }
                 }
             }
             else if (!shiftSelectingActive)
             {
-                Selection.Instance.DeselectAll(initialMousePosition);
+                Selection.Instance.DeselectAll();
             }
         }
 
@@ -186,7 +193,8 @@ public class MouseInputs : MonoBehaviour
         lineRenderer.SetPosition(3, new Vector2(currentMousePosition.x, initialMousePosition.y));
     }
 
-    public Vector2 GetMousePos(){
+    public Vector2 GetMousePos()
+    {
         return currentMousePosition;
     }
 }

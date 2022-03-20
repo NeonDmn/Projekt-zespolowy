@@ -20,12 +20,37 @@ public class GridController : MonoBehaviour
 
     static public float[,] tilesmap;
     public Cell grid;
-    private void InitPathfinding(){
+    private void InitPathfinding()
+    {
         // create the tiles map
         tilesmap = new float[gridSize.x, gridSize.y];
         // set values here....
         // every float in the array represent the cost of passing the tile at that position.
         // use 0.0f for blocking tiles.
+
+        //Tilemap tilemap = GetComponent<Tilemap>();
+        //
+        //BoundsInt bounds = tilemap.cellBounds;
+        //TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+        //
+        //for (int x = 0; x < bounds.size.x; x++)
+        //{
+        //    for (int y = 0; y < bounds.size.y; y++)
+        //    {
+        //        TileBase tile = allTiles[x + y * bounds.size.x];
+        //        if (tile != null)
+        //        {
+        //            Debug.Log("x:" + x + " y:" + y + " tile:" + tile.name);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("x:" + x + " y:" + y + " tile: (null)");
+        //        }
+        //    }
+        //}
+        //
+
+
 
         System.Random _rand = new System.Random();
         for (int i = 0; i < gridSize.x; ++i)
@@ -42,12 +67,14 @@ public class GridController : MonoBehaviour
         //List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to, Pathfinding.DistanceType.Manhattan);
     }
 
-    private void Start() {
+    private void Start()
+    {
         InitPathfinding();
-        
+
     }
 
-    private void Update() {
-              
+    private void Update()
+    {
+
     }
 }
