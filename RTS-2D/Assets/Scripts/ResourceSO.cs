@@ -8,4 +8,5 @@ public class ResourceSO : ScriptableObject
     public Sprite sprite;
     public int yield;
     public float gatheringTime;
+    public Resource.Type type;
 }

@@ -16,6 +16,7 @@ public class MouseInputs : MonoBehaviour
     private bool inputSelectDown = false;
     private bool shiftSelectingActive = false;
 
+
     private bool isDragging = false;
 
     private void Awake()
@@ -68,12 +69,17 @@ public class MouseInputs : MonoBehaviour
             initialMousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
             RaycastHit2D hit = Physics2D.Raycast(initialMousePosition, Vector2.zero);
+
             if (hit.collider != null)
             {
                 Debug.Log(hit.collider.gameObject.name + " select");
                 if (Selection.Instance.unitsSelected.Count > 0)
                 {
-                    Selection.Instance.PathFindAllSelected(initialMousePosition);
+                    // Selection.Instance.PathFindAllSelected(initialMousePosition);
+
+                    Selection.Instance.HandleActionBySelected(initialMousePosition, hit.transform.gameObject);
+
+
                 }
 
             }
