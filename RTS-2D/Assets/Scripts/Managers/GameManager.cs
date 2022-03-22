@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
-    private static  GameManager _instance;
+    private static GameManager _instance;
     public static GameManager instance { get { return _instance; } }
 
     private void Awake()
@@ -19,4 +19,14 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    GameObject townHall;
+    private void Start()
+    {
+        townHall = GameObject.FindGameObjectWithTag("TownHall");
+    }
+    public GameObject GetTownHallObject(int team)
+    {
+        return townHall;
+    }
 }

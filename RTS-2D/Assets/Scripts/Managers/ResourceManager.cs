@@ -108,4 +108,14 @@ public class ResourceManager : MonoBehaviour
         foodInUse += amount;
         return true;
     }
+
+    public int GetResourceCount(Resource.Type type)
+    {
+        return resources[type];
+    }
+
+    public int GetResourceFreeCount(Resource.Type type)
+    {
+        return resourcesMAX[type] - resources[type];
+    }
 }
