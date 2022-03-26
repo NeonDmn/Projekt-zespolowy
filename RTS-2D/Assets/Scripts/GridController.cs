@@ -56,14 +56,17 @@ public class GridController : MonoBehaviour
         {
             if (!test.HasTile(position))
             {
-
+                continue;
             }else{
                 Debug.Log(position);
                 tilesmap[(int)position.x,(int)position.y] =0.0f;
+                Debug.Log(tilesmap[(int)position.x, (int)position.y]);
             }
 
             // Tile is not empty; do stuff
         }
+
+
 
         //Tilemap tilemap = GetComponent<Tilemap>();
         //
@@ -89,7 +92,6 @@ public class GridController : MonoBehaviour
 
         // create a grid
         grid = new Cell(tilesmap);
-        
         // for Manhattan distance
         //List<PathFind.Point> path = PathFind.Pathfinding.FindPath(grid, _from, _to, Pathfinding.DistanceType.Manhattan);
     }

@@ -86,6 +86,7 @@ public class Selection : MonoBehaviour
 
             Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
             Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
+
             Unit unit = it.GetComponent<Unit>();
             unit.CreatePath(_from, _to, currentMousePosition);
 
