@@ -59,8 +59,6 @@ public class Selection : MonoBehaviour
 
     public void DeselectAll()
     {
-
-
         if (unitsSelected.Count < 1) return;
 
 
@@ -74,38 +72,32 @@ public class Selection : MonoBehaviour
             unit.SendMessage("OnDeselect");
         }
         unitsSelected.Clear();
-        Debug.Log("Deselected ALL units!");
+        //Debug.Log("Deselected ALL units!");
     }
-    public void PathFindAllSelected(Vector2 currentMousePosition)
+    // public void PathFindAllSelected(Vector2 currentMousePosition)
+    // {
+
+    //     foreach (GameObject it in unitsSelected)
+    //     {
+    //         //Debug.Log("MAJSTER___-");
+    //         //Debug.Log(it.transform.position);
+
+    //         Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
+    //         Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
+
+    //         Unit unit = it.GetComponent<Unit>();
+    //         unit.CreatePath(_from, _to, currentMousePosition);
+
+    //     }
+    // }
+
+    public void HandleActionBySelected(Vector2 currentMousePosition, GameObject gm)
     {
-
-        foreach (GameObject it in unitsSelected)
+        foreach (var unit in unitsSelected)
         {
-            //Debug.Log("MAJSTER___-");
-            //Debug.Log(it.transform.position);
-
-            Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
-            Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
-
-            Unit unit = it.GetComponent<Unit>();
-            unit.CreatePath(_from, _to, currentMousePosition);
-
+            unit.GetComponent<Unit>().HandleAction(currentMousePosition, gm);
         }
     }
-    // foreach (GameObject it in unitsSelected)
-    // {
-    //     Debug.Log("MAJSTER___-");
-    //     Debug.Log(it.transform.position);
-
-    //     Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
-    //     Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
-
-
-
-    //     Unit unit = it.GetComponent<Unit>();
-    //     unit.CreatePath(_from, _to, currentMousePosition);
-
-    // }
 
     private void Select(GameObject unit)
     {
@@ -119,6 +111,6 @@ public class Selection : MonoBehaviour
     {
         unit.SendMessage("OnDeselect");
         unitsSelected.Remove(unit);
-        Debug.Log("Unit " + unit.name + " deselected");
+        // Debug.Log("Unit " + unit.name + " deselected");
     }
 }
