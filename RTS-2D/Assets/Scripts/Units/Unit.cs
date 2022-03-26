@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     public UnitTask currentTask { get; private set; }
 
 
-    List<Point> path;
+
     protected void Start()
     {
 
@@ -42,13 +42,7 @@ public class Unit : MonoBehaviour
         sprRenderer = GetComponent<SpriteRenderer>();
 
         currentTask = new IdleTask(this);
-
-        // create source and target points
-        //Point _from = new Point(1, 1);
-        //Point _to = new Point(10, 10);
-
-        // get path
-        // path will either be a list of Points (x, y), or an empty list if no path is found.
+        
     }
     public void SwitchTask(UnitTask newTask)
     {
@@ -121,15 +115,9 @@ public class Unit : MonoBehaviour
         Goto(location);
     }
 
-    public void CreatePath(Point _from, Point _to, Vector2 mousePos)
+    public void CreatePath(Node _from, Node _to, Vector2 mousePos)
     {
         endPoint = mousePos;
-        path = Pathfinding.FindPath(gridController.grid, _from, _to);
-        foreach (var it in path)
-        {
-            // Debug.Log(it.x);
-        }
-
     }
 
     public void UnitMovement()
