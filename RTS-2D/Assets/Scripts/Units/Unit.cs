@@ -134,7 +134,7 @@ public class Unit : MonoBehaviour
 
     public void UnitMovement()
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 15 * Time.deltaTime);
+        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 15f * Time.deltaTime);
         body.MovePosition(pos);
     }
 
