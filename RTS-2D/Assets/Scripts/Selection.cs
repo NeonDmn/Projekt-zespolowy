@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Selection : MonoBehaviour
 {
-    public List<GameObject> unitList = new List<GameObject>();
-    public List<GameObject> unitsSelected = new List<GameObject>();
+    public List<Selectable> unitList = new List<Selectable>();
+    public List<Selectable> unitsSelected = new List<Selectable>();
+    private Selectable structureSelected;
 
     private static Selection _instance;
     public MouseInputs mouseInputs;
@@ -22,50 +23,45 @@ public class Selection : MonoBehaviour
         }
     }
 
-    public void ClickSelect(GameObject unitToAdd)
+    public void ClickSelect(Selectable toSelect)
     {
-
         DeselectAll();
-        Select(unitToAdd);
+        Select(toSelect);
     }
 
-    public void TrySelect(GameObject unitToSelect)
+    public void TrySelect(Selectable toSelect)
     {
-        if (!unitsSelected.Contains(unitToSelect))
+        if (!unitsSelected.Contains(toSelect))
         {
-            Select(unitToSelect);
+            Select(toSelect);
         }
     }
 
-    public void TryDeselect(GameObject unitToSelect)
+    public void TryDeselect(Selectable toDeselect)
     {
-        if (unitsSelected.Contains(unitToSelect))
+        if (unitsSelected.Contains(toDeselect))
         {
-            Deselect(unitToSelect);
+            Deselect(toDeselect);
         }
     }
 
-    public void ShiftClickSelect(GameObject unitToAdd)
+    public void ShiftClickSelect(Selectable toSelect)
     {
-        if (!unitsSelected.Contains(unitToAdd))
+        DeselectStructure();
+        if (!unitsSelected.Contains(toSelect))
         {
-            Select(unitToAdd);
+            Select(toSelect);
         }
         else
         {
-            Deselect(unitToAdd);
+            Deselect(toSelect);
         }
     }
 
     public void DeselectAll()
     {
+        DeselectStructure();
         if (unitsSelected.Count < 1) return;
-
-
-        foreach (GameObject it in unitsSelected)
-        {
-            //Debug.Log(it.transform.position);
-        }
 
         foreach (var unit in unitsSelected)
         {
@@ -99,18 +95,37 @@ public class Selection : MonoBehaviour
         }
     }
 
-    private void Select(GameObject unit)
+    private void Select(Selectable unit)
     {
         unitsSelected.Add(unit);
 
         unit.SendMessage("OnSelect");
-        Debug.Log("Unit " + unit.name + " selected");
     }
 
-    private void Deselect(GameObject unit)
+    private void Deselect(Selectable unit)
     {
-        unit.SendMessage("OnDeselect");
+        //DeselectStructure();
         unitsSelected.Remove(unit);
-        // Debug.Log("Unit " + unit.name + " deselected");
+
+        unit.SendMessage("OnDeselect");
+    }
+
+    public void SelectStructure(Selectable structure)
+    {
+        // Odznacz wszystkie jednostki gdy zaznaczasz budynek
+        DeselectAll();
+
+        // Wiadomo�� odznaczenia dla wcze�niej zaznaczonego budynku (je�li taki by�)
+        if (structureSelected) structure.SendMessage("OnDeselect");
+
+        // Ustaw nowy budynek jako zaznaczony i wy�lij sygna� zaznaczenia
+        structureSelected = structure;
+        structure.SendMessage("OnSelect");
+    }
+
+    private void DeselectStructure()
+    {
+        if (structureSelected) structureSelected.SendMessage("OnDeselect");
+        structureSelected = null;
     }
 }

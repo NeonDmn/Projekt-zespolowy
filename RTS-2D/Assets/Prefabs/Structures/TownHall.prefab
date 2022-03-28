@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4373179943778524553}
   - component: {fileID: 4373179943778524555}
   - component: {fileID: 4373179943778524554}
+  - component: {fileID: 6201611329184958740}
   m_Layer: 0
   m_Name: TownHall
   m_TagString: TownHall
@@ -152,3 +153,15 @@ PolygonCollider2D:
       - {x: 0.2916434, y: -0.24479133}
       - {x: 0.29999998, y: -0.043426283}
       - {x: 0.13506971, y: 0.05437377}
+--- !u!114 &6201611329184958740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373179943778524558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3abbda15cb6adee469939d127b6543fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

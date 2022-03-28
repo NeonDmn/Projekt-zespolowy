@@ -37,7 +37,7 @@ public class Unit : MonoBehaviour
         body = this.GetComponent<Rigidbody2D>();
         gridController = it.GetComponent<GridController>();
 
-        Selection.Instance.unitList.Add(this.gameObject);
+        Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
         endPoint = transform.position;
         sprRenderer = GetComponent<SpriteRenderer>();
 
@@ -90,24 +90,24 @@ public class Unit : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Selection.Instance.unitList.Remove(this.gameObject);
+        Selection.Instance.unitList.Remove(gameObject.GetComponent<Selectable>());
     }
 
     /*
      * Wykonywana gdy jednostka jest zaznaczana przez skrypt Selection
      */
-    private void OnSelect()
-    {
-        sprRenderer.color = new Color(1f, 0f, 0f, 1f);
-    }
+    //private void OnSelect()
+    //{
+    //    sprRenderer.color = new Color(1f, 0f, 0f, 1f);
+    //}
 
     /*
      * Wykonywana gdy jednostka jest odznaczana przez skrypt Selection
      */
-    private void OnDeselect()
-    {
-        sprRenderer.color = new Color(1f, 1f, 1f, 1f);
-    }
+    //private void OnDeselect()
+    //{
+    //    sprRenderer.color = new Color(1f, 1f, 1f, 1f);
+    //}
 
     public void Goto(Vector3 location)
     {

@@ -78,8 +78,6 @@ public class MouseInputs : MonoBehaviour
                     // Selection.Instance.PathFindAllSelected(initialMousePosition);
 
                     Selection.Instance.HandleActionBySelected(initialMousePosition, hit.transform.gameObject);
-
-
                 }
 
             }
@@ -95,39 +93,46 @@ public class MouseInputs : MonoBehaviour
         inputSelectDown = ctx.ReadValueAsButton();
         initialMousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        List<RaycastHit2D> hits = new List<RaycastHit2D>();
-        Physics2D.Raycast(initialMousePosition, Vector2.zero, selectable, hits);
-
         if (inputSelectDown && ctx.started)
         {
-            if (hits.Count > 0)
+            List<RaycastHit2D> hits = new List<RaycastHit2D>();
+            Physics2D.Raycast(initialMousePosition, Vector2.zero, selectable, hits);
+
+            var hitsSelectable = hits.FindAll(h => h.collider.GetComponent<Selectable>());
+
+            if (hitsSelectable.Count > 0)
             {
-                // Natrafili�my na co� co mo�na nacisn��
+                // Natrafili�my na co� co mo�na zaznaczyć
                 // Czy trzymamy shift?
                 if (shiftSelectingActive)
                 {
                     // Tak
-                    foreach (var hit in hits)
-                    {
-                        Selection.Instance.ShiftClickSelect(hit.collider.gameObject);
-                    }
+                    // Nie zaznaczamy budynków przy pomocy shifta
+                  
+                    if (!hitsSelectable[0].collider.GetComponent<Structure>())
+                        // Zaznaczamy dodatkowe jednostki
+                        Selection.Instance.ShiftClickSelect(hitsSelectable[0].collider.GetComponent<Selectable>());
                 }
                 else
                 {
                     // Nie
-                    foreach (var hit in hits)
-                    {
-                        Selection.Instance.ClickSelect(hit.collider.gameObject);
-                    }
+                    // Zaznacz budynek
+                    if (hitsSelectable[0].collider.GetComponent<Structure>())
+                        Selection.Instance.SelectStructure(hitsSelectable[0].collider.GetComponent<Selectable>());
+                    else
+                        // Zaznacz jednostkę
+                        Selection.Instance.ClickSelect(hitsSelectable[0].collider.GetComponent<Selectable>());
                 }
             }
             else if (!shiftSelectingActive)
             {
+                // Nie natrafiliśmy na nic zaznaczalnego
+                // Odznaczamy wszystko
                 Selection.Instance.DeselectAll();
             }
         }
 
-        // Ko�czymy zaznaczanie
+        // Ko�czymy zaznaczanie z przytrzymaniem
         if (!inputSelectDown && isDragging)
         {
             EnableSelectionVisuals(false);
@@ -181,12 +186,12 @@ public class MouseInputs : MonoBehaviour
             if (boxColl.OverlapPoint(unit.transform.position))
             {
                 // Tak, jest
-                Selection.Instance.TrySelect(unit.gameObject);
+                Selection.Instance.TrySelect(unit.gameObject.GetComponent<Selectable>());
             }
             else if (!shiftSelectingActive)
             {
                 // Nie, nie jest
-                Selection.Instance.TryDeselect(unit.gameObject);
+                Selection.Instance.TryDeselect(unit.gameObject.GetComponent<Selectable>());
             }
         }
     }
