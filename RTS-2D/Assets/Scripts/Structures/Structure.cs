@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Structure : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float buildTime;
+    public int life;
+    public int woodCost;
+    public int metalCost;
+
+    public virtual void OnBuildingFinished()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnBuildingDestroyed()
     {
-        
+
     }
 }

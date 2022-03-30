@@ -118,4 +118,14 @@ public class ResourceManager : MonoBehaviour
     {
         return resourcesMAX[type] - resources[type];
     }
+
+    public void AddToMaxFood(int amount)
+    {
+        foodMAX += amount;
+    }
+
+    public void AddToMaxResource(Resource.Type type, int amount)
+    {
+        resourcesMAX[type] += amount;
+    }
 }
