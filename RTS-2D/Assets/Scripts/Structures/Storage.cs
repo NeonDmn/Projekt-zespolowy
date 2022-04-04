@@ -33,7 +33,7 @@ public class Storage : Structure
             }
         }
 
-        if (isPlacingStorage && Mouse.current.leftButton.wasPressedThisFrame)
+        if (isPlacingStorage && Mouse.current.rightButton.wasPressedThisFrame)
         {
             storagePosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             CreateStorage();
@@ -49,16 +49,20 @@ public class Storage : Structure
 
     private void CreateStorage()
     {
-        if (!ResourceManager.Instance.TakeWood(150) || !ResourceManager.Instance.TakeMetal(50))
+        if (MouseInputs.collide == true)
         {
-            print("Nie mo¿na utworzyæ magazynu.");
-        }
-        else
-        {
-            // Mo¿na tworzyæ
-            // timer start
-            storageCreationTime = 15f;
-            storageTimerRunning = true;
+            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+            {
+                Debug.Log("Za ma³o surowców by wybudowaæ magazyn");
+            }
+            else
+            {
+                Debug.Log("Budowa magazynu rozpoczêta");
+                // Mo¿na tworzyæ
+                // timer start
+                storageCreationTime = 15f;
+                storageTimerRunning = true;
+            }
         }
     }
 

@@ -34,12 +34,14 @@ public class Farm : Structure
             }
         }
 
-        if (isPlacingFarm && Mouse.current.leftButton.wasPressedThisFrame)
+        if (isPlacingFarm && Mouse.current.rightButton.wasPressedThisFrame)
         {
             farmPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             CreateFarm();
             isPlacingFarm = false;
         }
+
+
     }
     public void selectFarmPosition()
     {
@@ -49,16 +51,20 @@ public class Farm : Structure
 
     private void CreateFarm()
     {
-        if (ResourceManager.Instance.TakeWood(100) || ResourceManager.Instance.TakeMetal(100))
+        if (MouseInputs.collide == true)
         {
-            print("Nie mo¿na utworzyæ farmy.");
-        }
-        else
-        {
-            // Mo¿na tworzyæ
-            // timer start
-            farmCreationTime = 20f;
-            farmTimerRunning = true;
+            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+            {
+                Debug.Log("Za ma³o surowców by wybudowaæ farme.");
+            }
+            else
+            {
+                Debug.Log("Budowa farmy rozpoczêta");
+                // Mo¿na tworzyæ
+                // timer start
+                farmCreationTime = 20f;
+                farmTimerRunning = true;
+            }
         }
     }
 
@@ -76,4 +82,5 @@ public class Farm : Structure
     {
         ResourceManager.Instance.AddToMaxFood(-50);
     }
+
 }

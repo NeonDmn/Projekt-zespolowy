@@ -34,7 +34,7 @@ public class Barracks : Structure
             }
         }
 
-        if (isPlacingBarracks && Mouse.current.leftButton.wasPressedThisFrame)
+        if (isPlacingBarracks && Mouse.current.rightButton.wasPressedThisFrame)
         {
             barracksPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             CreateBarracks();
@@ -50,16 +50,20 @@ public class Barracks : Structure
 
     private void CreateBarracks()
     {
-        if (!ResourceManager.Instance.TakeWood(300) || !ResourceManager.Instance.TakeMetal(150))
+        if (MouseInputs.collide == true)
         {
-            print("Nie mo¿na utworzyæ koszar.");
-        }
-        else
-        {
-            // Mo¿na tworzyæ
-            // timer start
-            barracksCreationTime = 20f;
-            barracksTimerRunning = true;
+            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+            {
+                Debug.Log("Za ma³o surowców by wybudowaæ koszary");
+            }
+            else
+            {
+                Debug.Log("Budowa koszar rozpoczêta");
+                // Mo¿na tworzyæ
+                // timer start
+                barracksCreationTime = 20f;
+                barracksTimerRunning = true;
+            }
         }
     }
 
@@ -78,4 +82,5 @@ public class Barracks : Structure
     {
 
     }
+
 }
