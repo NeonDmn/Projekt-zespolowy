@@ -1,0 +1,34 @@
+{
+    "name": "UIControls",
+    "maps": [
+        {
+            "name": "UINavigation",
+            "id": "0d1c8a8b-d618-41ce-a0ef-8a96f1ad82d1",
+            "actions": [
+                {
+                    "name": "Back/Close",
+                    "type": "Button",
+                    "id": "3b04e7cf-a86d-4a76-a98a-a0d1733b711d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b58ecd82-895b-495c-a97b-19f752aadcb7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back/Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
