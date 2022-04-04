@@ -74,6 +74,12 @@ public class MouseInputs : MonoBehaviour
             {
                 Debug.Log("Nie można zbudować w tym miejscu. Wykryto: " + hit.collider.gameObject.name);
                 collide = false;
+                if (Selection.Instance.unitsSelected.Count > 0)
+                {
+                    // Selection.Instance.PathFindAllSelected(initialMousePosition);
+
+                    Selection.Instance.HandleActionBySelected(initialMousePosition, hit.transform.gameObject);
+                }
             }
             else if (hit.collider != null)
             {
