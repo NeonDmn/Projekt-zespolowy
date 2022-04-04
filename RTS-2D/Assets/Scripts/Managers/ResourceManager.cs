@@ -25,8 +25,11 @@ public class ResourceManager : MonoBehaviour
 	
     int foodInUse;
     int foodMAX;
-	
-	int metalInUse;
+
+    int woodInUse;
+    int woodMAX;
+
+    int metalInUse;
 	int metalMAX;
 
     private void Start()
@@ -41,8 +44,11 @@ public class ResourceManager : MonoBehaviour
 
         foodMAX = 50;
         foodInUse = 0;
-		
-		metalMAX = 0;
+
+        woodInUse = 0;
+        woodMAX = 0;
+
+        metalMAX = 0;
 		metalInUse = 0;
     }
 
@@ -114,8 +120,18 @@ public class ResourceManager : MonoBehaviour
         foodInUse += amount;
         return true;
     }
-	
-	public bool TakeMetal(int amount)
+
+
+    public bool TakeWood(int amount)
+    {
+        if ((woodInUse + amount) > woodMAX) return false;
+
+        woodInUse += amount;
+        return true;
+    }
+
+
+    public bool TakeMetal(int amount)
     {
         if ((metalInUse + amount) > metalMAX) return false;
 

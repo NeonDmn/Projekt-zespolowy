@@ -100,6 +100,8 @@ MonoBehaviour:
   life: 500
   woodCost: 300
   metalCost: 150
+  barracksPrefab: {fileID: 4908421828050849195}
+  barracksSpawnPos: {fileID: 7261763661298946042}
 --- !u!60 &5523005907021366167
 PolygonCollider2D:
   m_ObjectHideFlags: 0

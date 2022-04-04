@@ -4423,8 +4423,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114240300, guid: 4e32eb7e930a97f4093627abcd3b3158, type: 3}
-        m_TargetAssemblyTypeName: TownHall, Assembly-CSharp
+      - m_Target: {fileID: 5477755406656441440, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+        m_TargetAssemblyTypeName: Barracks, Assembly-CSharp
         m_MethodName: selectBarracksPosition
         m_Mode: 1
         m_Arguments:
@@ -4556,8 +4556,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114240300}
-        m_TargetAssemblyTypeName: TownHall, Assembly-CSharp
+      - m_Target: {fileID: 4101221918532296644, guid: 380ff9cb6d8baa34d8f1f1200f2f2678, type: 3}
+        m_TargetAssemblyTypeName: Farm, Assembly-CSharp
         m_MethodName: selectFarmPosition
         m_Mode: 1
         m_Arguments:
@@ -4915,6 +4915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8175370305160785726, guid: 380ff9cb6d8baa34d8f1f1200f2f2678, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 380ff9cb6d8baa34d8f1f1200f2f2678, type: 3}
 --- !u!1 &1713459728
@@ -5248,8 +5252,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114240300}
-        m_TargetAssemblyTypeName: TownHall, Assembly-CSharp
+      - m_Target: {fileID: 4062453221508653089, guid: 074e09a551262b140b775345dd8f1900, type: 3}
+        m_TargetAssemblyTypeName: Storage, Assembly-CSharp
         m_MethodName: selectStoragePosition
         m_Mode: 1
         m_Arguments:

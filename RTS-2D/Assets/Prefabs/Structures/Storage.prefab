@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9989675026705e948bd050f029cfd754, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,6 +100,8 @@ MonoBehaviour:
   life: 200
   woodCost: 150
   metalCost: 50
+  storagePrefab: {fileID: 675296345365289914}
+  storageSpawnPos: {fileID: 6670400057409435165}
 --- !u!60 &3456202945051578951
 PolygonCollider2D:
   m_ObjectHideFlags: 0
