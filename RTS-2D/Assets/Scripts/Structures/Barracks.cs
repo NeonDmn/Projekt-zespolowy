@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Barracks : Structure
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+        OnBuildingFinished();
+    }
+    public override void OnBuildingFinished()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnBuildingDestroyed()
     {
 
     }
