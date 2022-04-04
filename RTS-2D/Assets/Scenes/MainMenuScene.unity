@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.64116335, b: 0.023584902, a: 1}
+  m_Color: {r: 0.8584906, g: 0.8302888, b: 0.7977483, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -464,6 +464,7 @@ MonoBehaviour:
   mainMenuGO: {fileID: 426939651}
   startMenuGO: {fileID: 1877042726}
   optionsMenuGO: {fileID: 746565442}
+  mixer: {fileID: 0}
 --- !u!4 &285935296
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,7 +1215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1930879c500fb47a15c789ea54472b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63a11e41ea2b7fb43bc1cd15139ce395, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1347,7 +1348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 00cf7ac72e0877e4b9898bb5be96316a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 658726e4267eb5c479bf70c529ed34fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1555,7 +1556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3efc1a71b9965f341b7d89bbc70bdaa5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 127a5ac23718d444593d890d03ad8b51, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1789,7 +1790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370, y: -647}
+  m_AnchoredPosition: {x: 370, y: -659}
   m_SizeDelta: {x: 423.70142, y: 115.15759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820181378
@@ -1838,18 +1839,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 285935295}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: GoBack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 285935295}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: AcceptSettings
         m_Mode: 1
         m_Arguments:
@@ -1880,7 +1869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c965e0b78fa3964bbd77434916ea2c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 200b5f5cc71fd8d45928e83f22442b46, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2034,7 +2023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 88ba6160e168ec242b321c9f6c8905a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43fb1b892de7663428f14d876cc8005a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2163,7 +2152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370, y: -268}
+  m_AnchoredPosition: {x: 370, y: -806}
   m_SizeDelta: {x: 423.70142, y: 115.15759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062290950
@@ -2242,7 +2231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf750df9258f22047bb9a4165d288cd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efbf563127bf65d47b42f6a21ee1910b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Worker : Unit
 {
-    //private string resource;
-    private float gatherTime = 10.0f;
-    private bool timerStart = false;
-
     Dictionary<Resource.Type, int> backpack = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> backpackMAX = new Dictionary<Resource.Type, int>();
 
@@ -49,11 +45,6 @@ public class Worker : Unit
             // Pathfinding
             GotoAndSwitchToIdle(mousePos);
         }
-    }
-
-    public override void ToDo()
-    {
-
     }
 
     public void AddToBackpack(Resource.Type type, int count)

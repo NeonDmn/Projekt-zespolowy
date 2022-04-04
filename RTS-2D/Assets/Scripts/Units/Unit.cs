@@ -86,7 +86,6 @@ public class Unit : MonoBehaviour
     {
         currentTask.Tick();
         UnitMovement();
-        ToDo();
     }
     private void OnDestroy()
     {
