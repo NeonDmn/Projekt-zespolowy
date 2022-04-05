@@ -20,67 +20,120 @@ public class GridController : MonoBehaviour
 
     private Node end = null;
     
-    private void InitPathfinding()
+
+    private void InitTileMapPathfinding(){
+
+        tileMapNodes = new Node[gridSize.x, gridSize.y];
+        for (int i = 0; i < gridSize.x; i++)
+        {
+            for (int j = 0; j < gridSize.y; j++)
+            {
+                tileMapNodes[i, j] = new Node(i, j);
+                tileMapNodes[i, j].isObstacle = false;
+                tileMapNodes[i, j].parent = null;
+                tileMapNodes[i, j].isVisited = false;
+            }
+        }
+        for (int i = 0; i < gridSize.x; i++)
+        {
+            for (int j = 0; j < gridSize.y; j++)
+            {
+                if (j > 0)
+                {
+                    tileMapNodes[i, j].neighBours.Add(tileMapNodes[i, j - 1]);
+                }
+                if (j < (gridSize.y - 1))
+                {
+                    tileMapNodes[i, j].neighBours.Add(tileMapNodes[i, j + 1]);
+                }
+                if (i > 0)
+                {
+                    tileMapNodes[i, j].neighBours.Add(tileMapNodes[i - 1, j]);
+                }
+                if (i < (gridSize.x - 1))
+                {
+                    tileMapNodes[i, j].neighBours.Add(tileMapNodes[i + 1, j]);
+                }
+            }
+
+        }
+        GameObject  test = GameObject.Find("Trees");
+        //foreach (Transform g in transform.GetComponentsInChildren<Transform>())
+        //{
+        //    Debug.Log(g.name);
+        //}
+
+        //Debug.Log(test.transform.childCount);
+        foreach (Transform child in test.transform){
+            Debug.Log(child.transform.position);
+
+            tileMapNodes[(int)child.transform.position.x,(int)child.transform.position.y].isObstacle=true;
+        }
+        //Debug.Log();
+        //GameObject tilemap = test.transform.Find("Tilemap").gameObject;
+
+
+        //foreach (var position in tilemap.cellBounds.allPositionsWithin)
+        //{
+        //    if (!tilemap.HasTile(position))
+        //    {
+        //        continue;
+        //    }
+        //
+        //    // Tile is not empty; do stuff
+        //}
+        //for (int i = 0; i < gridSize.x; i++)
+        //{
+        //    for (int j = 0; j < gridSize.y; j++)
+        //    {
+        //        tileMapNodes[i, j].isObstacle = false;
+        //    }
+        //}
+
+        //Node startPoint = tileMapNodes[0, 0];
+        //Node endPoint = tileMapNodes[gridSize.x - 1, gridSize.y - 1];
+        //List<Node> path = SolveAStar(startPoint, endPoint);
+        //foreach (var item in path)
+        //{
+        //    Debug.Log(item.x);
+        //}
+
+        //Node startPoint = tileMapNodes[0, 0];
+        //Node endPoint = tileMapNodes[9,9];
+        //List<Node> path = SolveAStar(startPoint, endPoint);
+        //foreach (var item in path)
+        //{
+        //    Debug.Log("_______");
+        //    Debug.Log(item.x);
+        //    Debug.Log(item.y);
+        //    Debug.Log("_______");
+        //}
+
+
+
+
+
+    }   
+    public void ResetNodes()
     {
         //NOT FINISHED!!!
         //tilesmap =  new int[gridSize.x,gridSize.y]{
         //        0,
         //};
-        tileMapNodes = new Node[gridSize.x,gridSize.y];
         for (int i = 0; i < gridSize.x; i++)
         {
             for (int j = 0; j < gridSize.y; j++)
             {
-                tileMapNodes[i,j] = new Node(i,j);
-                tileMapNodes[i,j].isObstacle =false;
-                tileMapNodes[i,j].parent = null;
-                tileMapNodes[i,j].isVisited =false;
+                tileMapNodes[i, j].isVisited = false;
             }
         }
 
 
-        for (int i = 0; i < gridSize.x; i++)
-        {
-            for (int j = 0; j < gridSize.y; j++)
-            {
-
-                tileMapNodes[i, j].isObstacle = false;
-            }
-        }
-
-        for (int i = 0; i < gridSize.x; i++)
-        {
-            for (int j = 0; j < gridSize.y; j++)
-            {
-                if(j>0){
-                    tileMapNodes[i,j].neighBours.Add(tileMapNodes[i,j-1]);
-                }
-                if(j<(gridSize.y-1)){
-                   tileMapNodes[i,j].neighBours.Add(tileMapNodes[i,j+1]);
-                }
-                if(i>0){
-                    tileMapNodes[i,j].neighBours.Add(tileMapNodes[i-1,j]);
-                }
-                if(i<(gridSize.x-1)){
-                    tileMapNodes[i,j].neighBours.Add(tileMapNodes[i+1,j]);
-                }
-            }
-            
-        }
-
-        Node startPoint = tileMapNodes[0,0];
-        Node endPoint = tileMapNodes[gridSize.x - 1, gridSize.y - 1];
-        List<Node> path  = SolveAStar(startPoint,endPoint);
-        foreach (var item in path)
-        {
-            Debug.Log(item.x);
-        } 
     }
 
     private void Start()
     {
-        InitPathfinding();
-
+        InitTileMapPathfinding();
     }
 
     private void Update()
@@ -93,7 +146,7 @@ public class GridController : MonoBehaviour
 
     }
     
-    private List<Node> SolveAStar(Node startPoint, Node endPoint){
+    public List<Node> SolveAStar(Node startPoint, Node endPoint){
         for (int i = 0; i < gridSize.x; i++)
         {
             for (int j = 0; j < gridSize.y; j++)
@@ -137,6 +190,7 @@ public class GridController : MonoBehaviour
             }
         }
 
+        //ResetNodes();
         List<Node> path = new List<Node>();
         if(endPoint!=null){
             Node temp = endPoint;

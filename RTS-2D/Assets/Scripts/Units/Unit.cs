@@ -24,11 +24,12 @@ public class Unit : MonoBehaviour
     public UnityAction leftUnitRange;
 
     public UnityAction enteredTownHall;
+    private int pathIndex;
 
 
     public UnitTask currentTask { get; private set; }
-
-
+    private List<Node> path;
+    private Vector3 pos;
 
     protected void Start()
     {
@@ -78,9 +79,23 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        currentTask.Tick();
-        UnitMovement();
-        ToDo();
+        if(path!=null){
+            //Debug.Log(transform.position);
+
+            Debug.Log("______");
+            Debug.Log(path[pathIndex].x);
+            Debug.Log(path[pathIndex].y);
+            Debug.Log("______");
+            UnitMovement(path[pathIndex]);
+            if((pos.x == path[pathIndex].x) &&(pos.y == path[pathIndex].y)){
+                if(pathIndex>0){
+                pathIndex = pathIndex-1;
+                }
+            }
+        }
+       /// currentTask.Tick();
+        //UnitMovement();
+        //ToDo();
     }
     private void OnDestroy()
     {
@@ -115,16 +130,24 @@ public class Unit : MonoBehaviour
         Goto(location);
     }
 
-    public void CreatePath(Node _from, Node _to, Vector2 mousePos)
+    public void CreatePath(Vector2 mousePos)
     {
-        endPoint = mousePos;
+
+        gridController = GameObject.Find("GridController").GetComponent<GridController>();
+        Node startPointLocal = GridController.tileMapNodes[(int)transform.position.x, (int)transform.position.y];
+        Node endPointLocal = GridController.tileMapNodes[(int)mousePos.x,(int)mousePos.y];
+        path = gridController.SolveAStar(startPointLocal,endPointLocal);
+        Debug.Log(path.Count);
+        pathIndex = path.Count-1;
     }
 
-    public void UnitMovement()
+    public void UnitMovement(Node _to)
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 15 * Time.deltaTime);
+        pos = Vector3.MoveTowards(transform.position, new Vector3(_to.x,_to.y, 0), 15 * Time.deltaTime);
+        Debug.Log(pos);
         body.MovePosition(pos);
     }
+    
 
 
 }
