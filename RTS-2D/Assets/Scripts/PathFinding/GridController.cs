@@ -199,6 +199,7 @@ public class GridController : MonoBehaviour
                 temp= temp.parent;
             }
         }
+        ResetNodes();
         return path;
     }
 }
