@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 4373179943778524554}
   - component: {fileID: 114240299}
   - component: {fileID: 114240300}
+  - component: {fileID: 5320984353146199830}
   m_Layer: 0
   m_Name: TownHall
   m_TagString: TownHall
@@ -295,3 +296,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workerPrefab: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
   workerSpawnPos: {fileID: 962140986}
+--- !u!114 &5320984353146199830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373179943778524558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0

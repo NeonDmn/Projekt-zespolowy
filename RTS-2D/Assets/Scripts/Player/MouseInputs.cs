@@ -72,7 +72,6 @@ public class MouseInputs : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.gameObject.name + " select");
                 if (Selection.Instance.unitsSelected.Count > 0)
                 {
                     // Selection.Instance.PathFindAllSelected(initialMousePosition);
@@ -98,38 +97,23 @@ public class MouseInputs : MonoBehaviour
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             Physics2D.Raycast(initialMousePosition, Vector2.zero, selectable, hits);
 
-            var hitsSelectable = hits.FindAll(h => h.collider.GetComponent<Selectable>());
+            var hitsSelectable = hits.FindAll(
+                // Zaznacz obiekty które mogą być zaznaczone
+                h => h.collider.GetComponent<Selectable>()
+                // Zaznacz tylko, jeśli w twojej drużynie
+                && h.collider.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Friendly
+                );
 
-            if (hitsSelectable.Count > 0)
-            {
-                // Natrafili�my na co� co mo�na zaznaczyć
-                // Czy trzymamy shift?
-                if (shiftSelectingActive)
+            // Zaznacz pierwszy obiekt na liście
+            if (hitsSelectable.Count <= 0 || !TrySelectCollider(hitsSelectable[0].collider)) {
+                if (!shiftSelectingActive)
                 {
-                    // Tak
-                    // Nie zaznaczamy budynków przy pomocy shifta
-                  
-                    if (!hitsSelectable[0].collider.GetComponent<Structure>())
-                        // Zaznaczamy dodatkowe jednostki
-                        Selection.Instance.ShiftClickSelect(hitsSelectable[0].collider.GetComponent<Selectable>());
-                }
-                else
-                {
-                    // Nie
-                    // Zaznacz budynek
-                    if (hitsSelectable[0].collider.GetComponent<Structure>())
-                        Selection.Instance.SelectStructure(hitsSelectable[0].collider.GetComponent<Selectable>());
-                    else
-                        // Zaznacz jednostkę
-                        Selection.Instance.ClickSelect(hitsSelectable[0].collider.GetComponent<Selectable>());
+                    // Nie natrafiliśmy na nic zaznaczalnego
+                    // Odznaczamy wszystko
+                    Selection.Instance.DeselectAll();
                 }
             }
-            else if (!shiftSelectingActive)
-            {
-                // Nie natrafiliśmy na nic zaznaczalnego
-                // Odznaczamy wszystko
-                Selection.Instance.DeselectAll();
-            }
+                
         }
 
         // Ko�czymy zaznaczanie z przytrzymaniem
@@ -138,6 +122,40 @@ public class MouseInputs : MonoBehaviour
             EnableSelectionVisuals(false);
             isDragging = false;
         }
+    }
+
+    private bool TrySelectCollider(Collider2D obj) {
+        if (obj != null)
+        {
+            // Natrafili�my na co� co mo�na zaznaczyć
+            // Czy trzymamy shift?
+            if (shiftSelectingActive)
+            {
+                // Tak
+                // Nie zaznaczamy budynków przy pomocy shifta
+                if (!obj.GetComponent<Structure>()) {
+                    // Zaznaczamy dodatkowe jednostki
+                    Selection.Instance.ShiftClickSelect(obj.GetComponent<Selectable>());
+                }
+                return true;
+            }
+            else
+            {
+                // Nie
+                // Zaznacz budynek
+                if (obj.GetComponent<Structure>()) {
+                    Selection.Instance.SelectStructure(obj.GetComponent<Selectable>());
+                    return true;
+                }
+                else {
+                    // Zaznacz jednostkę
+                    Selection.Instance.ClickSelect(obj.GetComponent<Selectable>());
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void ShiftSelectInput(InputAction.CallbackContext ctx)
@@ -182,6 +200,9 @@ public class MouseInputs : MonoBehaviour
         // P�tla przez wszystkie jednostki na mapie
         foreach (var unit in Selection.Instance.unitList)
         {
+            if (unit.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Enemy)
+            continue;
+
             // Czy jednostka jest zaznaczona?
             if (boxColl.OverlapPoint(unit.transform.position))
             {

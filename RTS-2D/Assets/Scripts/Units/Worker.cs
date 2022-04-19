@@ -18,8 +18,6 @@ public class Worker : Unit
         backpackMAX.Add(Resource.Type.WOOD, 20);
         backpackMAX.Add(Resource.Type.METAL, 15);
         backpackMAX.Add(Resource.Type.CRYSTAL, 20);
-
-
     }
 
     public override void HandleAction(Vector2 mousePos, GameObject go)
@@ -27,13 +25,28 @@ public class Worker : Unit
         base.HandleAction(mousePos, go);
 
         Resource res;
-        //Structure str;
+        Structure str;
         Unit u;
 
         if (res = go.GetComponent<Resource>())
         {
             // Start gather
             SwitchTask(new GatherTask(this, res));
+        }
+        else if (str = go.GetComponent<Structure>())
+        {
+            switch (go.GetComponent<PlayerTeam>().team)
+            {
+                case PlayerTeam.Team.Friendly:
+                // Friendly structure
+                Debug.Log("Friendly structure");
+                break;
+
+                case PlayerTeam.Team.Enemy:
+                // Enemy structure
+                Debug.Log("Enemy structure");
+                break;
+            }
         }
         else if (u = go.GetComponent<Unit>())
         {
