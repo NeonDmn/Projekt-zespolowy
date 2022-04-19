@@ -144,7 +144,7 @@ public class Unit : MonoBehaviour
     public void UnitMovement(Node _to)
     {
         pos = Vector3.MoveTowards(transform.position, new Vector3(_to.x,_to.y, 0), 15 * Time.deltaTime);
-        Debug.Log(pos);
+        GameManager.instance.sendNotification(pos.ToString());
         body.MovePosition(pos);
     }
     
