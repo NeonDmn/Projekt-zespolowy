@@ -4127,24 +4127,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 352.0145}
   m_Pivot: {x: 0, y: 1}
---- !u!1 &537198463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
-  m_PrefabInstance: {fileID: 1828530043}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &537198464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537198463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 1
 --- !u!1 &595757063
 GameObject:
   m_ObjectHideFlags: 0
@@ -6399,6 +6381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 3827539468080240938, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
+      propertyPath: _team
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
 --- !u!1001 &2006477465
@@ -7054,24 +7040,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
---- !u!1 &3827539468080240937 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
-  m_PrefabInstance: {fileID: 3827539468080240936}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3827539468080240938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3827539468080240937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 0
 --- !u!1001 &4373179944376527581
 PrefabInstance:
   m_ObjectHideFlags: 0
