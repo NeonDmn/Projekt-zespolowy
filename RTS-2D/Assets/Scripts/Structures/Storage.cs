@@ -15,7 +15,7 @@ public class Storage : Structure
     private void Start()
     {
         cam = Camera.main;
-        OnBuildingFinished();
+        //OnBuildingFinished();
     }
 
     private void Update()
@@ -29,6 +29,7 @@ public class Storage : Structure
             else
             {
                 SpawnStorage();
+                OnBuildingFinished();
                 storageTimerRunning = false;
             }
         }

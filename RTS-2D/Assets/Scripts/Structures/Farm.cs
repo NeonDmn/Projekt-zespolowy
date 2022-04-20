@@ -15,7 +15,7 @@ public class Farm : Structure
     private void Start()
     {
         cam = Camera.main;
-        OnBuildingFinished();
+        //OnBuildingFinished();
     }
 
     private void Update()
@@ -30,6 +30,7 @@ public class Farm : Structure
             else
             {
                 SpawnFarm();
+                OnBuildingFinished();
                 farmTimerRunning = false;
             }
         }

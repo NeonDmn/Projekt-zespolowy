@@ -14,7 +14,7 @@ public class Barracks : Structure
 
     private void Start()
     {
-        OnBuildingFinished();
+        //OnBuildingFinished();
         cam = Camera.main;
 
     }
@@ -30,6 +30,7 @@ public class Barracks : Structure
             else
             {
                 SpawnBarracks();
+                OnBuildingFinished();
                 barracksTimerRunning = false;
             }
         }
