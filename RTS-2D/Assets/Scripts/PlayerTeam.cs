@@ -15,6 +15,11 @@ public class PlayerTeam : MonoBehaviour
 
     [SerializeField]
     private Team _team;
-    public Team team { get {return _team;} }
-    
+    public Team team { get { return _team; } }
+
+    public void SetTeam(PlayerTeam.Team team)
+    {
+        _team = team;
+    }
+
 }

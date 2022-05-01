@@ -14,6 +14,7 @@ public class Barracks : Structure
 
     private void Start()
     {
+        //Debug.Log("PojawiÅ‚ siÄ™ budynek " + name + " frakcji " + GetComponent<PlayerTeam>().team + " na " + transform.position);
         //OnBuildingFinished();
         cam = Camera.main;
 
@@ -38,7 +39,7 @@ public class Barracks : Structure
         if (isPlacingBarracks && Mouse.current.rightButton.wasPressedThisFrame)
         {
             barracksPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            CreateBarracks();
+            //CreateBarracks();
             isPlacingBarracks = false;
         }
     }
@@ -49,24 +50,24 @@ public class Barracks : Structure
     }
 
 
-    private void CreateBarracks()
-    {
-        if (MouseInputs.collide == true)
-        {
-            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
-            {
-                Debug.Log("Za ma³o surowców by wybudowaæ koszary");
-            }
-            else
-            {
-                Debug.Log("Budowa koszar rozpoczêta");
-                // Mo¿na tworzyæ
-                // timer start
-                barracksCreationTime = 20f;
-                barracksTimerRunning = true;
-            }
-        }
-    }
+    // private void CreateBarracks()
+    // {
+    //     if (MouseInputs.collide == true)
+    //     {
+    //         if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+    //         {
+    //             Debug.Log("Za maï¿½o surowcï¿½w by wybudowaï¿½ koszary");
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Budowa koszar rozpoczï¿½ta");
+    //             // Moï¿½na tworzyï¿½
+    //             // timer start
+    //             barracksCreationTime = 20f;
+    //             barracksTimerRunning = true;
+    //         }
+    //     }
+    // }
 
     private void SpawnBarracks()
     {

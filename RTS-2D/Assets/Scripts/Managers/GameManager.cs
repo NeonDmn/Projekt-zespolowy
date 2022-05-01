@@ -20,13 +20,54 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    GameObject townHall;
+    GameObject storagePrefab;
+    GameObject farmPrefab;
+    GameObject barracksPrefab;
+    //GameObject townHall;
+    Dictionary<PlayerTeam.Team, TownHall> townHalls = new Dictionary<PlayerTeam.Team, TownHall>();
     private void Start()
     {
-        townHall = GameObject.FindGameObjectWithTag("TownHall");
+        InitTownHalls();
+        Debug.Log("TownHalls found: " + townHalls.Count);
     }
-    public GameObject GetTownHallObject(int team)
+
+    private void InitTownHalls()
     {
-        return townHall;
+        GameObject[] thls = GameObject.FindGameObjectsWithTag("TownHall");
+        foreach (var th in thls)
+        {
+            PlayerTeam.Team thTeam = th.GetComponent<PlayerTeam>().team;
+            if (!townHalls.ContainsKey(thTeam))
+            {
+                townHalls.Add(thTeam, th.GetComponent<TownHall>());
+            }
+        }
+    }
+
+    public TownHall GetTownHallObject(PlayerTeam.Team team)
+    {
+        return townHalls[team];
+    }
+
+    public void BuildStorage()
+    {
+        //Build(storagePrefab, team, position);
+        EventManager.OnBuildingStarted?.Invoke(storagePrefab);
+    }
+
+    public void BuildFarm()
+    {
+        //Build(farmPrefab, team, position);
+    }
+
+    public void BuildBarracks()
+    {
+        //Build(barracksPrefab, team, position);
+    }
+
+    public void Build(GameObject go, PlayerTeam.Team team, Vector2 position)
+    {
+        GameObject b = Instantiate(go, position, Quaternion.identity);
+        b.GetComponent<PlayerTeam>().SetTeam(team);
     }
 }

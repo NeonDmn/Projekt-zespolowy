@@ -38,7 +38,7 @@ public class Farm : Structure
         if (isPlacingFarm && Mouse.current.rightButton.wasPressedThisFrame)
         {
             farmPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            CreateFarm();
+            //CreateFarm();
             isPlacingFarm = false;
         }
 
@@ -50,24 +50,24 @@ public class Farm : Structure
     }
 
 
-    private void CreateFarm()
-    {
-        if (MouseInputs.collide == true)
-        {
-            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
-            {
-                Debug.Log("Za ma³o surowców by wybudowaæ farme.");
-            }
-            else
-            {
-                Debug.Log("Budowa farmy rozpoczêta");
-                // Mo¿na tworzyæ
-                // timer start
-                farmCreationTime = 20f;
-                farmTimerRunning = true;
-            }
-        }
-    }
+    // private void CreateFarm()
+    // {
+    //     if (MouseInputs.collide == true)
+    //     {
+    //         if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+    //         {
+    //             Debug.Log("Za maï¿½o surowcï¿½w by wybudowaï¿½ farme.");
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Budowa farmy rozpoczï¿½ta");
+    //             // Moï¿½na tworzyï¿½
+    //             // timer start
+    //             farmCreationTime = 20f;
+    //             farmTimerRunning = true;
+    //         }
+    //     }
+    // }
 
     private void SpawnFarm()
     {
@@ -76,12 +76,16 @@ public class Farm : Structure
 
     public override void OnBuildingFinished()
     {
-        ResourceManager.Instance.AddToMaxFood(50);
+        TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
+
+        th.resources.AddToMaxFood(50);
     }
 
     public override void OnBuildingDestroyed()
     {
-        ResourceManager.Instance.AddToMaxFood(-50);
+        TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
+
+        th.resources.AddToMaxFood(-50);
     }
 
 }

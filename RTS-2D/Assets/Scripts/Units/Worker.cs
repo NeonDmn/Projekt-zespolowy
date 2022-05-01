@@ -7,6 +7,8 @@ public class Worker : Unit
     Dictionary<Resource.Type, int> backpack = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> backpackMAX = new Dictionary<Resource.Type, int>();
 
+
+
     new private void Start()
     {
         base.Start();
@@ -38,14 +40,14 @@ public class Worker : Unit
             switch (go.GetComponent<PlayerTeam>().team)
             {
                 case PlayerTeam.Team.Friendly:
-                // Friendly structure
-                Debug.Log("Friendly structure");
-                break;
+                    // Friendly structure
+                    Debug.Log("Friendly structure");
+                    break;
 
                 case PlayerTeam.Team.Enemy:
-                // Enemy structure
-                Debug.Log("Enemy structure");
-                break;
+                    // Enemy structure
+                    Debug.Log("Enemy structure");
+                    break;
             }
         }
         else if (u = go.GetComponent<Unit>())

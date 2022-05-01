@@ -8,13 +8,21 @@ public class TownHall : Structure
 {
     public GameObject workerPrefab;
     public Transform workerSpawnPos;
+    public ResourceManager resources { get; private set; }
+
+    public UnitsManager units { get; private set; }
     private float workerCreationTime;
     private bool workerTimerRunning = false;
 
+    private void Start()
+    {
+        resources = new ResourceManager();
+        units = new UnitsManager();
+    }
 
     public void CreateWorker()
     {
-        if (!ResourceManager.Instance.TakeFood(1))
+        if (!resources.TakeFood(1))
         {
             // Nie można utworzyć workera
             // error
@@ -31,7 +39,7 @@ public class TownHall : Structure
     private void SpawnWorker()
     {
         GameObject obj = Instantiate(workerPrefab, workerSpawnPos.position, Quaternion.identity);
-        UnitsManager.Instance.AddWorker(obj.GetComponent<Worker>());
+        units.AddWorker(obj.GetComponent<Worker>());
     }
 
     private void Update()

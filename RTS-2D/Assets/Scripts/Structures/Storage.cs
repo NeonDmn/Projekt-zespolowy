@@ -37,7 +37,7 @@ public class Storage : Structure
         if (isPlacingStorage && Mouse.current.rightButton.wasPressedThisFrame)
         {
             storagePosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            CreateStorage();
+            //CreateStorage();
             isPlacingStorage = false;
         }
     }
@@ -48,24 +48,24 @@ public class Storage : Structure
     }
 
 
-    private void CreateStorage()
-    {
-        if (MouseInputs.collide == true)
-        {
-            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
-            {
-                Debug.Log("Za ma³o surowców by wybudowaæ magazyn");
-            }
-            else
-            {
-                Debug.Log("Budowa magazynu rozpoczêta");
-                // Mo¿na tworzyæ
-                // timer start
-                storageCreationTime = 15f;
-                storageTimerRunning = true;
-            }
-        }
-    }
+    // private void CreateStorage()
+    // {
+    //     if (MouseInputs.collide == true)
+    //     {
+    //         if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+    //         {
+    //             Debug.Log("Za maï¿½o surowcï¿½w by wybudowaï¿½ magazyn");
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Budowa magazynu rozpoczï¿½ta");
+    //             // Moï¿½na tworzyï¿½
+    //             // timer start
+    //             storageCreationTime = 15f;
+    //             storageTimerRunning = true;
+    //         }
+    //     }
+    // }
 
     private void SpawnStorage()
     {
@@ -74,15 +74,19 @@ public class Storage : Structure
 
     public override void OnBuildingFinished()
     {
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.CRYSTAL, 20);
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.WOOD, 75);
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.METAL, 50);
+        TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
+
+        th.resources.AddToMaxResource(Resource.Type.CRYSTAL, 20);
+        th.resources.AddToMaxResource(Resource.Type.WOOD, 75);
+        th.resources.AddToMaxResource(Resource.Type.METAL, 50);
     }
 
     public override void OnBuildingDestroyed()
     {
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.CRYSTAL, -20);
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.WOOD, -75);
-        ResourceManager.Instance.AddToMaxResource(Resource.Type.METAL, -50);
+        TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
+
+        th.resources.AddToMaxResource(Resource.Type.CRYSTAL, -20);
+        th.resources.AddToMaxResource(Resource.Type.WOOD, -75);
+        th.resources.AddToMaxResource(Resource.Type.METAL, -50);
     }
 }

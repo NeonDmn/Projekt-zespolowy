@@ -54,7 +54,10 @@ public class GatherTask : UnitTask
 
     private bool IsSpaceAvailible()
     {
-        return (ResourceManager.Instance.GetResourceFreeCount(resource.GetResourceType()) > 0);
+        return (
+            GameManager.instance.GetTownHallObject(
+                owner.gameObject.GetComponent<PlayerTeam>().team
+                ).resources.GetResourceFreeCount(resource.GetResourceType()) > 0);
     }
 
     private void OnEnteredResource(Resource res)
@@ -83,7 +86,7 @@ public class GatherTask : UnitTask
     private void GotoTownHall()
     {
         //TODO: Zmiania Team
-        GameObject th = GameManager.instance.GetTownHallObject(1);
+        TownHall th = GameManager.instance.GetTownHallObject(PlayerTeam.Team.Friendly);
         owner.Goto(th.transform.position);
     }
 
@@ -108,7 +111,9 @@ public class GatherTask : UnitTask
         {
             if (it.Value < 1) continue;
 
-            int added = ResourceManager.Instance.AddResource(it.Key, it.Value);
+            int added = GameManager.instance.GetTownHallObject(
+                owner.gameObject.GetComponent<PlayerTeam>().team
+                ).resources.Add(it.Key, it.Value);
             Debug.Log("Do ratusza oddano " + added + " " + it.Key + "!");
         }
 

@@ -2,23 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager
 {
-    private static ResourceManager _instance;
-    public static ResourceManager Instance { get { return _instance; } }
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-
     Dictionary<Resource.Type, int> resources = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> resourcesMAX = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> resourceCart = new Dictionary<Resource.Type, int>();
@@ -32,7 +17,7 @@ public class ResourceManager : MonoBehaviour
     int metalInUse;
     int metalMAX;
 
-    private void Start()
+    public ResourceManager()
     {
         resources.Add(Resource.Type.WOOD, 100);
         resources.Add(Resource.Type.METAL, 0);
@@ -52,7 +37,7 @@ public class ResourceManager : MonoBehaviour
         metalInUse = 0;
     }
 
-    public int AddResource(Resource.Type type, int count)
+    public int Add(Resource.Type type, int count)
     {
         resources[type] += count;//15 +15 =30
 
@@ -121,24 +106,6 @@ public class ResourceManager : MonoBehaviour
         return true;
     }
 
-
-    public bool TakeWood(int amount)
-    {
-        if ((woodInUse + amount) > woodMAX) return false;
-
-        woodInUse += amount;
-        return true;
-    }
-
-
-    public bool TakeMetal(int amount)
-    {
-        if ((metalInUse + amount) > metalMAX) return false;
-
-        metalInUse += amount;
-        return true;
-    }
-
     public int GetResourceCount(Resource.Type type)
     {
         return resources[type];
@@ -147,6 +114,11 @@ public class ResourceManager : MonoBehaviour
     public int GetResourceFreeCount(Resource.Type type)
     {
         return resourcesMAX[type] - resources[type];
+    }
+
+    public int GetFreeFood()
+    {
+        return foodMAX - foodInUse;
     }
 
     public void AddToMaxFood(int amount)

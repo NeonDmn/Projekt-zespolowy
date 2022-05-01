@@ -7,6 +7,7 @@ public class MouseInputs : MonoBehaviour
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ContactFilter2D selectable;
+    [SerializeField] BuildWidget bWidget;
 
     private LineRenderer lineRenderer;
     private BoxCollider2D boxColl;
@@ -19,6 +20,8 @@ public class MouseInputs : MonoBehaviour
 
     private bool isDragging = false;
     static public bool collide = false;
+
+
     private void Awake()
     {
         if (!mainCamera)
@@ -27,6 +30,7 @@ public class MouseInputs : MonoBehaviour
         lineRenderer.positionCount = 0;
 
         boxColl = gameObject.GetComponent<BoxCollider2D>();
+        bWidget.gameObject.SetActive(false);
     }
 
     void Update()
@@ -120,7 +124,8 @@ public class MouseInputs : MonoBehaviour
                 );
 
             // Zaznacz pierwszy obiekt na liście
-            if (hitsSelectable.Count <= 0 || !TrySelectCollider(hitsSelectable[0].collider)) {
+            if (hitsSelectable.Count <= 0 || !TrySelectCollider(hitsSelectable[0].collider))
+            {
                 if (!shiftSelectingActive)
                 {
                     // Nie natrafiliśmy na nic zaznaczalnego
@@ -128,7 +133,7 @@ public class MouseInputs : MonoBehaviour
                     Selection.Instance.DeselectAll();
                 }
             }
-                
+
         }
 
         // Ko�czymy zaznaczanie z przytrzymaniem
@@ -139,7 +144,8 @@ public class MouseInputs : MonoBehaviour
         }
     }
 
-    private bool TrySelectCollider(Collider2D obj) {
+    private bool TrySelectCollider(Collider2D obj)
+    {
         if (obj != null)
         {
             // Natrafili�my na co� co mo�na zaznaczyć
@@ -148,7 +154,8 @@ public class MouseInputs : MonoBehaviour
             {
                 // Tak
                 // Nie zaznaczamy budynków przy pomocy shifta
-                if (!obj.GetComponent<Structure>()) {
+                if (!obj.GetComponent<Structure>())
+                {
                     // Zaznaczamy dodatkowe jednostki
                     Selection.Instance.ShiftClickSelect(obj.GetComponent<Selectable>());
                 }
@@ -158,11 +165,13 @@ public class MouseInputs : MonoBehaviour
             {
                 // Nie
                 // Zaznacz budynek
-                if (obj.GetComponent<Structure>()) {
+                if (obj.GetComponent<Structure>())
+                {
                     Selection.Instance.SelectStructure(obj.GetComponent<Selectable>());
                     return true;
                 }
-                else {
+                else
+                {
                     // Zaznacz jednostkę
                     Selection.Instance.ClickSelect(obj.GetComponent<Selectable>());
                     return true;
@@ -216,7 +225,7 @@ public class MouseInputs : MonoBehaviour
         foreach (var unit in Selection.Instance.unitList)
         {
             if (unit.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Enemy)
-            continue;
+                continue;
 
             // Czy jednostka jest zaznaczona?
             if (boxColl.OverlapPoint(unit.transform.position))
@@ -238,6 +247,33 @@ public class MouseInputs : MonoBehaviour
         lineRenderer.SetPosition(1, new Vector2(initialMousePosition.x, currentMousePosition.y));
         lineRenderer.SetPosition(2, new Vector2(currentMousePosition.x, currentMousePosition.y));
         lineRenderer.SetPosition(3, new Vector2(currentMousePosition.x, initialMousePosition.y));
+    }
+
+    /* Building */
+    private void BeginBuilding(GameObject structGO)
+    {
+        // Enable building widget
+        bWidget.SetBuilding(structGO);
+        bWidget.gameObject.SetActive(true);
+    }
+
+    public void FinishBuilding(InputAction.CallbackContext ctx)
+    {
+        TownHall th = GameManager.instance.GetTownHallObject(PlayerTeam.Team.Friendly);
+        Structure str = bWidget.buildingGO.GetComponent<Structure>();
+
+        th.resources.AddToCart(Resource.Type.WOOD, str.woodCost);
+        th.resources.AddToCart(Resource.Type.METAL, str.metalCost);
+
+        if (!th.resources.FinalizeTransaction())
+        {
+            // Nie można budować, brakuje surowców
+            Debug.LogWarning("Za mało surowców, by zbudować: " + bWidget.buildingGO.name);
+            return;
+        }
+
+        GameManager.instance.Build(bWidget.buildingGO, PlayerTeam.Team.Friendly, bWidget.transform.position);
+        bWidget.gameObject.SetActive(false);
     }
 
     public Vector2 GetMousePos()
