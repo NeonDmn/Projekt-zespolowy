@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class TownHall : Structure
 {
     public GameObject workerPrefab;
     public Transform workerSpawnPos;
     private float workerCreationTime;
+    private bool workerTimerRunning = false;
 
-    private bool timerRunning = false;
+
     public void CreateWorker()
     {
         if (!ResourceManager.Instance.TakeFood(1))
@@ -21,7 +24,7 @@ public class TownHall : Structure
             // Można tworzyć
             // timer start
             workerCreationTime = 3f;
-            timerRunning = true;
+            workerTimerRunning = true;
         }
     }
 
@@ -34,14 +37,17 @@ public class TownHall : Structure
     private void Update()
     {
         //timer 
-        if (timerRunning)
+        if (workerTimerRunning)
+        {
             if (workerCreationTime > 0)
+            {
                 workerCreationTime -= Time.deltaTime;
+            }
             else
             {
                 SpawnWorker();
-                timerRunning = false;
+                workerTimerRunning = false;
             }
-
+        }
     }
 }
