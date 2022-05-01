@@ -118,4 +118,5 @@ public class ResourceManager : MonoBehaviour
     {
         return resourcesMAX[type] - resources[type];
     }
+
 }

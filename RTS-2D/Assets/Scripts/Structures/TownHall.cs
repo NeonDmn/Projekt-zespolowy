@@ -7,14 +7,17 @@ public class TownHall : Structure
     public GameObject workerPrefab;
     public Transform workerSpawnPos;
     private float workerCreationTime;
+
     private bool timerRunning = false;
     public void CreateWorker()
     {
-        if (!ResourceManager.Instance.TakeFood(1)) {
+        if (!ResourceManager.Instance.TakeFood(1))
+        {
             // Nie można utworzyć workera
             // error
         }
-        else {
+        else
+        {
             // Można tworzyć
             // timer start
             workerCreationTime = 3f;
@@ -22,11 +25,14 @@ public class TownHall : Structure
         }
     }
 
-    private void SpawnWorker() {
-        Instantiate(workerPrefab, workerSpawnPos.position, Quaternion.identity);
+    private void SpawnWorker()
+    {
+        GameObject obj = Instantiate(workerPrefab, workerSpawnPos.position, Quaternion.identity);
+        UnitsManager.Instance.AddWorker(obj.GetComponent<Worker>());
     }
-    
-    private void Update() {
+
+    private void Update()
+    {
         //timer 
         if (timerRunning)
             if (workerCreationTime > 0)
@@ -35,7 +41,7 @@ public class TownHall : Structure
             {
                 SpawnWorker();
                 timerRunning = false;
-            }    
-            
+            }
+
     }
 }
