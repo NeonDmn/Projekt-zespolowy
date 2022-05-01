@@ -1,32 +1,95 @@
-﻿using System.Collections;
+﻿/**
+ * Represent a single node in the pathfinding grid.
+ * Based on code and tutorial by Sebastian Lague (https://www.youtube.com/channel/UCmtyQOKKmrMVaKuRXz02jbQ).
+ *   
+ * Author: Ronen Ness.
+ * Since: 2016. 
+*/
+using System.Collections;
 using System.Collections.Generic;
-    
-    public class Node
-    {
-        public int x;
-        public int y;
+using UnityEngine;
+using UnityEditor;
+    /// <summary>
+    /// Represent a single node in the pathfinding grid.
+    /// </summary>
 
-        public bool isObstacle =false;
-        public bool isVisited =false;
     
-        public float globalGoal;
-        public float localGoal;
-        public List<Node> neighBours;
+    public class Node {
+        
+    
+        // is this node walkable?
+        public bool walkable;
+        public int gridX;
+        public int gridY;
+        public float price;
+
+        // calculated values while finding path
+        public int gCost;
+        public int hCost;
         public Node parent;
 
-        
-
-        public Node(int iX, int iY)
+        /// <summary>
+        /// Create the grid node.
+        /// </summary>
+        /// <param name="_price">Price to walk on this node (set to 1.0f to ignore).</param>
+        /// <param name="_gridX">Node x index.</param>
+        /// <param name="_gridY">Node y index.</param>
+        public Node(float _price, int _gridX, int _gridY)
         {
-            neighBours = new List<Node>();
-            this.x = iX;
-            this.y = iY;
+            walkable = _price != 0.0f;
+            price = _price;
+            gridX = _gridX;
+            gridY = _gridY;
         }
 
-        public Node(Node b)
+        /// <summary>
+        /// Create the grid node.
+        /// </summary>
+        /// <param name="_walkable">Is this tile walkable?</param>
+        /// <param name="_gridX">Node x index.</param>
+        /// <param name="_gridY">Node y index.</param>
+        public Node(bool _walkable, int _gridX, int _gridY)
         {
-            x = b.x;
-            y = b.y;
+            walkable = _walkable;
+            price = _walkable ? 1f : 0f;
+            gridX = _gridX;
+			gridY = _gridY;
+        }
+
+		/// <summary>
+		/// Updates the grid node.
+		/// </summary>
+		/// <param name="_price">Price to walk on this node (set to 1.0f to ignore).</param>
+		/// <param name="_gridX">Node x index.</param>
+		/// <param name="_gridY">Node y index.</param>
+		public void UpdateA(float _price, int _gridX, int _gridY) {
+			walkable = _price != 0.0f;
+			price = _price;
+			gridX = _gridX;
+			gridY = _gridY;
+		}
+
+		/// <summary>
+		/// Updates the grid node.
+		/// </summary>
+		/// <param name="_walkable">Is this tile walkable?</param>
+		/// <param name="_gridX">Node x index.</param>
+		/// <param name="_gridY">Node y index.</param>
+		public void UpdateA(bool _walkable, int _gridX, int _gridY) {
+			walkable = _walkable;
+			price = _walkable ? 1f : 0f;
+			gridX = _gridX;
+			gridY = _gridY;
+		}
+
+        /// <summary>
+        /// Get fCost of this node.
+        /// </summary>
+        public int fCost
+        {
+            get
+            {
+                return gCost + hCost;
+            }
         }
     }
-

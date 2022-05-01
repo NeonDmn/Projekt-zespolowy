@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     #region Singleton
     private static GameManager _instance;
-    private static Notification notification;
     public static GameManager instance { get { return _instance; } }
 
     private void Awake()
@@ -16,7 +15,6 @@ public class GameManager : MonoBehaviour
             Destroy(_instance);
         }
 
-        notification = GetComponent<Notification>();
         _instance = this;
     }
     #endregion
@@ -30,8 +28,5 @@ public class GameManager : MonoBehaviour
     public GameObject GetTownHallObject(int team)
     {
         return townHall;
-    }
-    public void sendNotification(string text){
-        notification.notify(text);
     }
 }

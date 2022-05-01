@@ -70,39 +70,28 @@ public class Selection : MonoBehaviour
         unitsSelected.Clear();
         //Debug.Log("Deselected ALL units!");
     }
-    public void PathFindAllSelected(Vector2 currentMousePosition)
-    {
-        //foreach (GameObject it in unitsSelected)
-        //{
-        //    //Debug.Log("MAJSTER___-");
-        //    //Debug.Log(it.transform.position);
-//
-        //    Node startPointLocal = GridController.tileMapNodes[(int)it.transform.position.x, (int)it.transform.position.y];
-        //    Node endPointLocal = GridController.tileMapNodes[(int)currentMousePosition.x, (int)currentMousePosition.y];
-        //    Node _from = GridController.tileMapNodes[(int)it.transform.position.x, (int)it.transform.position.y];
-        //    Node _to = GridController.tileMapNodes[(int)currentMousePosition.x, (int)currentMousePosition.y];
-        //    Unit unit = it.GetComponent<Unit>();
-        //    unit.CreatePath(_from, _to, currentMousePosition);
-        //    Debug.Log("HHEHEHEHHYE");
-        //}
-    }
+    // public void PathFindAllSelected(Vector2 currentMousePosition)
+    // {
+
+    //     foreach (GameObject it in unitsSelected)
+    //     {
+    //         //Debug.Log("MAJSTER___-");
+    //         //Debug.Log(it.transform.position);
+
+    //         Point _from = new Point((int)it.transform.position.x, (int)it.transform.position.y);
+    //         Point _to = new Point((int)currentMousePosition.x, (int)currentMousePosition.y);
+
+    //         Unit unit = it.GetComponent<Unit>();
+    //         unit.CreatePath(_from, _to, currentMousePosition);
+
+    //     }
+    // }
 
     public void HandleActionBySelected(Vector2 currentMousePosition, GameObject gm)
     {
-        //foreach (var unit in unitsSelected)
-        //{
-        //    //unit.GetComponent<Unit>().HandleAction(currentMousePosition, gm);
-        //    Node _from = new Node((int)it.transform.position.x, (int)it.transform.position.y);
-        //    Node _to = new Node((int)currentMousePosition.x, (int)currentMousePosition.y);
-        //    Unit unit = it.GetComponent<Unit>();
-        //    unit.CreatePath(_from, _to, currentMousePosition);
-        //    Debug.Log("HHEHEHEHHYE");
-        //}
-        foreach (GameObject it in unitsSelected)
+        foreach (var unit in unitsSelected)
         {
-            Unit unit = it.GetComponent<Unit>();
-            unit.CreatePath(currentMousePosition);
-          
+            unit.GetComponent<Unit>().HandleAction(currentMousePosition, gm);
         }
     }
 
