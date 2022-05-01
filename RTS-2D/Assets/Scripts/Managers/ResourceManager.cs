@@ -22,9 +22,15 @@ public class ResourceManager : MonoBehaviour
     Dictionary<Resource.Type, int> resources = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> resourcesMAX = new Dictionary<Resource.Type, int>();
     Dictionary<Resource.Type, int> resourceCart = new Dictionary<Resource.Type, int>();
-
+	
     int foodInUse;
     int foodMAX;
+
+    int woodInUse;
+    int woodMAX;
+
+    int metalInUse;
+	int metalMAX;
 
     private void Start()
     {
@@ -38,6 +44,12 @@ public class ResourceManager : MonoBehaviour
 
         foodMAX = 50;
         foodInUse = 0;
+
+        woodInUse = 0;
+        woodMAX = 0;
+
+        metalMAX = 0;
+		metalInUse = 0;
     }
 
     public int AddResource(Resource.Type type, int count)
@@ -109,6 +121,24 @@ public class ResourceManager : MonoBehaviour
         return true;
     }
 
+
+    public bool TakeWood(int amount)
+    {
+        if ((woodInUse + amount) > woodMAX) return false;
+
+        woodInUse += amount;
+        return true;
+    }
+
+
+    public bool TakeMetal(int amount)
+    {
+        if ((metalInUse + amount) > metalMAX) return false;
+
+        metalInUse += amount;
+        return true;
+    }
+
     public int GetResourceCount(Resource.Type type)
     {
         return resources[type];
@@ -117,5 +147,15 @@ public class ResourceManager : MonoBehaviour
     public int GetResourceFreeCount(Resource.Type type)
     {
         return resourcesMAX[type] - resources[type];
+    }
+
+    public void AddToMaxFood(int amount)
+    {
+        foodMAX += amount;
+    }
+
+    public void AddToMaxResource(Resource.Type type, int amount)
+    {
+        resourcesMAX[type] += amount;
     }
 }

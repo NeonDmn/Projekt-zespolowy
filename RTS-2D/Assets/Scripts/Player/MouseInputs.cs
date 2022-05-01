@@ -18,7 +18,7 @@ public class MouseInputs : MonoBehaviour
 
 
     private bool isDragging = false;
-
+    static public bool collide = false;
     private void Awake()
     {
         if (!mainCamera)
@@ -70,15 +70,30 @@ public class MouseInputs : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(initialMousePosition, Vector2.zero);
 
-            if (hit.collider != null)
+            if (hit.collider != null && (hit.collider.CompareTag("Structures") || hit.collider.CompareTag("TownHall") || hit.collider.CompareTag("Resource") || hit.collider.CompareTag("Unit")))
             {
+                /// Budowanie
+                Debug.Log("Nie można zbudować w tym miejscu. Wykryto: " + hit.collider.gameObject.name);
+                collide = false;
                 if (Selection.Instance.unitsSelected.Count > 0)
                 {
                     // Selection.Instance.PathFindAllSelected(initialMousePosition);
 
                     Selection.Instance.HandleActionBySelected(initialMousePosition, hit.transform.gameObject);
                 }
+            }
+            else if (hit.collider != null)
+            {
+                Debug.Log("Można budować");
+                Debug.Log(hit.collider.gameObject.name + " select");
+                ///
+                if (Selection.Instance.unitsSelected.Count > 0)
+                {
+                    // Selection.Instance.PathFindAllSelected(initialMousePosition);
 
+                    Selection.Instance.HandleActionBySelected(initialMousePosition, hit.transform.gameObject);
+                }
+                collide = true;
             }
         }
     }
