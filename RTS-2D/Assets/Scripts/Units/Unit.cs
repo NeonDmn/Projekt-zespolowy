@@ -24,12 +24,13 @@ public class Unit : MonoBehaviour
     public UnityAction leftUnitRange;
 
     public UnityAction enteredTownHall;
+    private int pathIndex;
 
 
     public UnitTask currentTask { get; private set; }
+    private List<Node> path;
+    private Vector3 pos;
 
-
-    List<Point> path;
     protected void Start()
     {
 
@@ -42,13 +43,7 @@ public class Unit : MonoBehaviour
         sprRenderer = GetComponent<SpriteRenderer>();
 
         currentTask = new IdleTask(this);
-
-        // create source and target points
-        //Point _from = new Point(1, 1);
-        //Point _to = new Point(10, 10);
-
-        // get path
-        // path will either be a list of Points (x, y), or an empty list if no path is found.
+        
     }
     public void SwitchTask(UnitTask newTask)
     {
@@ -84,8 +79,23 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        currentTask.Tick();
-        UnitMovement();
+        if(path!=null){
+            //Debug.Log(transform.position);
+
+            Debug.Log("______");
+            Debug.Log(path[pathIndex].x);
+            Debug.Log(path[pathIndex].y);
+            Debug.Log("______");
+            UnitMovement(path[pathIndex]);
+            if((pos.x == path[pathIndex].x) &&(pos.y == path[pathIndex].y)){
+                if(pathIndex>0){
+                pathIndex = pathIndex-1;
+                }
+            }
+        }
+       /// currentTask.Tick();
+        //UnitMovement();
+        //ToDo();
     }
     private void OnDestroy()
     {
@@ -120,22 +130,24 @@ public class Unit : MonoBehaviour
         Goto(location);
     }
 
-    public void CreatePath(Point _from, Point _to, Vector2 mousePos)
+    public void CreatePath(Vector2 mousePos)
     {
-        endPoint = mousePos;
-        path = Pathfinding.FindPath(gridController.grid, _from, _to);
-        foreach (var it in path)
-        {
-            // Debug.Log(it.x);
-        }
 
+        gridController = GameObject.Find("GridController").GetComponent<GridController>();
+        Node startPointLocal = GridController.tileMapNodes[(int)transform.position.x, (int)transform.position.y];
+        Node endPointLocal = GridController.tileMapNodes[(int)mousePos.x,(int)mousePos.y];
+        path = gridController.SolveAStar(startPointLocal,endPointLocal);
+        Debug.Log(path.Count);
+        pathIndex = path.Count-1;
     }
 
-    public void UnitMovement()
+    public void UnitMovement(Node _to)
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 15f * Time.deltaTime);
+        pos = Vector3.MoveTowards(transform.position, new Vector3(_to.x,_to.y, 0), 15 * Time.deltaTime);
+        GameManager.instance.sendNotification(pos.ToString());
         body.MovePosition(pos);
     }
+    
 
 
 }

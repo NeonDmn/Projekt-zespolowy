@@ -92,7 +92,7 @@ public class GatherTask : UnitTask
         if (!IsSpaceAvailible())
         {
             // TownHall full of resource
-            Debug.LogWarning("Brak miejsca dla " + resource.GetResourceType() + " w Ratuszu!");
+            GameManager.instance.sendNotification("Brak miejsca dla " + resource.GetResourceType() + " w Ratuszu!");
             owner.SwitchTask(new IdleTask(owner));
         }
         else
