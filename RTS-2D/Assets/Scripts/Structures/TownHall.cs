@@ -26,9 +26,12 @@ public class TownHall : Structure
         }
     }
 
+
     private void SpawnWorker() {
         Instantiate(workerPrefab, workerSpawnPos.position, Quaternion.identity);
     }
+
+
 
     private void Update() {
         //timer 
@@ -43,6 +46,7 @@ public class TownHall : Structure
                 SpawnWorker();
                 workerTimerRunning = false;
             } 
-        }	
+        }
+        
     }
 }

@@ -11,6 +11,17 @@ public class Barracks : Structure
     private bool isPlacingBarracks = false;
     Vector2 barracksPosition;
     private Camera cam;
+    public GameObject warriorMeleePrefab;
+    public GameObject warriorScoutPrefab;
+    public GameObject warriorRangedPrefab;
+    public Transform warriorSpawnPos;
+    private float warriorMeleeCreationTime;
+    private bool warriorMeleeTimerRunning = false;
+    private float warriorScoutCreationTime;
+    private bool warriorScoutTimerRunning = false;
+    private float warriorRangedCreationTime;
+    private bool warriorRangedTimerRunning = false;
+    private bool canCreate = false;
 
     private void Start()
     {
@@ -41,6 +52,45 @@ public class Barracks : Structure
             CreateBarracks();
             isPlacingBarracks = false;
         }
+
+        if (warriorMeleeTimerRunning)
+        {
+            if (warriorMeleeCreationTime > 0)
+            {
+                warriorMeleeCreationTime -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnMelee();
+                warriorMeleeTimerRunning = false;
+            }
+        }
+
+        if (warriorScoutTimerRunning)
+        {
+            if (warriorScoutCreationTime > 0)
+            {
+                warriorScoutCreationTime -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnScout();
+                warriorScoutTimerRunning = false;
+            }
+        }
+
+        if (warriorRangedTimerRunning)
+        {
+            if (warriorRangedCreationTime > 0)
+            {
+                warriorRangedCreationTime -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnRanged();
+                warriorRangedTimerRunning = false;
+            }
+        }
     }
 
     public void selectBarracksPosition()
@@ -53,7 +103,7 @@ public class Barracks : Structure
     {
         if (MouseInputs.collide == true)
         {
-            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
+            if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost)) //zmieniæ warunek
             {
                 Debug.Log("Za ma³o surowców by wybudowaæ koszary");
             }
@@ -62,7 +112,7 @@ public class Barracks : Structure
                 Debug.Log("Budowa koszar rozpoczêta");
                 // Mo¿na tworzyæ
                 // timer start
-                barracksCreationTime = 20f;
+                barracksCreationTime = 5f;//zmieniæ czas
                 barracksTimerRunning = true;
             }
         }
@@ -74,14 +124,78 @@ public class Barracks : Structure
     }
 
 
+    public void CreateScout()
+    {
+        if (!ResourceManager.Instance.TakeFood(1) && !canCreate) //zmieniæ jedzenie
+        {
+            // Nie mo¿na utworzyæ workera
+            // error
+        }
+        else
+        {
+            // Mo¿na tworzyæ
+            // timer start
+            warriorScoutCreationTime = 3f; //zmieniæ czas
+            warriorScoutTimerRunning = true;
+        }
+    }
+
+    public void CreateMelee()
+    {
+        if (!ResourceManager.Instance.TakeFood(1) && !canCreate) //zmieniæ jedzenie
+        {
+            // Nie mo¿na utworzyæ workera
+            // error
+        }
+        else
+        {
+            // Mo¿na tworzyæ
+            // timer start
+            warriorMeleeCreationTime = 3f; //zmieniæ czas
+            warriorMeleeTimerRunning = true;
+        }
+    }
+
+    public void CreateRanged()
+    {
+        if (!ResourceManager.Instance.TakeFood(1) && !canCreate) //zmieniæ jedzenie
+        {
+            // Nie mo¿na utworzyæ workera
+            // error
+        }
+        else
+        {
+            // Mo¿na tworzyæ
+            // timer start
+            warriorRangedCreationTime = 3f; //zmieniæ czas
+            warriorRangedTimerRunning = true;
+        }
+    }
+
+    private void SpawnScout()
+    {
+        Instantiate(warriorScoutPrefab, warriorSpawnPos.position, Quaternion.identity);
+    }
+
+    private void SpawnMelee()
+    {
+        Instantiate(warriorMeleePrefab, warriorSpawnPos.position, Quaternion.identity);
+    }
+
+
+    private void SpawnRanged()
+    {
+        Instantiate(warriorRangedPrefab, warriorSpawnPos.position, Quaternion.identity);
+    }
+
     public override void OnBuildingFinished()
     {
-
+        canCreate = true;
     }
 
     public override void OnBuildingDestroyed()
     {
-
+        canCreate = false;
     }
 
 }
