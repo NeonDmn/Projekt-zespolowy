@@ -6,5 +6,10 @@ public static class EventManager
     public static UnityAction<Vector2> EdgeScroll;
     public static void OnEdgeScroll(Vector2 val) => EdgeScroll?.Invoke(val);
 
-    public static UnityAction<GameObject> OnBuildingStarted;
+    // Tryb budowania
+    public static UnityAction<GameObject> OnBuildingModeStarted;
+    public static UnityAction OnBuildingModeEnded;
+
+    // Budowanie budynków
+    public static UnityAction<Structure> OnBuildingFinished;
 }

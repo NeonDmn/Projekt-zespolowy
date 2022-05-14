@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(SpriteRenderer))]
 public class BuildWidget : MonoBehaviour
 {
+    [SerializeField] LayerMask buildingDenyMask;
+
     SpriteRenderer spriteRenderer;
     public GameObject buildingGO { get; private set; }
 
@@ -16,7 +18,9 @@ public class BuildWidget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Mouse.current.position.ReadValue();
+        transform.position = MouseInputs.GetMouseWorldPos();
+
+        ValidPlacement(CanBuild());
     }
 
     public void SetBuilding(GameObject buildingGO)
@@ -30,11 +34,22 @@ public class BuildWidget : MonoBehaviour
     {
         if (canPlace)
         {
-            spriteRenderer.color = new Color(1, 1, 1, 0.3f);
+            spriteRenderer.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            spriteRenderer.color = new Color(1, 0, 0, 0.3f);
+            spriteRenderer.color = new Color(1, 0, 0, 1);
         }
+    }
+
+    public bool CanBuild()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.zero, 0.0f, buildingDenyMask);
+        return !hit;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }

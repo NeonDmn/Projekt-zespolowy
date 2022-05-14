@@ -9,19 +9,39 @@ public class Structure : MonoBehaviour
     public int woodCost;
     public int metalCost;
 
-    private void Start()
+    bool buildingFinished;
+
+    [SerializeField] Sprite buildSprite;
+    Sprite structureSprite;
+
+    public void Start()
     {
         Debug.Log("Pojawił się budynek " + name + " frakcji " + GetComponent<PlayerTeam>().team + " na " + transform.position);
+
+        buildingFinished = false;
+
+        EventManager.OnBuildingFinished += EventManager_OnBuildingFinished;
+
+        structureSprite = GetComponent<SpriteRenderer>().sprite;
+        GetComponent<SpriteRenderer>().sprite = buildSprite;
     }
 
-    public virtual void OnBuildingFinished()
-    {
-
+    private void Update() {
+        if (!buildingFinished)
+        {
+            if (buildTime > 0.0f)
+                buildTime -= Time.deltaTime;
+            else
+            {
+                EventManager.OnBuildingFinished?.Invoke(this);
+                GetComponent<SpriteRenderer>().sprite = structureSprite;
+                buildingFinished = true;
+            }
+        }
+            
     }
 
-    public virtual void OnBuildingDestroyed()
-    {
-
-    }
+    public virtual void EventManager_OnBuildingFinished(Structure str) {}
+    public virtual void EventManager_OnBuildingDestroyed() {}
 
 }

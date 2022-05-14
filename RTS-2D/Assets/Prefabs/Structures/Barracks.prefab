@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7459923691161117596}
   - component: {fileID: 5477755406656441440}
   - component: {fileID: 5523005907021366167}
-  m_Layer: 0
+  - component: {fileID: 1242462389083249930}
+  m_Layer: 10
   m_Name: Barracks
   m_TagString: Structures
   m_Icon: {fileID: 0}
@@ -100,8 +101,7 @@ MonoBehaviour:
   life: 500
   woodCost: 300
   metalCost: 150
-  barracksPrefab: {fileID: 4908421828050849195}
-  barracksSpawnPos: {fileID: 7261763661298946042}
+  buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
 --- !u!60 &5523005907021366167
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -136,3 +136,16 @@ PolygonCollider2D:
       - {x: 0.28, y: -0.19}
       - {x: 0.32, y: -0.14}
       - {x: 0.32, y: 0.06}
+--- !u!114 &1242462389083249930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908421828050849195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _team: 0
