@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour
 
     //GameObject townHall;
     Dictionary<PlayerTeam.Team, TownHall> townHalls = new Dictionary<PlayerTeam.Team, TownHall>();
-    private void Start()
-    {
-        // InitTownHalls();
-        // Debug.Log("TownHalls found: " + townHalls.Count);
-    }
 
     private void InitTownHalls()
     {

@@ -26,7 +26,6 @@ public class MouseInputs : MonoBehaviour
         lineRenderer.positionCount = 0;
 
         boxColl = gameObject.GetComponent<BoxCollider2D>();
-        bWidget.gameObject.SetActive(false);
     }
 
     private void Start()

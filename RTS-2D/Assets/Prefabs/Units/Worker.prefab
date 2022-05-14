@@ -98,6 +98,10 @@ PrefabInstance:
       value: Worker
       objectReference: {fileID: 0}
     - target: {fileID: 3207835548659832121, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207835548659832121, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
       propertyPath: m_TagString
       value: Unit
       objectReference: {fileID: 0}

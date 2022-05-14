@@ -11,11 +11,13 @@ public class BuildWidget : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public GameObject buildingGO { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        gameObject.SetActive(false);
     }
-    // Update is called once per frame
+    
     void Update()
     {
         transform.position = MouseInputs.GetMouseWorldPos();
