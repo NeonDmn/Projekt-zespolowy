@@ -8,6 +8,7 @@ public class IdleTask : UnitTask
 
     public override void OnTaskStart()
     {
+        working = false;
         //
     }
 

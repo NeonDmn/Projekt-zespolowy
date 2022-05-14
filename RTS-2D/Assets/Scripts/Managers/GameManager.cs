@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
         }
 
         _instance = this;
+
+        InitTownHalls();
+        Debug.Log("TownHalls found: " + townHalls.Count);
     }
     #endregion
 
@@ -27,8 +30,8 @@ public class GameManager : MonoBehaviour
     Dictionary<PlayerTeam.Team, TownHall> townHalls = new Dictionary<PlayerTeam.Team, TownHall>();
     private void Start()
     {
-        InitTownHalls();
-        Debug.Log("TownHalls found: " + townHalls.Count);
+        // InitTownHalls();
+        // Debug.Log("TownHalls found: " + townHalls.Count);
     }
 
     private void InitTownHalls()
