@@ -15,6 +15,7 @@ public class GatherTask : UnitTask
     }
     public override void OnTaskStart()
     {
+        working = true;
         owner.enteredResourceRange += OnEnteredResource;
         //owner.leftResourceRange += OnLeftResource;
         owner.enteredTownHall += DumpResources;
@@ -30,6 +31,7 @@ public class GatherTask : UnitTask
     }
     public override void OnTaskEnd()
     {
+        working = false;
         owner.enteredResourceRange -= OnEnteredResource;
         //owner.leftResourceRange -= OnLeftResource;
         owner.enteredTownHall -= DumpResources;
