@@ -9,12 +9,12 @@ public class Structure : MonoBehaviour
     public int woodCost;
     public int metalCost;
 
-    bool buildingFinished;
+    protected bool buildingFinished;
 
     [SerializeField] Sprite buildSprite;
     Sprite structureSprite;
 
-    public void Start()
+    public virtual void Start()
     {
         Debug.Log("Pojawił się budynek " + name + " frakcji " + GetComponent<PlayerTeam>().team + " na " + transform.position);
 
@@ -26,7 +26,7 @@ public class Structure : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = buildSprite;
     }
 
-    private void Update() {
+    public virtual void Update() {
         if (!buildingFinished)
         {
             if (buildTime > 0.0f)

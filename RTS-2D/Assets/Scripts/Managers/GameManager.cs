@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject barracksPrefab;
 
     [SerializeField] PlayerInput mouseInput;
+    [Space]
+    public GameUIManager UIManager;
 
 
     //GameObject townHall;

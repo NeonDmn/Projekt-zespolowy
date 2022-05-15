@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7459923691161117596}
   - component: {fileID: 5477755406656441440}
   - component: {fileID: 5523005907021366167}
-  - component: {fileID: 1242462389083249930}
+  - component: {fileID: 2633846826891104299}
+  - component: {fileID: -4775646046225690092}
   m_Layer: 10
   m_Name: Barracks
   m_TagString: Structures
@@ -99,17 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d63e25497fc99a45b8a015b04229fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildTime: 20
+  buildTime: 5
   life: 500
-  woodCost: 300
-  metalCost: 150
+  woodCost: 0
+  metalCost: 0
   buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
-  barracksPrefab: {fileID: 4908421828050849195}
-  barracksSpawnPos: {fileID: 7261763661298946042}
   warriorMeleePrefab: {fileID: 8704482105182216674, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
   warriorScoutPrefab: {fileID: 3164378283578570697, guid: 2dd5d0295e1924848a3ac5c437e7e19c, type: 3}
   warriorRangedPrefab: {fileID: 419460110644720769, guid: e8f67218ac583c0479270fe9caaa6bd4, type: 3}
   warriorSpawnPos: {fileID: 4483837627989472560}
+  unitMenuGO: {fileID: 8286058084558089030, guid: ea1ebf261d024434c81fd5ce298e7667, type: 3}
 --- !u!60 &5523005907021366167
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +144,32 @@ PolygonCollider2D:
       - {x: 0.28, y: -0.19}
       - {x: 0.32, y: -0.14}
       - {x: 0.32, y: 0.06}
+--- !u!114 &2633846826891104299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908421828050849195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d30fef770941274f971a6b08aa799e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedVisual: {fileID: 5405605741736395675}
+--- !u!114 &-4775646046225690092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908421828050849195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _team: 0
 --- !u!1 &5405605741736395675
 GameObject:
   m_ObjectHideFlags: 0
