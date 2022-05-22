@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 12866390611758485}
   - component: {fileID: 12866390611758484}
   - component: {fileID: 12866390611758491}
+  - component: {fileID: -3953487870994104685}
   m_Layer: 11
   m_Name: OreResource
   m_TagString: Resource
@@ -145,3 +146,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.011266947, y: 0}
   m_Size: {x: 0.9971919, y: 1.2676024}
   m_Direction: 0
+--- !u!114 &-3953487870994104685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12866390611758490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

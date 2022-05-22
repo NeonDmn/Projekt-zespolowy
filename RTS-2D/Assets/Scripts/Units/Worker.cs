@@ -80,4 +80,9 @@ public class Worker : Unit
     {
         return backpack;
     }
+
+    public void PrintBackpackContent()
+    {
+        Debug.Log(name + " backpack:\n WOOD = " + backpack[Resource.Type.WOOD] + "\n METAL = " + backpack[Resource.Type.METAL] + "\n CRYSTAL = " + backpack[Resource.Type.CRYSTAL]);
+    }
 }

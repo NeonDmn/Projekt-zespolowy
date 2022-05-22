@@ -82,6 +82,7 @@ public class GatherTask : UnitTask
     {
         timerStarted = false;
         worker.AddToBackpack(resource.GetResourceType(), resource.GetResourceYield());
+        worker.PrintBackpackContent();
         GotoTownHall();
     }
 

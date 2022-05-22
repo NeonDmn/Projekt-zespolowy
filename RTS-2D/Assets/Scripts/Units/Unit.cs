@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class Unit : MonoBehaviour
 
         // get path
         // path will either be a list of Points (x, y), or an empty list if no path is found.
+
+        var agent = GetComponent<NavMeshAgent>();
+		agent.updateRotation = false;
+		agent.updateUpAxis = false;
     }
     public void SwitchTask(UnitTask newTask)
     {
@@ -85,7 +90,7 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
-        UnitMovement();
+        //UnitMovement();
     }
     private void OnDestroy()
     {
@@ -110,7 +115,8 @@ public class Unit : MonoBehaviour
 
     public void Goto(Vector3 location)
     {
-        endPoint = location;
+        //endPoint = location;
+        GetComponent<NavMeshAgent>().SetDestination(location);
     }
 
     public void GotoAndSwitchToIdle(Vector3 location)

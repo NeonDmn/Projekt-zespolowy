@@ -103,7 +103,7 @@ public class MouseInputs : MonoBehaviour
         if (inputSelectDown && ctx.started)
         {
             //Debug.Log(IsPointerOverUIObject());\
-            Debug.Log(EventSystem.current.IsPointerOverGameObject());
+            //Debug.Log(EventSystem.current.IsPointerOverGameObject());
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
