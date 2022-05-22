@@ -15,7 +15,7 @@ public class GatherTask : UnitTask
     }
     public override void OnTaskStart()
     {
-        working = true;
+
         owner.enteredResourceRange += OnEnteredResource;
         //owner.leftResourceRange += OnLeftResource;
         owner.enteredTownHall += DumpResources;
@@ -31,7 +31,6 @@ public class GatherTask : UnitTask
     }
     public override void OnTaskEnd()
     {
-        working = false;
         owner.enteredResourceRange -= OnEnteredResource;
         //owner.leftResourceRange -= OnLeftResource;
         owner.enteredTownHall -= DumpResources;
@@ -64,6 +63,7 @@ public class GatherTask : UnitTask
 
     private void OnEnteredResource(Resource res)
     {
+
         // Jak jest to resource ktorego szukamy
         if (res.gameObject.Equals(resource.gameObject))
         {
@@ -89,7 +89,7 @@ public class GatherTask : UnitTask
     private void GotoTownHall()
     {
         //TODO: Zmiania Team
-        TownHall th = GameManager.instance.GetTownHallObject(PlayerTeam.Team.Friendly);
+        TownHall th = GameManager.instance.GetTownHallObject(owner.GetComponent<PlayerTeam>().team);
         owner.Goto(th.transform.position);
     }
 
@@ -117,6 +117,11 @@ public class GatherTask : UnitTask
             int added = GameManager.instance.GetTownHallObject(
                 owner.gameObject.GetComponent<PlayerTeam>().team
                 ).resources.Add(it.Key, it.Value);
+            if (owner.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Enemy)
+            {
+                GameManager.instance.GetTownHallObject(PlayerTeam.Team.Enemy).GetComponent<AI>().manageWorkers.ChoseResource();
+                owner.SwitchTask(new IdleTask(owner));
+            }
             Debug.Log("Do ratusza oddano " + added + " " + it.Key + "!");
         }
 

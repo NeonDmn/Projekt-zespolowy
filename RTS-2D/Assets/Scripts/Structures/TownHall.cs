@@ -14,7 +14,7 @@ public class TownHall : Structure
     private float workerCreationTime;
     private bool workerTimerRunning = false;
 
-    public bool isWorkerTimerRunning() { return workerTimerRunning; }
+    public bool isWorkerTimerRunning() { return workerTimerRunning;}
 
     public override void Start()
     {

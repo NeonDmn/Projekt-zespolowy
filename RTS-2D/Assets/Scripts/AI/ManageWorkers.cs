@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class ManageWorkers
 {
+    public Resource.Type target;
     TownHall townHall;
-    private Resource.Type ChoseResource()
-    {
-        int wood = townHall.resources.GetResourceCount(Resource.Type.WOOD);
-        int metal = townHall.resources.GetResourceCount(Resource.Type.METAL);
-        int crystal = townHall.resources.GetResourceCount(Resource.Type.CRYSTAL);
+    List<Resource> resourcesList = new List<Resource>();
 
-        Resource.Type toGet = Resource.Type.WOOD;
-        if (wood > metal)
-            toGet = Resource.Type.METAL;
-        if (metal > crystal)
-            toGet = Resource.Type.CRYSTAL;
-        return toGet;
+    public void ChoseResource()
+    {
+        int wood = (int)(((float)townHall.resources.GetResourceCount(Resource.Type.WOOD) / (float)townHall.resources.getMaxResource(Resource.Type.WOOD)) * 100);
+        int metal = (int)(((float)townHall.resources.GetResourceCount(Resource.Type.METAL) / (float)townHall.resources.getMaxResource(Resource.Type.METAL)) * 100);
+        int crystal = (int)(((float)townHall.resources.GetResourceCount(Resource.Type.CRYSTAL) / (float)townHall.resources.getMaxResource(Resource.Type.CRYSTAL)) * 100);
+
+
+
+        Debug.Log("wood " + wood + " crustal " + crystal + " metel " + metal);
+
+        target = Resource.Type.METAL;
+        if (wood <= metal)
+            target = Resource.Type.WOOD;
+        if (crystal <= metal)
+            target = Resource.Type.CRYSTAL;
+
+
     }
     public ManageWorkers(TownHall hall)
     {
         this.townHall = hall;
-
+        ChoseResource();
+        findAllResources(50.0f);
     }
     public void WorkerAi()
     {
@@ -32,13 +41,24 @@ public class ManageWorkers
     {
         for (int i = 0; i < townHall.units.GetWorkers().Count; i++)
         {
-            if (!townHall.units.GetWorkers()[i].currentTask.isWorking())
+            Worker currentWorker = townHall.units.GetWorkers()[i];
+            if (currentWorker.currentTask is IdleTask)
             {
-                Debug.Log("Worker nr " + i + " jest bez czynny");
-                Debug.Log(ChoseResource());
+                // Debug.Log("Worker nr " + i + " jest bez czynny");
+                // Debug.Log(ChoseResource());
+                //currentWorker.currentTask.;
+
+                Resource r = findResource(target);
+                if (r != null)
+                {
+                    currentWorker.Goto(r.transform.position);
+                    currentWorker.SwitchTask(new GatherTask(currentWorker, r));
+                    Debug.Log("Do zbierania " + target.ToString());
+
+                }
             }
-            else
-                Debug.Log("nie działa");
+            //  else
+            // Debug.Log(currentWorker.currentTask.GetType().ToString());
         }
 
     }
@@ -68,6 +88,29 @@ public class ManageWorkers
         for (int i = 0; i < workerCount; i++)
             townHall.units.GetWorkers()[i].GetComponent<PlayerTeam>().SetTeam(PlayerTeam.Team.Enemy);
 
+    }
+    private void findAllResources(float radius)
+    {
+        GameObject[] thls = GameObject.FindGameObjectsWithTag("Resource");
+        resourcesList.Clear();
+        foreach (GameObject obj in thls)
+        {
+            Vector3 vecResource = obj.transform.position;
+            Vector3 vecTownHall = townHall.transform.position;
+            if (Vector3.Distance(vecResource, vecTownHall) <= radius)
+                resourcesList.Add(obj.GetComponent<Resource>());
+
+        }
+    }
+    private Resource findResource(Resource.Type type)
+    {
+
+        foreach (Resource r in resourcesList)
+        {
+            if (r.GetResourceType() == type)
+                return r;
+        }
+        return null;
     }
 
 }

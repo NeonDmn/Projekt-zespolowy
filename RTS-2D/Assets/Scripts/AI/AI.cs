@@ -6,7 +6,7 @@ public class AI : MonoBehaviour
 {
     // Start is called before the first frame update
     TownHall townHall;
-    ManageWorkers manageWorkers;
+    public ManageWorkers manageWorkers;
     void Start()
     {
 
@@ -22,6 +22,7 @@ public class AI : MonoBehaviour
     void Update()
     {
         manageWorkers.WorkerAi();
+        manageWorkers.WorkerResourceTask();
     }
 
 

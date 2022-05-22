@@ -11,6 +11,17 @@ public class ResourceManager
     int foodInUse;
     int foodMAX;
 
+    int woodInUse;
+    int woodMAX;
+
+    int metalInUse;
+    int metalMAX;
+
+    public int getMaxResource(Resource.Type type)
+    {
+        return resourcesMAX[type];
+
+    }
     public ResourceManager()
     {
         resources.Add(Resource.Type.WOOD, 100);
