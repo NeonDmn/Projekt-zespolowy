@@ -14,8 +14,6 @@ public class Barracks : Structure
     GameObject warriorToCreate;
 
     PlayerTeam.Team team;
-    [SerializeField] GameObject unitMenuGO;
-    GameObject unitMenu;
 
     public override void Start() {
         base.Start();
@@ -43,7 +41,8 @@ public class Barracks : Structure
     private void SpawnWarrior(GameObject warriorGo)
     {
         GameManager.instance.GetTownHallObject(team).resources.TakeFood(1);
-        var warrior = Instantiate(warriorGo, warriorSpawnPos);
+        var warrior = Instantiate(warriorGo, warriorSpawnPos.transform.position, Quaternion.identity);
+        Debug.Log("Spawned " + warrior.name + " at " + warrior.transform.position);
     }
 
     public void CreateScout()
@@ -55,6 +54,7 @@ public class Barracks : Structure
             warriorToCreate = warriorScoutPrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
+            Debug.Log("Scout creation started!");
         }
         else
         {
@@ -72,6 +72,7 @@ public class Barracks : Structure
             warriorToCreate = warriorMeleePrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
+            Debug.Log("Mele warrior creation started!");
         }
         else
         {
@@ -89,6 +90,7 @@ public class Barracks : Structure
             warriorToCreate = warriorRangedPrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
+            Debug.Log("Archer creation started!");
         }
         else
         {
@@ -99,20 +101,20 @@ public class Barracks : Structure
 
     private void OnSelect()
     {
-        Vector2 menuPos = Mouse.current.position.ReadValue();
-        unitMenu = GameManager.instance.UIManager.AddToCanvas(unitMenuGO, menuPos);
+        
+        GameManager.instance.UIManager.ShowUnitMenu(this);
     }
 
     private void OnDeselect()
     {
-        DestroyUnitMenu();
+        GameManager.instance.UIManager.HideUnitMenu();
     }
 
-    public void DestroyUnitMenu()
-    {
-        if (unitMenu)
-            Destroy(unitMenu);
-    }
+    // public void DestroyUnitMenu()
+    // {
+    //     if (unitMenu)
+    //         Destroy(unitMenu);
+    // }
 
     public override void EventManager_OnBuildingFinished(Structure str)
     {

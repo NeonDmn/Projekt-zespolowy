@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class MouseInputs : MonoBehaviour
 {
@@ -91,11 +92,23 @@ public class MouseInputs : MonoBehaviour
      */
     public void SelectInput(InputAction.CallbackContext ctx)
     {
+        // if (IsPointerOverUIObject())
+        // {
+        //     return;
+        // }
+
         inputSelectDown = ctx.ReadValueAsButton();
         initialMouseWorldPosition = GetMouseWorldPos();
 
         if (inputSelectDown && ctx.started)
         {
+            //Debug.Log(IsPointerOverUIObject());\
+            Debug.Log(EventSystem.current.IsPointerOverGameObject());
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             List<RaycastHit2D> hits = new List<RaycastHit2D>();
             Physics2D.Raycast(initialMouseWorldPosition, Vector2.zero, selectable, hits);
 
@@ -291,7 +304,8 @@ public class MouseInputs : MonoBehaviour
         EventManager.OnBuildingModeEnded?.Invoke();
     }
 
-    private void EndBuildingMode() {
+    private void EndBuildingMode()
+    {
 
         // Wyłącz podgląd budynku
         bWidget.gameObject.SetActive(false);
@@ -303,4 +317,22 @@ public class MouseInputs : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
     }
+
+    // public static bool IsPointerOverUIObject()
+    // {
+    //     PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+    //     eventDataCurrentPosition.position = Mouse.current.position.ReadValue();
+    //     List<RaycastResult> results = new List<RaycastResult>();
+    //     EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+    //     for (int i = 0; i < results.Count; i++)
+    //     {
+    //         if (results[i].gameObject.layer == 5) //5 = UI layer
+    //         {
+    //             return true;
+    //         }
+    //     }
+
+    //     return false;
+    // }
 }

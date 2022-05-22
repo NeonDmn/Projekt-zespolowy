@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec005bc5a79e34949be71b99f236c64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storagePrefab: {fileID: 675296345365289914, guid: 074e09a551262b140b775345dd8f1900, type: 3}
+  farmPrefab: {fileID: 6223566297770996689, guid: 380ff9cb6d8baa34d8f1f1200f2f2678, type: 3}
+  barracksPrefab: {fileID: 4908421828050849195, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+  mouseInput: {fileID: 0}
+  UIManager: {fileID: 175001165}
 --- !u!114 &175001165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a96180ea1a6a48b59501d3bfd20ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UICanvas: {fileID: 0}
   notificationMenu: {fileID: 0}
+  buildMenu: {fileID: 0}
+  unitMakeMenu: {fileID: 0}
 --- !u!114 &596106372317197375
 MonoBehaviour:
   m_ObjectHideFlags: 0

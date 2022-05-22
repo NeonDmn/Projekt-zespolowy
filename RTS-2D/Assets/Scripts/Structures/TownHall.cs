@@ -60,4 +60,14 @@ public class TownHall : Structure
             }
         }
     }
+
+    private void OnSelect()
+    {
+        GameManager.instance.UIManager.ShowBuildMenu();
+    }
+
+    private void OnDeselect()
+    {
+        GameManager.instance.UIManager.HideBuildMenu();
+    }
 }

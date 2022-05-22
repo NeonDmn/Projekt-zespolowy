@@ -8,6 +8,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] Canvas UICanvas;
     [SerializeField] GameObject notificationMenu;
     [SerializeField] GameObject buildMenu;
+    [SerializeField] GameObject unitMakeMenu;
 
     public void ToggleNotificationMenu() {
         notificationMenu.SetActive(!notificationMenu.activeInHierarchy);
@@ -19,6 +20,27 @@ public class GameUIManager : MonoBehaviour
         obj.transform.SetParent(UICanvas.transform);
 
         return obj;
+    }
+
+    public void ShowBuildMenu()
+    {
+        buildMenu.SetActive(true);
+    }
+
+    public void HideBuildMenu()
+    {
+        buildMenu.SetActive(false);
+    }
+
+    public void ShowUnitMenu(Barracks initBarracks)
+    {
+        unitMakeMenu.GetComponent<UnitMenu>().Init(initBarracks);
+        unitMakeMenu.SetActive(true);
+    }
+
+    public void HideUnitMenu()
+    {
+        unitMakeMenu.SetActive(false);
     }
 
     //public void AddNotification()
