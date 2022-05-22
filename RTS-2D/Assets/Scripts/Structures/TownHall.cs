@@ -16,10 +16,13 @@ public class TownHall : Structure
 
     public bool isWorkerTimerRunning() { return workerTimerRunning;}
 
-    public override void Start()
-    {
+    private void Awake() {
         resources = new ResourceManager();
         units = new UnitsManager();
+    }
+    public override void Start()
+    {
+        //
     }
 
     public void CreateWorker()

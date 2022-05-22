@@ -21,7 +21,7 @@ public class ManageWorkers
         target = Resource.Type.METAL;
         if (wood <= metal)
             target = Resource.Type.WOOD;
-        if (crystal <= metal)
+        if (crystal <= wood)
             target = Resource.Type.CRYSTAL;
 
 
