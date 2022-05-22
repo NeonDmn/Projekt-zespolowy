@@ -21336,6 +21336,38 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4401412764890058449, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401412764927141393, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401412765736246845, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401412766171463211, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280943378198612065, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280943378417427404, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280943378612238103, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280943379337323189, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9153211514465851134, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
       propertyPath: m_Name
       value: New map essentials
