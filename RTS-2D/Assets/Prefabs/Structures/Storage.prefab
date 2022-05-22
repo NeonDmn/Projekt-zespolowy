@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4296031253696745131}
   - component: {fileID: 4062453221508653089}
   - component: {fileID: 3456202945051578951}
-  m_Layer: 0
+  - component: {fileID: 4930224800547165826}
+  m_Layer: 10
   m_Name: Storage
   m_TagString: Structures
   m_Icon: {fileID: 0}
@@ -96,12 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db14c509d0bd8c4caeeda0d85ac234c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildTime: 15
+  buildTime: 3
   life: 200
-  woodCost: 150
-  metalCost: 50
-  storagePrefab: {fileID: 675296345365289914}
-  storageSpawnPos: {fileID: 6670400057409435165}
+  woodCost: 0
+  metalCost: 0
+  buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
 --- !u!60 &3456202945051578951
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +139,16 @@ PolygonCollider2D:
       - {x: 0.31, y: -0.14999999}
       - {x: 0.32, y: -0.14999999}
       - {x: 0.32, y: 0.02}
+--- !u!114 &4930224800547165826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675296345365289914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _team: 0

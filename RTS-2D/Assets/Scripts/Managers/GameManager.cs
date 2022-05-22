@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,16 +24,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    GameObject storagePrefab;
-    GameObject farmPrefab;
-    GameObject barracksPrefab;
+    [SerializeField] GameObject storagePrefab;
+    [SerializeField] GameObject farmPrefab;
+    [SerializeField] GameObject barracksPrefab;
+
+    [SerializeField] PlayerInput mouseInput;
+    [Space]
+    public GameUIManager UIManager;
+
+
     //GameObject townHall;
     Dictionary<PlayerTeam.Team, TownHall> townHalls = new Dictionary<PlayerTeam.Team, TownHall>();
-    private void Start()
-    {
-        // InitTownHalls();
-        // Debug.Log("TownHalls found: " + townHalls.Count);
-    }
 
     private void InitTownHalls()
     {
@@ -47,6 +49,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetBuildMouseControlls(bool isBuilding)
+    {
+        if (isBuilding)
+            mouseInput.SwitchCurrentActionMap("Building");
+        else
+            mouseInput.SwitchCurrentActionMap("Cursor");
+    }
+
     public TownHall GetTownHallObject(PlayerTeam.Team team)
     {
         return townHalls[team];
@@ -54,18 +64,17 @@ public class GameManager : MonoBehaviour
 
     public void BuildStorage()
     {
-        //Build(storagePrefab, team, position);
-        EventManager.OnBuildingStarted?.Invoke(storagePrefab);
+        EventManager.OnBuildingModeStarted?.Invoke(storagePrefab);
     }
 
     public void BuildFarm()
     {
-        //Build(farmPrefab, team, position);
+        EventManager.OnBuildingModeStarted?.Invoke(farmPrefab);
     }
 
     public void BuildBarracks()
     {
-        //Build(barracksPrefab, team, position);
+        EventManager.OnBuildingModeStarted?.Invoke(barracksPrefab);
     }
 
     public void Build(GameObject go, PlayerTeam.Team team, Vector2 position)

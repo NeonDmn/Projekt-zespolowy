@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8175370305160785726}
   - component: {fileID: 4101221918532296644}
   - component: {fileID: 6590519651824461243}
-  m_Layer: 0
+  - component: {fileID: 3856759363265595228}
+  m_Layer: 10
   m_Name: Farm
   m_TagString: Structures
   m_Icon: {fileID: 0}
@@ -100,8 +101,7 @@ MonoBehaviour:
   life: 100
   woodCost: 100
   metalCost: 100
-  farmPrefab: {fileID: 6223566297770996689}
-  farmSpawnPos: {fileID: 6423393982233744153}
+  buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
 --- !u!60 &6590519651824461243
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -138,3 +138,16 @@ PolygonCollider2D:
       - {x: 0.32, y: -0.22}
       - {x: 0.32, y: 0.099999994}
       - {x: 0.19999999, y: 0.24}
+--- !u!114 &3856759363265595228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223566297770996689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _team: 0

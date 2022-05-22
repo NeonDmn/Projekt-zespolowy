@@ -33,9 +33,9 @@ public class Unit : MonoBehaviour
     protected void Start()
     {
 
-        GameObject it = GameObject.Find("GridController");
+        //GameObject it = GameObject.Find("GridController");
         body = this.GetComponent<Rigidbody2D>();
-        gridController = it.GetComponent<GridController>();
+        //gridController = it.GetComponent<GridController>();
 
         Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
         endPoint = transform.position;
@@ -120,16 +120,15 @@ public class Unit : MonoBehaviour
         Goto(location);
     }
 
-    public void CreatePath(Point _from, Point _to, Vector2 mousePos)
-    {
-        endPoint = mousePos;
-        path = Pathfinding.FindPath(gridController.grid, _from, _to);
-        foreach (var it in path)
-        {
-            // Debug.Log(it.x);
-        }
-
-    }
+    // public void CreatePath(Point _from, Point _to, Vector2 mousePos)
+    // {
+    //     endPoint = mousePos;
+    //     path = Pathfinding.FindPath(gridController.grid, _from, _to);
+    //     foreach (var it in path)
+    //     {
+    //         // Debug.Log(it.x);
+    //     }
+    // }
 
     public void UnitMovement()
     {

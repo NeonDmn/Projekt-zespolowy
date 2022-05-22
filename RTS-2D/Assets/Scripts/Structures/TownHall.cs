@@ -16,7 +16,7 @@ public class TownHall : Structure
 
     public bool isWorkerTimerRunning() { return workerTimerRunning;}
 
-    private void Start()
+    public override void Start()
     {
         resources = new ResourceManager();
         units = new UnitsManager();
@@ -59,5 +59,15 @@ public class TownHall : Structure
                 workerTimerRunning = false;
             }
         }
+    }
+
+    private void OnSelect()
+    {
+        GameManager.instance.UIManager.ShowBuildMenu();
+    }
+
+    private void OnDeselect()
+    {
+        GameManager.instance.UIManager.HideBuildMenu();
     }
 }

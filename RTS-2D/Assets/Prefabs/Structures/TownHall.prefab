@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 114240299}
   - component: {fileID: 114240300}
   - component: {fileID: 5320984353146199830}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TownHall
   m_TagString: TownHall
   m_Icon: {fileID: 0}
@@ -294,6 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda7dcad4032624459e7230a39596300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildTime: 0
+  life: 0
+  woodCost: 0
+  metalCost: 0
+  buildSprite: {fileID: 0}
   workerPrefab: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
   workerSpawnPos: {fileID: 962140986}
 --- !u!114 &5320984353146199830
@@ -308,4 +313,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  _team: 0

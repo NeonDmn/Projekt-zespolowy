@@ -34,12 +34,6 @@ public class ResourceManager
 
         foodMAX = 50;
         foodInUse = 0;
-
-        woodInUse = 0;
-        woodMAX = 0;
-
-        metalMAX = 0;
-        metalInUse = 0;
     }
 
     public int Add(Resource.Type type, int count)

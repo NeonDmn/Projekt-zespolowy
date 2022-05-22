@@ -4,83 +4,124 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Barracks : Structure
 {
-    public GameObject barracksPrefab;
-    public Transform barracksSpawnPos;
-    private float barracksCreationTime;
-    private bool barracksTimerRunning = false;
-    private bool isPlacingBarracks = false;
-    Vector2 barracksPosition;
-    private Camera cam;
+    public GameObject warriorMeleePrefab;
+    public GameObject warriorScoutPrefab;
+    public GameObject warriorRangedPrefab;
+    public Transform warriorSpawnPos;
 
-    private void Start()
-    {
-        //Debug.Log("Pojawił się budynek " + name + " frakcji " + GetComponent<PlayerTeam>().team + " na " + transform.position);
-        //OnBuildingFinished();
-        cam = Camera.main;
+    float warriorCreationTime = 0.0f;
+    bool creatingWarrior = false;
+    GameObject warriorToCreate;
 
+    PlayerTeam.Team team;
+
+    public override void Start() {
+        base.Start();
+
+        team = GetComponent<PlayerTeam>().team;
     }
-    private void Update()
+    public override void Update()
     {
-        //timer 
-        if (barracksTimerRunning)
+        base.Update();
+
+        if (creatingWarrior && buildingFinished) 
         {
-            if (barracksCreationTime > 0)
+            if (warriorCreationTime > 0.0f)
             {
-                barracksCreationTime -= Time.deltaTime;
+                warriorCreationTime -= Time.deltaTime;
             }
             else
             {
-                SpawnBarracks();
-                OnBuildingFinished();
-                barracksTimerRunning = false;
+                SpawnWarrior(warriorToCreate);
+                creatingWarrior = false;
             }
         }
+    }
 
-        if (isPlacingBarracks && Mouse.current.rightButton.wasPressedThisFrame)
+    private void SpawnWarrior(GameObject warriorGo)
+    {
+        GameManager.instance.GetTownHallObject(team).resources.TakeFood(1);
+        var warrior = Instantiate(warriorGo, warriorSpawnPos.transform.position, Quaternion.identity);
+        Debug.Log("Spawned " + warrior.name + " at " + warrior.transform.position);
+    }
+
+    public void CreateScout()
+    {
+        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
         {
-            barracksPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            //CreateBarracks();
-            isPlacingBarracks = false;
+            // Mo�na tworzy� jednostkę
+            // timer start
+            warriorToCreate = warriorScoutPrefab;
+            warriorCreationTime = 3.0f;
+            creatingWarrior = true;
+            Debug.Log("Scout creation started!");
+        }
+        else
+        {
+            // Nie mo�na utworzy� jednostkę
+            // error
         }
     }
 
-    public void selectBarracksPosition()
+    public void CreateMelee()
     {
-        GameObject.Find("Barracks").GetComponent<Barracks>().isPlacingBarracks = true;
+        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
+        {
+            // Mo�na tworzy� jednostkę
+            // timer start
+            warriorToCreate = warriorMeleePrefab;
+            warriorCreationTime = 3.0f;
+            creatingWarrior = true;
+            Debug.Log("Mele warrior creation started!");
+        }
+        else
+        {
+            // Nie mo�na utworzy� jednostkę
+            // error
+        }
     }
 
+    public void CreateRanged()
+    {
+        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
+        {
+            // Mo�na tworzy� jednostkę
+            // timer start
+            warriorToCreate = warriorRangedPrefab;
+            warriorCreationTime = 3.0f;
+            creatingWarrior = true;
+            Debug.Log("Archer creation started!");
+        }
+        else
+        {
+            // Nie mo�na utworzy� jednostkę
+            // error
+        }
+    }
 
-    // private void CreateBarracks()
+    private void OnSelect()
+    {
+        
+        GameManager.instance.UIManager.ShowUnitMenu(this);
+    }
+
+    private void OnDeselect()
+    {
+        GameManager.instance.UIManager.HideUnitMenu();
+    }
+
+    // public void DestroyUnitMenu()
     // {
-    //     if (MouseInputs.collide == true)
-    //     {
-    //         if (ResourceManager.Instance.TakeWood(woodCost) || ResourceManager.Instance.TakeMetal(metalCost))
-    //         {
-    //             Debug.Log("Za ma�o surowc�w by wybudowa� koszary");
-    //         }
-    //         else
-    //         {
-    //             Debug.Log("Budowa koszar rozpocz�ta");
-    //             // Mo�na tworzy�
-    //             // timer start
-    //             barracksCreationTime = 20f;
-    //             barracksTimerRunning = true;
-    //         }
-    //     }
+    //     if (unitMenu)
+    //         Destroy(unitMenu);
     // }
 
-    private void SpawnBarracks()
-    {
-        Instantiate(barracksPrefab, barracksPosition, Quaternion.identity);
-    }
-
-
-    public override void OnBuildingFinished()
+    public override void EventManager_OnBuildingFinished(Structure str)
     {
 
     }
 
-    public override void OnBuildingDestroyed()
+    public override void EventManager_OnBuildingDestroyed()
     {
 
     }
