@@ -65,7 +65,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("FlowFieldTest", LoadSceneMode.Single);
+        SceneManager.LoadScene("FinalMap1", LoadSceneMode.Single);
     }
     public static void ExitGame() {
         Application.Quit();

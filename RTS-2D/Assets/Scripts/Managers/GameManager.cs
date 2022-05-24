@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
     #region Singleton
     private static GameManager _instance;
     public static GameManager instance { get { return _instance; } }
+
+    //public GameObject dynamicNavmeshParentObject;
+    public NavMeshSurface navMeshSurface;
 
     private void Awake()
     {
@@ -20,8 +24,15 @@ public class GameManager : MonoBehaviour
 
         InitTownHalls();
         Debug.Log("TownHalls found: " + townHalls.Count);
+
+        //EventManager.OnBuildingFinished =+ 
+        
     }
     #endregion
+
+    private void Update() {
+        navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
+    }
 
 
     [SerializeField] GameObject storagePrefab;

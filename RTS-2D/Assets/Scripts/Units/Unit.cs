@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour
 
 
     public UnitTask currentTask { get; private set; }
+    NavMeshAgent navMeshAgent;
 
 
     List<Point> path;
@@ -50,6 +51,7 @@ public class Unit : MonoBehaviour
 
         // get path
         // path will either be a list of Points (x, y), or an empty list if no path is found.
+        navMeshAgent = GetComponent<NavMeshAgent>();
 
         var agent = GetComponent<NavMeshAgent>();
 		agent.updateRotation = false;
@@ -90,7 +92,10 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
-        //UnitMovement();
+    }
+
+    private void FixedUpdate() {
+        UnitMovement();
     }
     private void OnDestroy()
     {
@@ -115,8 +120,7 @@ public class Unit : MonoBehaviour
 
     public void Goto(Vector3 location)
     {
-        //endPoint = location;
-        GetComponent<NavMeshAgent>().SetDestination(location);
+        endPoint = location;
     }
 
     public void GotoAndSwitchToIdle(Vector3 location)
@@ -138,9 +142,6 @@ public class Unit : MonoBehaviour
 
     public void UnitMovement()
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, new Vector3(endPoint.x, endPoint.y, 0), 15f * Time.deltaTime);
-        body.MovePosition(pos);
+        navMeshAgent.SetDestination(endPoint);
     }
-
-
 }

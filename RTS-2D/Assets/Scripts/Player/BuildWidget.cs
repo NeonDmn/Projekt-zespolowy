@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class BuildWidget : MonoBehaviour
 {
     [SerializeField] LayerMask buildingDenyMask;
+    [SerializeField] LayerMask groundLayer;
 
     SpriteRenderer spriteRenderer;
     public GameObject buildingGO { get; private set; }
@@ -36,16 +37,22 @@ public class BuildWidget : MonoBehaviour
     {
         if (canPlace)
         {
-            spriteRenderer.color = new Color(1, 1, 1, 1);
+            spriteRenderer.color = new Color(1, 1, 1, 0.9f);
         }
         else
         {
-            spriteRenderer.color = new Color(1, 0, 0, 1);
+            spriteRenderer.color = new Color(1, 0, 0, 0.9f);
         }
     }
 
     public bool CanBuild()
     {
+        RaycastHit2D gHit = Physics2D.CircleCast(transform.position, 0.1f, Vector2.zero, 0.0f, groundLayer);
+        if (!gHit)
+        {
+            return false;
+        }
+
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.zero, 0.0f, buildingDenyMask);
         return !hit;
     }
