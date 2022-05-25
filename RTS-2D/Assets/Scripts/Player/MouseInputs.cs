@@ -319,7 +319,7 @@ public class MouseInputs : MonoBehaviour
 
         // Można budować
         Debug.Log("Rozpoczęto budowę " + bWidget.buildingGO.name);
-        GameManager.instance.Build(bWidget.buildingGO, PlayerTeam.Team.Friendly, bWidget.transform.position);
+        GameManager.Build(bWidget.buildingGO, PlayerTeam.Team.Friendly, bWidget.transform.position);
         EventManager.OnBuildingModeEnded?.Invoke();
     }
 

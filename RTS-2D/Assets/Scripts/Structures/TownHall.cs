@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class TownHall : Structure
@@ -11,12 +10,14 @@ public class TownHall : Structure
     public ResourceManager resources { get; private set; }
 
     public UnitsManager units { get; private set; }
+    public BuldingManager buldings { get; private set; }
     private float workerCreationTime;
     private bool workerTimerRunning = false;
 
-    public bool isWorkerTimerRunning() { return workerTimerRunning;}
+    public bool isWorkerTimerRunning() { return workerTimerRunning; }
 
-    private void Awake() {
+    private void Awake()
+    {
         resources = new ResourceManager();
         units = new UnitsManager();
     }
@@ -47,7 +48,7 @@ public class TownHall : Structure
         units.AddWorker(obj.GetComponent<Worker>());
     }
 
-    private void Update()
+    public override void Update()
     {
         //timer 
         if (workerTimerRunning)

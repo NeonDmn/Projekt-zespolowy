@@ -26,11 +26,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("TownHalls found: " + townHalls.Count);
 
         navMeshSurface.hideEditorLogs = true;
-        
+
     }
     #endregion
 
-    private void Update() {
+    private void Update()
+    {
         navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
     }
 
@@ -88,9 +89,10 @@ public class GameManager : MonoBehaviour
         EventManager.OnBuildingModeStarted?.Invoke(barracksPrefab);
     }
 
-    public void Build(GameObject go, PlayerTeam.Team team, Vector2 position)
+    public static GameObject Build(GameObject go, PlayerTeam.Team team, Vector2 position)
     {
         GameObject b = Instantiate(go, position, Quaternion.identity);
         b.GetComponent<PlayerTeam>().SetTeam(team);
+        return b;
     }
 }
