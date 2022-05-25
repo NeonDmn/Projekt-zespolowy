@@ -18,7 +18,7 @@ public class BuildWidget : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-    
+
     void Update()
     {
         transform.position = MouseInputs.GetMouseWorldPos();
@@ -56,8 +56,21 @@ public class BuildWidget : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.zero, 0.0f, buildingDenyMask);
         return !hit;
     }
+    public static bool CanBuild(Vector2 position)
+    {
+        RaycastHit2D gHit = Physics2D.CircleCast(position, 0.1f, Vector2.zero, 0.0f, 1 << LayerMask.NameToLayer("Ground"));
+        if (!gHit)
+        {
+            return false;
+        }
 
-    private void OnDrawGizmosSelected() {
+        LayerMask noBuildingMask = LayerMask.GetMask("Impassable", "RoughTerrain", "Building", "Resource", "Unit");
+        RaycastHit2D hit = Physics2D.CircleCast(position, 0.5f, Vector2.zero, 0.0f, noBuildingMask);
+        return !hit;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.5f);
     }

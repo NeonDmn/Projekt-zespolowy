@@ -10,7 +10,7 @@ public class TownHall : Structure
     public ResourceManager resources { get; private set; }
 
     public UnitsManager units { get; private set; }
-    public BuldingManager buldings { get; private set; }
+
     private float workerCreationTime;
     private bool workerTimerRunning = false;
 

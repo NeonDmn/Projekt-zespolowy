@@ -1026,11 +1026,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466461776}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6141f57fab0b2f40acb601db49d4ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetsBuildingsPrefab:
+  - {fileID: 675296345365289914, guid: 074e09a551262b140b775345dd8f1900, type: 3}
+  - {fileID: 6223566297770996689, guid: 380ff9cb6d8baa34d8f1f1200f2f2678, type: 3}
+  - {fileID: 4908421828050849195, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+  buildTriger: 4
+  radiusOfGathering: 10
 --- !u!1001 &519399471
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTime: 3
   life: 200
-  woodCost: 0
-  metalCost: 0
+  woodCost: 150
+  metalCost: 50
   buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
 --- !u!60 &3456202945051578951
 PolygonCollider2D:

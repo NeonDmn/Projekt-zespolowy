@@ -6,6 +6,7 @@ public class ManageWorkers
 {
     public Resource.Type target;
     TownHall townHall;
+
     List<Resource> resourcesList = new List<Resource>();
 
     public void ChoseResource()
@@ -26,11 +27,11 @@ public class ManageWorkers
 
 
     }
-    public ManageWorkers(TownHall hall)
+    public ManageWorkers(TownHall hall, float radiusOfGathering)
     {
         this.townHall = hall;
         ChoseResource();
-        findAllResources(50.0f);
+        findAllResources(radiusOfGathering);
     }
     public void WorkerAi()
     {

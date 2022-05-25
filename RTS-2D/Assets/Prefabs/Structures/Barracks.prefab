@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTime: 5
   life: 500
-  woodCost: 0
-  metalCost: 0
+  woodCost: 300
+  metalCost: 50
   buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
   warriorMeleePrefab: {fileID: 8704482105182216674, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
   warriorScoutPrefab: {fileID: 3164378283578570697, guid: 2dd5d0295e1924848a3ac5c437e7e19c, type: 3}
