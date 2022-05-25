@@ -28,7 +28,6 @@ public class Unit : MonoBehaviour
 
     //Stats Unit
     public UnitStats unitStats;
-    private float attackTimer;
 
     public UnitTask currentTask { get; private set; }
     NavMeshAgent navMeshAgent;
@@ -65,7 +64,7 @@ public class Unit : MonoBehaviour
 		agent.updateRotation = false;
 		agent.updateUpAxis = false;
 
-        attackTimer = unitStats.attackSpeed;
+        GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
         
     }
     public void SwitchTask(UnitTask newTask)
@@ -132,60 +131,7 @@ public class Unit : MonoBehaviour
     {
         endPoint = location;
     }
-
-    public void GoandAttack(Vector3 target, Transform enemy)
-    {
-        attackTimer += Time.deltaTime;
-        currentTarget = enemy;
-        navMeshAgent.destination = target;
-        Debug.Log("Current Target attack" + currentTarget);
-        Debug.Log("Target" + target);
-        Goto(target);
-        var distance = (transform.position - target).magnitude;
-
-        if(distance <= unitStats.attackRange)
-        {
-            Attack();
-        }
-    }
-
-    public void Attack()
-    {
-        if(attackTimer >= unitStats.attackSpeed)
-        {
-            Debug.Log("Attack");
-            GameManager.UnitTakeDamage(this, currentTarget.GetComponent<Unit>());
-            attackTimer = 0;
-            Debug.Log("Current Target damage" + currentTarget);
-        }
-    }
-
-    public void TakeDamage(Unit enemy, float damage)
-    {
-        StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
-        if (enemy.unitStats.health < 1)
-        {
-            Debug.Log("Current Target kill" + currentTarget);
-            Debug.Log("Kill");
-            Destroy(enemy.GetComponent<GameObject>().gameObject);
-        }
-        else
-        {
-            enemy.unitStats.health -= damage;
-        }     
-    }
-
-    IEnumerator Flasher(Color defaultColor)
-    {
-        var renderer = GetComponent<Renderer>();
-        for (int i = 0; i < 2; i++)
-        {
-            renderer.material.color = Color.gray;
-            yield return new WaitForSeconds(.05f);
-            renderer.material.color = defaultColor;
-            yield return new WaitForSeconds(.05f);
-        }
-    }
+  
 
     public void GotoAndSwitchToIdle(Vector3 location)
     {
@@ -208,4 +154,10 @@ public class Unit : MonoBehaviour
     {
         navMeshAgent.SetDestination(endPoint);
     }
+
+    public void SetStoppingDistance(float distance)
+    {
+        navMeshAgent.stoppingDistance = distance;
+    }
+
 }

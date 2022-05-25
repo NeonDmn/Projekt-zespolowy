@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Worker
   m_EditorClassIdentifier: 
   attackValue: 1
-  attackRange: 1
+  attackRange: 0.4
   attackSpeed: 2
   health: 1

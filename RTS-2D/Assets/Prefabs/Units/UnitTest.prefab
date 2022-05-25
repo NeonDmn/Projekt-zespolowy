@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -6069477671355085149}
   - component: {fileID: 409550760}
   - component: {fileID: 1128995886}
+  - component: {fileID: 7666740605636129115}
   - component: {fileID: 2114760924001341258}
   m_Layer: 12
   m_Name: UnitTest
@@ -296,6 +297,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 1835865136}
+--- !u!114 &7666740605636129115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207835548659832121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &2114760924001341258
 NavMeshAgent:
   m_ObjectHideFlags: 0

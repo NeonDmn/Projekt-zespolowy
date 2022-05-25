@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   attackValue: 3
-  attackRange: 4
+  attackRange: 3
   attackSpeed: 2
   health: 2

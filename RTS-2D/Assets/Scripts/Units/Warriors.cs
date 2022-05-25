@@ -14,52 +14,27 @@ public class Warriors : Unit
     {
         base.HandleAction(mousePos, go);
 
-        Resource res;
         Structure str;
         Unit u;
-
-        if (str = go.GetComponent<Structure>())
-        {
+        if (go.GetComponent<PlayerTeam>()) {
             switch (go.GetComponent<PlayerTeam>().team)
             {
                 case PlayerTeam.Team.Friendly:
-                    // Friendly structure
-                    Debug.Log("Friendly structure");
-                    GoandAttack(mousePos, go.transform);
+                    // Friendly 
+                    Debug.Log("Friendly");
+                    SwitchTask(new AttackTask(this, go.GetComponent<ObjectHealth>()));
                     break;
 
                 case PlayerTeam.Team.Enemy:
-                    // Enemy structure
-                    Debug.Log("Enemy structure");
-                    GoandAttack(mousePos, go.transform);
+                    // Enemy 
+                    Debug.Log("Enemy");
+                    SwitchTask(new AttackTask(this, go.GetComponent<ObjectHealth>()));
                     break;
             }
         }
-        else if (u = go.GetComponent<Unit>())
-        {
-            // Check team
-            switch (go.GetComponent<PlayerTeam>().team)
-            {
-                case PlayerTeam.Team.Friendly:
-                    // Friendly Unit
-                    Debug.Log("Friendly Unit");
-                    GoandAttack(mousePos, go.transform);
-                    break;
-
-                case PlayerTeam.Team.Enemy:
-                    // Enemy Unit
-                    Debug.Log("Enemy Unit");
-                    GoandAttack(mousePos, go.transform);
-                    break;
-            }
-            
-        }
-        else
-        {
+        else {
             // Pathfinding
             GotoAndSwitchToIdle(mousePos);
         }
     }
-
-  
 }

@@ -19,10 +19,11 @@ public class TownHall : Structure
     private void Awake() {
         resources = new ResourceManager();
         units = new UnitsManager();
+
     }
     public override void Start()
     {
-        //
+        GetComponent<ObjectHealth>().setMaxHealth(life);
     }
 
     public void CreateWorker()

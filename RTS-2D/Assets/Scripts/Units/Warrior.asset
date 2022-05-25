@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   attackValue: 2
-  attackRange: 1
+  attackRange: 0.4
   attackSpeed: 2
   health: 4

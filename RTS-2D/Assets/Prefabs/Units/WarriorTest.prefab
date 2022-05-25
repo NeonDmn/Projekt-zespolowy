@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -1219570576393735366}
   - component: {fileID: -4866551694464388366}
   - component: {fileID: -2356550810878879140}
+  - component: {fileID: 5468780577538915014}
   - component: {fileID: 4310054654953858701}
   m_Layer: 12
   m_Name: WarriorTest
@@ -296,6 +297,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitStats: {fileID: 11400000, guid: 35dcf93e2fab08d4ca8b0a76a046ba37, type: 2}
+--- !u!114 &5468780577538915014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568638494077740418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &4310054654953858701
 NavMeshAgent:
   m_ObjectHideFlags: 0

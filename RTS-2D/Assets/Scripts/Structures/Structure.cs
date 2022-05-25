@@ -5,7 +5,8 @@ using UnityEngine;
 public class Structure : MonoBehaviour
 {
     public float buildTime;
-    public int life;
+    [SerializeField]
+    protected float life;
     public int woodCost;
     public int metalCost;
 
@@ -24,6 +25,7 @@ public class Structure : MonoBehaviour
 
         structureSprite = GetComponent<SpriteRenderer>().sprite;
         GetComponent<SpriteRenderer>().sprite = buildSprite;
+        GetComponent<ObjectHealth>().setMaxHealth(life);
     }
 
     public virtual void Update() {
