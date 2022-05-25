@@ -93,4 +93,11 @@ public class GameManager : MonoBehaviour
         GameObject b = Instantiate(go, position, Quaternion.identity);
         b.GetComponent<PlayerTeam>().SetTeam(team);
     }
+
+    public static void UnitTakeDamage(Unit attackingController, Unit attackedController)
+    {
+        var damage = attackingController.unitStats.attackValue;
+        attackingController.TakeDamage(attackedController, damage);
+    }
+
 }

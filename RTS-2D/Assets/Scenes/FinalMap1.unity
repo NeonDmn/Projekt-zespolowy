@@ -1326,6 +1326,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barracks
       objectReference: {fileID: 0}
+    - target: {fileID: 5477755406656441440, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+      propertyPath: warriorMeleePrefab
+      value: 
+      objectReference: {fileID: 5416719998123171415, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
+    - target: {fileID: 5477755406656441440, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+      propertyPath: warriorScoutPrefab
+      value: 
+      objectReference: {fileID: 6246349212491167904, guid: 0056b94816e801645ab7ca96de07998c, type: 3}
+    - target: {fileID: 5477755406656441440, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
+      propertyPath: warriorRangedPrefab
+      value: 
+      objectReference: {fileID: 6725678236502013398, guid: e8f67218ac583c0479270fe9caaa6bd4, type: 3}
     - target: {fileID: 5523005907021366167, guid: 787b99140dcbbf343940036c8cd171c2, type: 3}
       propertyPath: m_Enabled
       value: 1
