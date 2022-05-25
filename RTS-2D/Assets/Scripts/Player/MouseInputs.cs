@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class MouseInputs : MonoBehaviour
 {
     [SerializeField] private ContactFilter2D selectable;
+    [SerializeField] private ContactFilter2D interactable;
     [SerializeField] BuildWidget bWidget;
 
     private LineRenderer lineRenderer;
@@ -72,16 +73,34 @@ public class MouseInputs : MonoBehaviour
         {
             initialMouseWorldPosition = GetMouseWorldPos();
 
-            RaycastHit2D hit = Physics2D.Raycast(initialMouseWorldPosition, Vector2.zero);
+            List<RaycastHit2D> hits = new List<RaycastHit2D>();
+            Physics2D.Raycast(initialMouseWorldPosition, Vector2.zero, interactable, hits);
+            if (hits.Count == 0) return;
 
-            if (hit.collider != null)
+
+            List<RaycastHit2D> hits_resources = new List<RaycastHit2D>();
+            List<RaycastHit2D> hits_buildings = new List<RaycastHit2D>();
+            List<RaycastHit2D> hits_units = new List<RaycastHit2D>();
+
+            hits_resources = hits.FindAll(
+                h => h.collider.GetComponent<Resource>()
+            );
+            hits_buildings = hits.FindAll(
+                h => h.collider.GetComponent<Structure>()
+            );
+            hits_units = hits.FindAll(
+                h => h.collider.GetComponent<Unit>() && h.collider.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Enemy
+            );
+
+            if (Selection.Instance.unitsSelected.Count > 0)
             {
-                if (Selection.Instance.unitsSelected.Count > 0)
-                {
-                    // Selection.Instance.PathFindAllSelected(initialMousePosition);
-
-                    Selection.Instance.HandleActionBySelected(initialMouseWorldPosition, hit.transform.gameObject);
-                }
+                if (hits_units.Count > 0)
+                    Selection.Instance.HandleActionBySelected(initialMouseWorldPosition, hits_units[0].transform.gameObject);
+                else if (hits_buildings.Count > 0)
+                    Selection.Instance.HandleActionBySelected(initialMouseWorldPosition, hits_buildings[0].transform.gameObject);
+                else if (hits_resources.Count > 0)
+                    Selection.Instance.HandleActionBySelected(initialMouseWorldPosition, hits_resources[0].transform.gameObject);
+                else Selection.Instance.HandleActionBySelected(initialMouseWorldPosition, hits[0].transform.gameObject);
             }
         }
     }

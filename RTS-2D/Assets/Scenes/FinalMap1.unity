@@ -374,7 +374,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126119840
 GameObject:
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 126119842}
   - component: {fileID: 126119841}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Mountains
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +555,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fb25de4ff9180574d979bc459f02f5a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -579,7 +579,7 @@ Transform:
   m_LocalScale: {x: 3.4305046, y: 3.4305046, z: 3.4305046}
   m_Children: []
   m_Father: {fileID: 2099997642}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &238120232
 GameObject:
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 238120233}
   - component: {fileID: 238120236}
   m_Layer: 3
-  m_Name: teren
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +655,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c7e07b1e7fcdd5e40848eb1e2703a60e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -678,8 +678,8 @@ Transform:
   m_LocalPosition: {x: 7.15, y: 0.39, z: 0}
   m_LocalScale: {x: 3.4305046, y: 3.4305046, z: 3.4305046}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 2099997642}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &238120236
 PolygonCollider2D:
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466461776}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6141f57fab0b2f40acb601db49d4ea7, type: 3}
   m_Name: 
@@ -1195,7 +1195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &636040667
 MonoBehaviour:
@@ -22667,7 +22667,7 @@ Transform:
   - {fileID: 591558978}
   - {fileID: 618894819}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1906352775
 PrefabInstance:
@@ -22810,10 +22810,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 238120235}
   - {fileID: 126119844}
   - {fileID: 8401892977907536012}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2139117937 stripped
 MonoBehaviour:
@@ -22976,6 +22977,14 @@ PrefabInstance:
     - target: {fileID: 3370889236854627102, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370889236854627103, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: interactable.useTriggers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370889236854627103, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
+      propertyPath: interactable.layerMask.m_Bits
+      value: 7176
       objectReference: {fileID: 0}
     - target: {fileID: 4401412764890058448, guid: 029707fbfb3bc6e4c91afc27744e4018, type: 3}
       propertyPath: show
@@ -23206,7 +23215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2065799300576776460, guid: 330965c7fbb540a469044c7e8b4913b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -23230,7 +23239,7 @@ Transform:
   m_LocalScale: {x: 3.4305046, y: 3.4305046, z: 3.4305046}
   m_Children: []
   m_Father: {fileID: 2099997642}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8970307034821913618
 GameObject:

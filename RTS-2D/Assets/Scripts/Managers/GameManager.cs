@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         InitTownHalls();
         Debug.Log("TownHalls found: " + townHalls.Count);
 
-        //EventManager.OnBuildingFinished =+ 
+        navMeshSurface.hideEditorLogs = true;
         
     }
     #endregion
