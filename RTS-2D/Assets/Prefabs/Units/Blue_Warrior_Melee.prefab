@@ -23,10 +23,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7294475147592571830, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e3a96ab344e7dc4586cb0db489c176c, type: 3}
     - target: {fileID: -2356550810878879140, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
       propertyPath: unitStats
       value: 
       objectReference: {fileID: 11400000, guid: 35dcf93e2fab08d4ca8b0a76a046ba37, type: 2}
+    - target: {fileID: -2356550810878879140, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 7159164537122142981}
     - target: {fileID: 2030619977395175814, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -75,6 +83,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_Warrior_Melee
       objectReference: {fileID: 0}
+    - target: {fileID: 5468780577538915014, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 7159164537122142981}
+    - target: {fileID: 6013865125396997993, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013865125396997993, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28
+      objectReference: {fileID: 0}
     - target: {fileID: 6013865125396997993, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 0.3
@@ -93,3 +113,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+--- !u!114 &7159164537122142981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7561147307418058544, guid: cd28c2e0329d83145a2e01666725e1fa, type: 3}
+  m_PrefabInstance: {fileID: 8379825215291472853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7598304149516612702, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 5314258384731924091}
     - target: {fileID: -4770438534470407395, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -14,6 +18,18 @@ PrefabInstance:
     - target: {fileID: 337616102320056352, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_Speed
       value: 3.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528964726900252935, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 5314258384731924091}
+    - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -69,3 +85,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+--- !u!114 &5314258384731924091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8561444087399556335, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+  m_PrefabInstance: {fileID: 4679145655706860906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

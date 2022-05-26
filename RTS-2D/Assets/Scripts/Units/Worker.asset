@@ -16,3 +16,7 @@ MonoBehaviour:
   attackRange: 0.4
   attackSpeed: 2
   health: 1
+  audioClip:
+  - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
+  - {fileID: 8300000, guid: 281c8bb02a670ea4f9c23a544f699ad0, type: 3}
+  - {fileID: 8300000, guid: 7c3a7787fcb493d4989f3fa947d105b1, type: 3}

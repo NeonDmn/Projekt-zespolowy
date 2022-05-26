@@ -7,10 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7598304149516612702, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 3137493457597432972}
     - target: {fileID: -4770438534470407395, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1854671065552831985, guid: 1b7b2d17a5c48ba4da73d906fa6b8d8f, type: 3}
+    - target: {fileID: 1528964726900252935, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 3137493457597432972}
+    - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: m_Size.x
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.29
+      objectReference: {fileID: 0}
     - target: {fileID: 3006712060331432722, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.26
@@ -63,9 +79,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6111415445121060712, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f4cea083887af34e81d70132ec5067f, type: 3}
     - target: {fileID: 6795904086684668251, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
       propertyPath: m_Name
       value: Red_Warrior_Range
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+--- !u!114 &3137493457597432972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8561444087399556335, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
+  m_PrefabInstance: {fileID: 2496470132081778589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

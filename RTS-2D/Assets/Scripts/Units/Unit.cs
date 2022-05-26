@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour
 
     //Stats Unit
     public UnitStats unitStats;
+    public AudioManager audioManager;
 
     public UnitTask currentTask { get; private set; }
     NavMeshAgent navMeshAgent;
@@ -39,7 +40,6 @@ public class Unit : MonoBehaviour
 
     protected void Start()
     {
-        
         //GameObject it = GameObject.Find("GridController");
         body = this.GetComponent<Rigidbody2D>();
         //gridController = it.GetComponent<GridController>();
@@ -65,8 +65,9 @@ public class Unit : MonoBehaviour
 		agent.updateUpAxis = false;
 
         GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
-        
+
     }
+
     public void SwitchTask(UnitTask newTask)
     {
         currentTask?.OnTaskEnd();
@@ -101,6 +102,12 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
+        if(audioManager.attack.clip == null || audioManager.death.clip == null )
+        {
+            Debug.Log("Set UNIT AUDIO");
+            audioManager.setAttack(unitStats.audioClip[2]);
+            audioManager.setDeath(unitStats.audioClip[1]);
+        }
     }
 
     private void FixedUpdate() {

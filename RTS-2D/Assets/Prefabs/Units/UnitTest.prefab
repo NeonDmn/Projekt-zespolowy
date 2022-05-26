@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 1128995886}
   - component: {fileID: 7666740605636129115}
   - component: {fileID: 2114760924001341258}
+  - component: {fileID: -4272153649035385184}
   m_Layer: 12
   m_Name: UnitTest
   m_TagString: Unit
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &6411070774269418250
@@ -284,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitStats: {fileID: 11400000, guid: 1b27b20ed4800d5428c56c4c7b12b0f7, type: 2}
+  audioManager: {fileID: 0}
 --- !u!114 &1128995886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,3 +333,17 @@ NavMeshAgent:
   m_BaseOffset: 0.16
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-4272153649035385184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207835548659832121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  death: {fileID: 0}

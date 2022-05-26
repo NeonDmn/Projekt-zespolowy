@@ -5,12 +5,13 @@ using UnityEngine;
 public class AttackTask : UnitTask
 {
     private ObjectHealth objectHealth;
+    private AudioManager audioManager;
     private float attackTimer;
 
     public AttackTask(Unit parent, ObjectHealth objectHealth) : base(parent)
     {
         this.objectHealth = objectHealth;
-
+        AudioManager audioManager = owner.GetComponent<AudioManager>();
     }
 
     public override void OnTaskStart()
@@ -45,12 +46,14 @@ public class AttackTask : UnitTask
         {
             Debug.Log("Attack");
             objectHealth.DealDamage(owner,owner.unitStats.attackValue);
+            owner.audioManager.attack.Play();
             attackTimer = 0;
         }
     }
 
     public void EndTask()
     {
-        owner.SwitchTask(new IdleTask(owner));
+        
+        owner.SwitchTask(new IdleTask(owner));  
     }
 }

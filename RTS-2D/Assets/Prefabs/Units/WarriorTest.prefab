@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: -2356550810878879140}
   - component: {fileID: 5468780577538915014}
   - component: {fileID: 4310054654953858701}
+  - component: {fileID: -7561147307418058544}
   m_Layer: 12
   m_Name: WarriorTest
   m_TagString: Unit
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &6013865125396997993
@@ -331,3 +332,24 @@ NavMeshAgent:
   m_BaseOffset: 0.16
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7561147307418058544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568638494077740418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Footsteps: {fileID: 0}
+  Attack: {fileID: 0}
+  Death: {fileID: 0}
+  audioClip:
+  - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
+  - {fileID: 8300000, guid: 4e3a96ab344e7dc4586cb0db489c176c, type: 3}
+  - {fileID: 8300000, guid: 4f4cea083887af34e81d70132ec5067f, type: 3}
+  - {fileID: 8300000, guid: 7c3a7787fcb493d4989f3fa947d105b1, type: 3}
+  - {fileID: 8300000, guid: 281c8bb02a670ea4f9c23a544f699ad0, type: 3}

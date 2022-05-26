@@ -8,19 +8,29 @@ public class ObjectHealth : MonoBehaviour
     public UnityAction onObjectDie;
     private float health;
     private float maxhealth;
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = GetComponent<AudioManager>();
+    }
 
     public void DealDamage(Unit enemy, float damage)
     {
-        health -= damage;
+        
         if (health <= 0)
         {
             Debug.Log("Kill");
+            
             onObjectDie?.Invoke();
-            Destroy(this.gameObject);
+            audioManager.getDeath().Play();
+            StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
+            Destroy(this.gameObject, audioManager.getDeath().clip.length);
         }
         else
         {
             StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
+            health -= damage;
         }
     }
 
@@ -36,9 +46,9 @@ public class ObjectHealth : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             renderer.material.color = Color.red;
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.1f);
             renderer.material.color = defaultColor;
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.1f);
         }
     }
 

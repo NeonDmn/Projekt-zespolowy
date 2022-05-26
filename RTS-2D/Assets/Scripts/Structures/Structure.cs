@@ -10,10 +10,15 @@ public class Structure : MonoBehaviour
     public int woodCost;
     public int metalCost;
 
+    public AudioClip[] audioClip;
+
     protected bool buildingFinished;
 
     [SerializeField] Sprite buildSprite;
     Sprite structureSprite;
+
+
+    public AudioManager audioManager;
 
     public virtual void Start()
     {
@@ -26,18 +31,27 @@ public class Structure : MonoBehaviour
         structureSprite = GetComponent<SpriteRenderer>().sprite;
         GetComponent<SpriteRenderer>().sprite = buildSprite;
         GetComponent<ObjectHealth>().setMaxHealth(life);
+        audioManager.setBuild(audioClip[0]);
+        audioManager.getBuild().Play();
     }
 
     public virtual void Update() {
         if (!buildingFinished)
         {
+            
+
             if (buildTime > 0.0f)
+            {
                 buildTime -= Time.deltaTime;
+                
+            }
             else
             {
                 EventManager.OnBuildingFinished?.Invoke(this);
                 GetComponent<SpriteRenderer>().sprite = structureSprite;
+                
                 buildingFinished = true;
+                audioManager.setDeath(audioClip[1]);
             }
         }
             

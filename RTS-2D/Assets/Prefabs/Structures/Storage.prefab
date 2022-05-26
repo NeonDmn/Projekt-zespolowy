@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4930224800547165826}
   - component: {fileID: -3102035353280298546}
   - component: {fileID: 9103906181173529918}
+  - component: {fileID: 1911349815131694420}
   m_Layer: 10
   m_Name: Storage
   m_TagString: Structures
@@ -100,10 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildTime: 3
-  life: 200
+  life: 5
   woodCost: 0
   metalCost: 0
+  audioClip:
+  - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
+  - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
   buildSprite: {fileID: 21300000, guid: 04ff56baef675d34b8f27934ebd47313, type: 3}
+  audioManager: {fileID: 1911349815131694420}
 --- !u!60 &3456202945051578951
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -193,3 +198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1911349815131694420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675296345365289914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  death: {fileID: 0}
+  build: {fileID: 0}

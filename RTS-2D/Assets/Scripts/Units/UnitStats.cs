@@ -9,5 +9,6 @@ public class UnitStats : ScriptableObject
     public float attackRange;
     public float attackSpeed;
     public float health;
+    public AudioClip[] audioClip;
 
 }
