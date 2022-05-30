@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 public class Barracks : Structure
 {
     public GameObject warriorMeleePrefab;
@@ -9,9 +9,11 @@ public class Barracks : Structure
     public GameObject warriorRangedPrefab;
     public Transform warriorSpawnPos;
 
-    float warriorCreationTime = 0.0f;
-    bool creatingWarrior = false;
-    GameObject warriorToCreate;
+    public UnityAction OnUnitSpawned;
+
+    public float warriorCreationTime = 0.0f;
+    public bool creatingWarrior { get; private set; }
+    public GameObject warriorToCreate { get; private set; }
 
     PlayerTeam.Team team;
 
@@ -42,6 +44,8 @@ public class Barracks : Structure
     {
         GameManager.instance.GetTownHallObject(team).resources.TakeFood(1);
         var warrior = Instantiate(warriorGo, warriorSpawnPos.transform.position, Quaternion.identity);
+        OnUnitSpawned?.Invoke();
+
         Debug.Log("Spawned " + warrior.name + " at " + warrior.transform.position);
     }
 
