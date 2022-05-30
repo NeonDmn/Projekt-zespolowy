@@ -11,6 +11,7 @@ TagManager:
   - Structures
   - TownHall
   - Resource
+  - Mobs
   layers:
   - Default
   - TransparentFX
