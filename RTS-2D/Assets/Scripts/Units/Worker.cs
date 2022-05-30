@@ -47,13 +47,26 @@ public class Worker : Unit
                 case PlayerTeam.Team.Enemy:
                     // Enemy structure
                     Debug.Log("Enemy structure");
+                    SwitchTask(new AttackTask(this, go.GetComponent<ObjectHealth>()));
                     break;
             }
         }
         else if (u = go.GetComponent<Unit>())
         {
             // Check team
-            GotoAndSwitchToIdle(mousePos);
+            switch (go.GetComponent<PlayerTeam>().team)
+            {
+                case PlayerTeam.Team.Friendly:
+                    // Friendly Unit
+                    Debug.Log("Friendly Unit");
+                    break;
+
+                case PlayerTeam.Team.Enemy:
+                    // Enemy Unit
+                    Debug.Log("Enemy Unit");
+                    SwitchTask(new AttackTask(this, go.GetComponent<ObjectHealth>()));
+                    break;
+            }
         }
         else
         {

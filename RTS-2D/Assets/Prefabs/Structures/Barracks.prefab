@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2633846826891104299}
   - component: {fileID: -4775646046225690092}
   - component: {fileID: -4066035813303585115}
+  - component: {fileID: 8129159495298183469}
+  - component: {fileID: -6014835269846748290}
   m_Layer: 10
   m_Name: Barracks
   m_TagString: Structures
@@ -30,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4908421828050849195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8964872, y: 5.2512956, z: 0}
+  m_LocalPosition: {x: 2, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5850116134837978524}
@@ -78,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: de372209cfee9de4f8476b481e9e0570, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e925af842cc3b04479f51cbc9576a8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,12 +105,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTime: 5
   life: 500
-  woodCost: 300
-  metalCost: 50
-  buildSprite: {fileID: 21300000, guid: 1b37ddd4d28e81541a0388f7fd9cb001, type: 3}
-  warriorMeleePrefab: {fileID: 8704482105182216674, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
-  warriorScoutPrefab: {fileID: 3164378283578570697, guid: 2dd5d0295e1924848a3ac5c437e7e19c, type: 3}
-  warriorRangedPrefab: {fileID: 419460110644720769, guid: e8f67218ac583c0479270fe9caaa6bd4, type: 3}
+  woodCost: 0
+  metalCost: 0
+  audioClip:
+  - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
+  - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
+  buildSprite: {fileID: 21300000, guid: 4041fe7c4ac183e48872d438f9481dde, type: 3}
+  audioManager: {fileID: -6014835269846748290}
+  warriorMeleePrefab: {fileID: 5416719998123171415, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
+  warriorScoutPrefab: {fileID: 6246349212491167904, guid: 0056b94816e801645ab7ca96de07998c, type: 3}
+  warriorRangedPrefab: {fileID: 6725678236502013398, guid: e8f67218ac583c0479270fe9caaa6bd4, type: 3}
   warriorSpawnPos: {fileID: 4483837627989472560}
 --- !u!60 &5523005907021366167
 PolygonCollider2D:
@@ -127,23 +133,27 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   m_Points:
     m_Paths:
-    - - {x: 0.14, y: 0.08}
-      - {x: 0.03, y: 0.28}
-      - {x: -0.14999999, y: 0.28}
-      - {x: -0.32, y: 0.17999999}
-      - {x: -0.32, y: -0.28}
-      - {x: 0.13, y: -0.28}
-      - {x: 0.28, y: -0.19}
-      - {x: 0.32, y: -0.14}
-      - {x: 0.32, y: 0.06}
+    - - {x: 0.19, y: 0.06}
+      - {x: 0.19, y: 0.29999998}
+      - {x: -0.089999996, y: 0.55}
+      - {x: -0.16, y: 0.55}
+      - {x: -0.44, y: 0.34}
+      - {x: -0.63, y: 0.12}
+      - {x: -0.63, y: 0.07}
+      - {x: -0.59999996, y: -0.51}
+      - {x: -0.58, y: -0.53}
+      - {x: 0.26, y: -0.53}
+      - {x: 0.64, y: -0.26999998}
+      - {x: 0.64, y: 0.049999997}
+      - {x: 0.52, y: 0.11}
 --- !u!114 &2633846826891104299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +196,33 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &8129159495298183469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908421828050849195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6014835269846748290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908421828050849195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  death: {fileID: 0}
+  build: {fileID: 0}
 --- !u!1 &5405605741736395675
 GameObject:
   m_ObjectHideFlags: 0

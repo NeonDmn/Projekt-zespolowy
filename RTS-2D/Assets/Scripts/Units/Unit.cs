@@ -26,21 +26,28 @@ public class Unit : MonoBehaviour
 
     public UnityAction enteredTownHall;
 
+    //Stats Unit
+    public UnitStats unitStats;
+    public AudioManager audioManager;
 
     public UnitTask currentTask { get; private set; }
     NavMeshAgent navMeshAgent;
 
+    private Transform currentTarget;
 
     List<Point> path;
+
+
     protected void Start()
     {
-
         //GameObject it = GameObject.Find("GridController");
         body = this.GetComponent<Rigidbody2D>();
         //gridController = it.GetComponent<GridController>();
 
         Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
         endPoint = transform.position;
+        currentTarget = transform;
+        Debug.Log("Current Target start" + currentTarget);
         sprRenderer = GetComponent<SpriteRenderer>();
 
         currentTask = new IdleTask(this);
@@ -56,7 +63,11 @@ public class Unit : MonoBehaviour
         var agent = GetComponent<NavMeshAgent>();
 		agent.updateRotation = false;
 		agent.updateUpAxis = false;
+
+        GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
+
     }
+
     public void SwitchTask(UnitTask newTask)
     {
         currentTask?.OnTaskEnd();
@@ -69,7 +80,6 @@ public class Unit : MonoBehaviour
     {
         endPoint = mousePos;
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -92,6 +102,12 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
+        if(audioManager.attack.clip == null || audioManager.death.clip == null )
+        {
+            Debug.Log("Set UNIT AUDIO");
+            audioManager.setAttack(unitStats.audioClip[2]);
+            audioManager.setDeath(unitStats.audioClip[1]);
+        }
     }
 
     private void FixedUpdate() {
@@ -122,6 +138,7 @@ public class Unit : MonoBehaviour
     {
         endPoint = location;
     }
+  
 
     public void GotoAndSwitchToIdle(Vector3 location)
     {
@@ -144,4 +161,10 @@ public class Unit : MonoBehaviour
     {
         navMeshAgent.SetDestination(endPoint);
     }
+
+    public void SetStoppingDistance(float distance)
+    {
+        navMeshAgent.stoppingDistance = distance;
+    }
+
 }

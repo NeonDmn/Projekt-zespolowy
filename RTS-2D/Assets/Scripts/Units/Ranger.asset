@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b9046da1270344c8ce48fe3f2822c2, type: 3}
+  m_Name: Ranger
+  m_EditorClassIdentifier: 
+  attackValue: 3
+  attackRange: 3
+  attackSpeed: 2
+  health: 2
+  audioClip:
+  - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
+  - {fileID: 8300000, guid: 281c8bb02a670ea4f9c23a544f699ad0, type: 3}
+  - {fileID: 8300000, guid: 4f4cea083887af34e81d70132ec5067f, type: 3}

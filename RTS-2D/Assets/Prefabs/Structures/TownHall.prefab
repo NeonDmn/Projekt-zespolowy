@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 114240300}
   - component: {fileID: 5320984353146199830}
   - component: {fileID: 3512657461100057220}
+  - component: {fileID: 1601076642689473652}
+  - component: {fileID: 4955232750405451229}
   m_Layer: 10
   m_Name: TownHall
   m_TagString: TownHall
@@ -144,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 4373179943778524558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.55, y: 5.38, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 119761828}
   - {fileID: 962140986}
@@ -191,12 +193,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 79e2b253f17db884b85ce1894f83d507, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98c58200221c93749bd18e584d950045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -219,23 +221,31 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   m_Points:
     m_Paths:
-    - - {x: 0.10685234, y: 0.15286952}
-      - {x: -0.0047913343, y: 0.32}
-      - {x: -0.1428693, y: 0.15164343}
-      - {x: -0.29618168, y: 0.095377445}
-      - {x: -0.31, y: -0.14999999}
-      - {x: 0.14412199, y: -0.3617826}
-      - {x: 0.2916434, y: -0.24479133}
-      - {x: 0.29999998, y: -0.043426283}
-      - {x: 0.13506971, y: 0.05437377}
+    - - {x: 0.63, y: -0.31}
+      - {x: 0.63, y: 0}
+      - {x: 0.61, y: 0.11}
+      - {x: 0.48999998, y: 0.25}
+      - {x: 0, y: 0.28}
+      - {x: -0.12, y: 0.64}
+      - {x: -0.19999999, y: 0.64}
+      - {x: -0.32999998, y: 0.29}
+      - {x: -0.39999998, y: 0.22999999}
+      - {x: -0.64, y: -0.01}
+      - {x: -0.64, y: -0.28}
+      - {x: -0.63, y: -0.53}
+      - {x: -0.59999996, y: -0.57}
+      - {x: -0.29, y: -0.63}
+      - {x: 0.42999998, y: -0.63}
+      - {x: 0.62, y: -0.53999996}
+      - {x: 0.62, y: -0.47}
 --- !u!60 &4373179943778524554
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -253,23 +263,31 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.10685234, y: 0.15286952}
-      - {x: -0.0047913343, y: 0.32}
-      - {x: -0.1428693, y: 0.15164343}
-      - {x: -0.29618168, y: 0.095377445}
-      - {x: -0.31, y: -0.14999999}
-      - {x: 0.14412199, y: -0.3617826}
-      - {x: 0.2916434, y: -0.24479133}
-      - {x: 0.29999998, y: -0.043426283}
-      - {x: 0.13506971, y: 0.05437377}
+    - - {x: 0.63, y: -0.31}
+      - {x: 0.63, y: 0}
+      - {x: 0.61, y: 0.11}
+      - {x: 0.48999998, y: 0.25}
+      - {x: 0, y: 0.28}
+      - {x: -0.12, y: 0.64}
+      - {x: -0.19999999, y: 0.64}
+      - {x: -0.32999998, y: 0.29}
+      - {x: -0.39999998, y: 0.22999999}
+      - {x: -0.64, y: -0.01}
+      - {x: -0.64, y: -0.28}
+      - {x: -0.63, y: -0.53}
+      - {x: -0.59999996, y: -0.57}
+      - {x: -0.29, y: -0.63}
+      - {x: 0.42999998, y: -0.63}
+      - {x: 0.62, y: -0.53999996}
+      - {x: 0.62, y: -0.47}
 --- !u!114 &114240299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,10 +314,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildTime: 0
-  life: 0
+  life: 1000
   woodCost: 0
   metalCost: 0
+  audioClip:
+  - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
+  - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
   buildSprite: {fileID: 0}
+  audioManager: {fileID: 4955232750405451229}
   workerPrefab: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
   workerSpawnPos: {fileID: 962140986}
 --- !u!114 &5320984353146199830
@@ -331,3 +353,30 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1601076642689473652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373179943778524558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4955232750405451229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373179943778524558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  death: {fileID: 0}
+  build: {fileID: 0}

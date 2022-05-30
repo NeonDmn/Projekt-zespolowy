@@ -7,9 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 409550760, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: unitStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b27b20ed4800d5428c56c4c7b12b0f7, type: 2}
+    - target: {fileID: 409550760, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 8189906122267621375}
     - target: {fileID: 2003233511, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
       propertyPath: m_BodyType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 826515232133530843, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 826515232133530843, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 826515232133530843, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5642051424149085243, guid: 5b1abdbbfff86a24ab1d9c2ad2856394, type: 3}
+    - target: {fileID: 826515232133530843, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3207835548659832121, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
       propertyPath: m_Name
@@ -59,6 +83,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411070774269418250, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018530119950500725, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c3a7787fcb493d4989f3fa947d105b1, type: 3}
+    - target: {fileID: 7666740605636129115, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 8189906122267621375}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
 --- !u!1 &1844966984230945894 stripped
@@ -66,6 +122,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3207835548659832121, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
   m_PrefabInstance: {fileID: 3827539468015210847}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8189906122267621375 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4272153649035385184, guid: 2ca7a7e4a2a954f6795986601185951e, type: 3}
+  m_PrefabInstance: {fileID: 3827539468015210847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844966984230945894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &-8977869510711776095
 NavMeshAgent:
   m_ObjectHideFlags: 0
