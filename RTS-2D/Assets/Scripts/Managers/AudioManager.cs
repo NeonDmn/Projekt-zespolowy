@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource build;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         attack = gameObject.AddComponent<AudioSource>();
         death = gameObject.AddComponent<AudioSource>();

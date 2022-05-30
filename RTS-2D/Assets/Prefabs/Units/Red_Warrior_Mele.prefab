@@ -75,7 +75,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_Warrior_Mele
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1314647017663099730, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4259786f55d8cea4a877691dd49274c2, type: 3}
 --- !u!114 &9185035302968888488 stripped
 MonoBehaviour:

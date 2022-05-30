@@ -9,7 +9,6 @@ public class Unit : MonoBehaviour
     private SpriteRenderer sprRenderer;
     protected Vector2 endPoint;
 
-    private GridController gridController;
     private Rigidbody2D body;
 
     // Resources
@@ -25,7 +24,7 @@ public class Unit : MonoBehaviour
     public UnityAction leftUnitRange;
 
     public UnityAction enteredTownHall;
-
+    
     //Stats Unit
     public UnitStats unitStats;
     public AudioManager audioManager;
@@ -33,21 +32,15 @@ public class Unit : MonoBehaviour
     public UnitTask currentTask { get; private set; }
     NavMeshAgent navMeshAgent;
 
-    private Transform currentTarget;
-
-    List<Point> path;
-
-
     protected void Start()
     {
+
         //GameObject it = GameObject.Find("GridController");
         body = this.GetComponent<Rigidbody2D>();
         //gridController = it.GetComponent<GridController>();
 
         Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
         endPoint = transform.position;
-        currentTarget = transform;
-        Debug.Log("Current Target start" + currentTarget);
         sprRenderer = GetComponent<SpriteRenderer>();
 
         currentTask = new IdleTask(this);
@@ -64,10 +57,13 @@ public class Unit : MonoBehaviour
 		agent.updateRotation = false;
 		agent.updateUpAxis = false;
 
-        GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
-
+        if(!audioManager.attack || !audioManager.death )
+        {
+            Debug.Log("Set UNIT AUDIO");
+            audioManager.setAttack(unitStats.audioClip[2]);
+            audioManager.setDeath(unitStats.audioClip[1]);
+        }
     }
-
     public void SwitchTask(UnitTask newTask)
     {
         currentTask?.OnTaskEnd();
@@ -75,11 +71,11 @@ public class Unit : MonoBehaviour
         newTask.OnTaskStart();
     }
 
-    public virtual void ToDo() { }
     public virtual void HandleAction(Vector2 mousePos, GameObject go)
     {
         endPoint = mousePos;
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -102,12 +98,6 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
-        if(audioManager.attack.clip == null || audioManager.death.clip == null )
-        {
-            Debug.Log("Set UNIT AUDIO");
-            audioManager.setAttack(unitStats.audioClip[2]);
-            audioManager.setDeath(unitStats.audioClip[1]);
-        }
     }
 
     private void FixedUpdate() {
@@ -138,7 +128,6 @@ public class Unit : MonoBehaviour
     {
         endPoint = location;
     }
-  
 
     public void GotoAndSwitchToIdle(Vector3 location)
     {
@@ -146,16 +135,6 @@ public class Unit : MonoBehaviour
             SwitchTask(new IdleTask(this));
         Goto(location);
     }
-
-    // public void CreatePath(Point _from, Point _to, Vector2 mousePos)
-    // {
-    //     endPoint = mousePos;
-    //     path = Pathfinding.FindPath(gridController.grid, _from, _to);
-    //     foreach (var it in path)
-    //     {
-    //         // Debug.Log(it.x);
-    //     }
-    // }
 
     public void UnitMovement()
     {
@@ -166,5 +145,4 @@ public class Unit : MonoBehaviour
     {
         navMeshAgent.stoppingDistance = distance;
     }
-
 }

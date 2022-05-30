@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 2288101253993032464}
   - component: {fileID: 2871419301798298416}
   - component: {fileID: -5029921512672905885}
-  - component: {fileID: -6319729944350868696}
   - component: {fileID: -1907047396406580898}
   - component: {fileID: -4628267974803642249}
   - component: {fileID: -1239056955688907220}
@@ -200,44 +199,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!1839735485 &-6319729944350868696
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2328771718407585989}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
 --- !u!50 &-1907047396406580898
 Rigidbody2D:
   serializedVersion: 4
@@ -285,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitStats: {fileID: 11400000, guid: 1b27b20ed4800d5428c56c4c7b12b0f7, type: 2}
+  audioManager: {fileID: 0}
 --- !u!114 &1676879308408626262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 30
 --- !u!195 &-7473062341139437112
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -344,12 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db0a706ba3a84d4395f73bc3bfdd315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Footsteps: {fileID: 0}
-  Attack: {fileID: 0}
-  Death: {fileID: 0}
-  audioClip:
-  - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
-  - {fileID: 8300000, guid: 4e3a96ab344e7dc4586cb0db489c176c, type: 3}
-  - {fileID: 8300000, guid: 4f4cea083887af34e81d70132ec5067f, type: 3}
-  - {fileID: 8300000, guid: 7c3a7787fcb493d4989f3fa947d105b1, type: 3}
-  - {fileID: 8300000, guid: 281c8bb02a670ea4f9c23a544f699ad0, type: 3}
+  attack: {fileID: 0}
+  death: {fileID: 0}
+  build: {fileID: 0}

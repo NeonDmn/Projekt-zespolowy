@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class BuildWidget : MonoBehaviour
 {
     [SerializeField] LayerMask buildingDenyMask;
-    [SerializeField] LayerMask groundLayer;
+    //[SerializeField] LayerMask groundLayer;
 
     SpriteRenderer spriteRenderer;
     public GameObject buildingGO { get; private set; }
@@ -18,7 +18,7 @@ public class BuildWidget : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-
+    
     void Update()
     {
         transform.position = MouseInputs.GetMouseWorldPos();
@@ -47,7 +47,7 @@ public class BuildWidget : MonoBehaviour
 
     public bool CanBuild()
     {
-        RaycastHit2D gHit = Physics2D.CircleCast(transform.position, 0.1f, Vector2.zero, 0.0f, groundLayer);
+        RaycastHit2D gHit = Physics2D.CircleCast(transform.position, 0.1f, Vector2.zero, 0.0f, 1 << LayerMask.NameToLayer("Ground"));
         if (!gHit)
         {
             return false;
@@ -56,6 +56,7 @@ public class BuildWidget : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.zero, 0.0f, buildingDenyMask);
         return !hit;
     }
+
     public static bool CanBuild(Vector2 position)
     {
         RaycastHit2D gHit = Physics2D.CircleCast(position, 0.1f, Vector2.zero, 0.0f, 1 << LayerMask.NameToLayer("Ground"));

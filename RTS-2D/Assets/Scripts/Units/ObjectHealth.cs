@@ -7,7 +7,7 @@ public class ObjectHealth : MonoBehaviour
 {
     public UnityAction onObjectDie;
     private float health;
-    private float maxhealth;
+    [SerializeField] private float maxhealth = 30f;
     private AudioManager audioManager;
 
     private void Start()
@@ -25,7 +25,7 @@ public class ObjectHealth : MonoBehaviour
             onObjectDie?.Invoke();
             audioManager.getDeath().Play();
             StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
-            Destroy(this.gameObject, audioManager.getDeath().clip.length);
+            Destroy(this.gameObject);
         }
         else
         {
