@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b9046da1270344c8ce48fe3f2822c2, type: 3}
   m_Name: Pig
   m_EditorClassIdentifier: 
-  attackValue: 0
-  attackRange: 0
-  attackSpeed: 0
-  health: 0
-  audioClip: []
+  attackValue: 5
+  attackRange: 0.3
+  attackSpeed: 1
+  health: 30
+  audioClip:
+  - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
+  - {fileID: 8300000, guid: 6f0c6f47cc9543e44adf110c6d08fdb7, type: 3}
+  - {fileID: 8300000, guid: 0a39276c5d3173a49a24c0ea85dae999, type: 3}
