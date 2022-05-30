@@ -17,7 +17,6 @@ public class Structure : MonoBehaviour
     [SerializeField] Sprite buildSprite;
     Sprite structureSprite;
 
-
     public AudioManager audioManager;
 
     public virtual void Start()
@@ -35,7 +34,8 @@ public class Structure : MonoBehaviour
         audioManager.getBuild().Play();
     }
 
-    public virtual void Update() {
+    public virtual void Update()
+    {
         if (!buildingFinished)
         {
             

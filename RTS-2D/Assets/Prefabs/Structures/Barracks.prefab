@@ -105,8 +105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTime: 5
   life: 500
-  woodCost: 0
-  metalCost: 0
+  woodCost: 300
+  metalCost: 150
   audioClip:
   - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
   - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
