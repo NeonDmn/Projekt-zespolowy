@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IdleTask : UnitTask
 {
@@ -19,6 +20,6 @@ public class IdleTask : UnitTask
 
     public override void OnTaskEnd()
     {
-        //
+        working = true;
     }
 }

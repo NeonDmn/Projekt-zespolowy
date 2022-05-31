@@ -34,7 +34,7 @@ public class ManageBuildings
 
         int rval = Random.Range(0, targets.Count);
         bool buidScusess = false;
-        Debug.Log("wood" + townHall.resources.GetResourceCount(Resource.Type.WOOD) + " metal " + townHall.resources.GetResourceCount(Resource.Type.METAL));
+        //Debug.Log("wood" + townHall.resources.GetResourceCount(Resource.Type.WOOD) + " metal " + townHall.resources.GetResourceCount(Resource.Type.METAL));
         if (rval != lastBuldings)
         {
 

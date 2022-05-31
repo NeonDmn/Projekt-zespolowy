@@ -6,22 +6,20 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
-    private SpriteRenderer sprRenderer;
+    // Navigation
     protected Vector2 endPoint;
-
-    private Rigidbody2D body;
 
     // Resources
     public UnityAction<Resource> enteredResourceRange;
     public UnityAction leftResourceRange;
 
     // Structures
-    public UnityAction enteredStructureRange;
-    public UnityAction leftStructureRange;
+    //public UnityAction enteredStructureRange;
+    //public UnityAction leftStructureRange;
 
     // Units
-    public UnityAction enteredUnitRange;
-    public UnityAction leftUnitRange;
+    //public UnityAction enteredUnitRange;
+    //public UnityAction leftUnitRange;
 
     public UnityAction enteredTownHall;
     
@@ -30,51 +28,52 @@ public class Unit : MonoBehaviour
     public AudioManager audioManager;
 
     public UnitTask currentTask { get; private set; }
-    NavMeshAgent navMeshAgent;
+    protected NavMeshAgent navMeshAgent;
 
     protected void Start()
     {
+        // Dodaj do listy wszystkich jednostek, by można było użyć zaznaczania boxem
+        var sel = gameObject.GetComponent<Selectable>();
+        if (sel) Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
 
-        //GameObject it = GameObject.Find("GridController");
-        body = this.GetComponent<Rigidbody2D>();
-        //gridController = it.GetComponent<GridController>();
-
-        Selection.Instance.unitList.Add(gameObject.GetComponent<Selectable>());
-        endPoint = transform.position;
-        sprRenderer = GetComponent<SpriteRenderer>();
-
-        currentTask = new IdleTask(this);
-
-        // create source and target points
-        //Point _from = new Point(1, 1);
-        //Point _to = new Point(10, 10);
-
-        // get path
-        // path will either be a list of Points (x, y), or an empty list if no path is found.
+        // Navmesh init
         navMeshAgent = GetComponent<NavMeshAgent>();
+		navMeshAgent.updateRotation = false;
+		navMeshAgent.updateUpAxis = false;
 
-        var agent = GetComponent<NavMeshAgent>();
-		agent.updateRotation = false;
-		agent.updateUpAxis = false;
+        // Nie ruszaj się z miejsca po spawnie
+        endPoint = transform.position;
 
+        // Audio init
+        audioManager = GetComponent<AudioManager>();
+        audioManager.setAttack(unitStats.audioClip[2]);
+        audioManager.setDeath(unitStats.audioClip[1]);
+
+        // Ustaw życie dla jednostki
         GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
+
+        // Nic nie rób na początku
+        currentTask = new IdleTask(this);
     }
+
+    private void OnDestroy() {
+        SwitchTask(null);
+        Selection.Instance.unitList.Remove(gameObject.GetComponent<Selectable>());
+    }
+
     public void SwitchTask(UnitTask newTask)
     {
         currentTask?.OnTaskEnd();
         currentTask = newTask;
-        newTask.OnTaskStart();
+        if(newTask != null) newTask.OnTaskStart();
+        else Debug.LogWarning("Set to null");
     }
 
-    public virtual void HandleAction(Vector2 mousePos, GameObject go)
-    {
-        endPoint = mousePos;
-    }
-
+    public virtual void HandleAction(Vector2 mousePos, GameObject go) {}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entered trigger tag: " + other.tag);
+        //Debug.Log("Entered trigger tag: " + other.tag);
 
         if (other.tag == "Resource")
             enteredResourceRange?.Invoke(other.gameObject.GetComponent<Resource>());
@@ -90,40 +89,13 @@ public class Unit : MonoBehaviour
     }
 
 
-    private void Update()
+    public void Update()
     {
         currentTask.Tick();
-        if (audioManager.attack.clip == null || audioManager.death.clip == null)
-        {
-            Debug.Log("Set UNIT AUDIO");
-            audioManager.setAttack(unitStats.audioClip[2]);
-            audioManager.setDeath(unitStats.audioClip[1]);
-        }
     }
-
     private void FixedUpdate() {
         UnitMovement();
     }
-    private void OnDestroy()
-    {
-        Selection.Instance.unitList.Remove(gameObject.GetComponent<Selectable>());
-    }
-
-    /*
-     * Wykonywana gdy jednostka jest zaznaczana przez skrypt Selection
-     */
-    //private void OnSelect()
-    //{
-    //    sprRenderer.color = new Color(1f, 0f, 0f, 1f);
-    //}
-
-    /*
-     * Wykonywana gdy jednostka jest odznaczana przez skrypt Selection
-     */
-    //private void OnDeselect()
-    //{
-    //    sprRenderer.color = new Color(1f, 1f, 1f, 1f);
-    //}
 
     public void Goto(Vector3 location)
     {

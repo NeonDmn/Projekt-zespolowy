@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -964054176574442548}
   - component: {fileID: -6754216212363954986}
   - component: {fileID: 531250705591900253}
+  - component: {fileID: 6795851722860092207}
   m_Layer: 0
   m_Name: Mobs
   m_TagString: Mobs
@@ -121,14 +122,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a93090e4d08d9a43b8bfafe4faed327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitStats: {fileID: 11400000, guid: 302d1857e72093845889abf30337a121, type: 2}
+  audioManager: {fileID: 0}
   searchRadius: 3
+  chaseRadius: 4.97
   targetDetectionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   targetBlockSeeLayer:
     serializedVersion: 2
-    m_Bits: 0
-  stats: {fileID: 11400000, guid: 302d1857e72093845889abf30337a121, type: 2}
+    m_Bits: 3584
+  station: {x: 17.033, y: -3.314, z: 0}
 --- !u!195 &2952457581165331772
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -195,3 +199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhealth: 30
+--- !u!114 &6795851722860092207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207835548659832121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddc99cd3e696b248b362f2ef70aef5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _team: 2

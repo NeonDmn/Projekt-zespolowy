@@ -5,11 +5,12 @@ using UnityEngine.Events;
 
 public class ObjectHealth : MonoBehaviour
 {
-    public UnityAction onObjectDie;
+    public UnityAction<ObjectHealth> onObjectDie;
     private float health;
     [SerializeField] private float maxhealth = 30f;
     private AudioManager audioManager;
 
+    bool dead;
     private void Start()
     {
         audioManager = GetComponent<AudioManager>();
@@ -17,20 +18,25 @@ public class ObjectHealth : MonoBehaviour
 
     public void DealDamage(Unit enemy, float damage)
     {
+        if (dead) return;
         if (health <= 0)
         {
-            Debug.Log("Kill");
-
-            onObjectDie?.Invoke();
-            audioManager.getDeath().Play();
-            StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
-            Destroy(this.gameObject, audioManager.getDeath().clip.length);
+            Die();
         }
         else
         {
             StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
             health -= damage;
         }
+    }
+
+    private void Die()
+    {
+        dead = true;
+        audioManager.getDeath().Play();
+        StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
+        onObjectDie?.Invoke(this);
+        Destroy(this.gameObject);
     }
 
     public void setMaxHealth(float maxhealth)

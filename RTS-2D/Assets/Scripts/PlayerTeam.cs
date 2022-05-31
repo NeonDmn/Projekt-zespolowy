@@ -10,7 +10,8 @@ public class PlayerTeam : MonoBehaviour
     public enum Team
     {
         Friendly,
-        Enemy
+        Enemy,
+        Mob
     }
 
     [SerializeField]

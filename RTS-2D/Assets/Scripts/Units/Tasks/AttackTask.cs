@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackTask : UnitTask
 {
     private ObjectHealth objectHealth;
-    private AudioManager audioManager;
+    //private AudioManager audioManager;
     private float attackTimer;
 
     public AttackTask(Unit parent, ObjectHealth objectHealth) : base(parent)
@@ -24,6 +24,7 @@ public class AttackTask : UnitTask
     public override void OnTaskEnd()
     {
         owner.SetStoppingDistance(0);
+        owner.Goto(owner.transform.position);
     }
 
 
@@ -51,9 +52,9 @@ public class AttackTask : UnitTask
         }
     }
 
-    public void EndTask()
+    public void EndTask(ObjectHealth oh)
     {
-        
-        owner.SwitchTask(new IdleTask(owner));  
+        Debug.LogWarning("Task attack ended");
+        owner.SwitchTask(new IdleTask(owner));
     }
 }

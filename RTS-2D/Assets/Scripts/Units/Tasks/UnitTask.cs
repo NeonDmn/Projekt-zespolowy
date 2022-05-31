@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class UnitTask
 {
     protected Unit owner;
-    protected bool working = false;
+    protected static bool working = false;
 
     public bool isWorking() { return working; }
     public UnitTask(Unit parent)

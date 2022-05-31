@@ -17,7 +17,7 @@ public class ManageWorkers
 
 
 
-        Debug.Log("wood " + wood + " crustal " + crystal + " metel " + metal);
+        //Debug.Log("wood " + wood + " crustal " + crystal + " metel " + metal);
 
         target = Resource.Type.METAL;
         if (wood <= metal)
@@ -67,7 +67,6 @@ public class ManageWorkers
 
     public void WorkerCreate()
     {
-
         int food = townHall.resources.GetFreeFood();
         int workerCount = townHall.units.GetWorkers().Count;
         bool workerTimerRunning = townHall.isWorkerTimerRunning();

@@ -15,12 +15,6 @@ public class AudioManager : MonoBehaviour
         death = gameObject.AddComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void setAttack(AudioClip  clip)
     {
         attack.clip = clip;

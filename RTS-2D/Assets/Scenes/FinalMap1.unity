@@ -1164,14 +1164,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6395740892789206984, guid: da51f2b986da6ef4180d2d04479976d1, type: 3}
-      propertyPath: targetBlockSeeLayer.m_Bits
-      value: 3584
-      objectReference: {fileID: 0}
-    - target: {fileID: 6395740892789206984, guid: da51f2b986da6ef4180d2d04479976d1, type: 3}
-      propertyPath: targetDetectionLayer.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: da51f2b986da6ef4180d2d04479976d1, type: 3}

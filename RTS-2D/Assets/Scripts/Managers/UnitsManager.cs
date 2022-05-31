@@ -14,7 +14,14 @@ public class UnitsManager
     public void AddWorker(Worker worker)
     {
         workes.Add(worker);
+        worker.GetComponent<ObjectHealth>().onObjectDie += RemoveWorker;
         Debug.Log("Worker was added!!!");
+    }
+
+    private void RemoveWorker(ObjectHealth workerHealth)
+    {
+        workerHealth.onObjectDie -= RemoveWorker;
+        workes.Remove(workerHealth.GetComponent<Worker>());
     }
 
     public List<Worker> GetWorkers()

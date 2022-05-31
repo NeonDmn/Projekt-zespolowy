@@ -89,7 +89,7 @@ public class MouseInputs : MonoBehaviour
                 h => h.collider.GetComponent<Structure>()
             );
             hits_units = hits.FindAll(
-                h => h.collider.GetComponent<Unit>() && h.collider.GetComponent<PlayerTeam>().team == PlayerTeam.Team.Enemy
+                h => h.collider.GetComponent<Unit>() && h.collider.GetComponent<PlayerTeam>().team != PlayerTeam.Team.Friendly
             );
 
             if (Selection.Instance.unitsSelected.Count > 0)

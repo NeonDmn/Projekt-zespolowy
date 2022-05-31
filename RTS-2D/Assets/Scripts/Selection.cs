@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 public class Selection : MonoBehaviour
 {
     public List<Selectable> unitList = new List<Selectable>();
@@ -99,6 +99,7 @@ public class Selection : MonoBehaviour
     {
         unitsSelected.Add(unit);
 
+        unit.GetComponent<ObjectHealth>().onObjectDie += Event_handleOnObjectDie;
         unit.SendMessage("OnSelect");
     }
 
@@ -107,6 +108,7 @@ public class Selection : MonoBehaviour
         //DeselectStructure();
         unitsSelected.Remove(unit);
 
+        unit.GetComponent<ObjectHealth>().onObjectDie -= Event_handleOnObjectDie;
         unit.SendMessage("OnDeselect");
     }
 
@@ -120,12 +122,29 @@ public class Selection : MonoBehaviour
 
         // Ustaw nowy budynek jako zaznaczony i wy�lij sygna� zaznaczenia
         structureSelected = structure;
+        structure.GetComponent<ObjectHealth>().onObjectDie += Event_handleOnObjectDie;
         structure.SendMessage("OnSelect");
     }
 
     private void DeselectStructure()
     {
-        if (structureSelected) structureSelected.SendMessage("OnDeselect");
+        if (structureSelected) 
+        {
+            structureSelected.GetComponent<ObjectHealth>().onObjectDie -= Event_handleOnObjectDie;
+            structureSelected.SendMessage("OnDeselect");
+        }
         structureSelected = null;
+    }
+
+    private void Event_handleOnObjectDie(ObjectHealth oh)
+    {
+        if (oh.GetComponent<Unit>())
+        {
+            TryDeselect(oh.GetComponent<Selectable>());
+        }
+        else
+        {
+            DeselectStructure();
+        }
     }
 }
