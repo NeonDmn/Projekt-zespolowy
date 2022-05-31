@@ -57,12 +57,7 @@ public class Unit : MonoBehaviour
 		agent.updateRotation = false;
 		agent.updateUpAxis = false;
 
-        if(!audioManager.attack || !audioManager.death )
-        {
-            Debug.Log("Set UNIT AUDIO");
-            audioManager.setAttack(unitStats.audioClip[2]);
-            audioManager.setDeath(unitStats.audioClip[1]);
-        }
+        GetComponent<ObjectHealth>().setMaxHealth(unitStats.health);
     }
     public void SwitchTask(UnitTask newTask)
     {
@@ -98,6 +93,12 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentTask.Tick();
+        if (audioManager.attack.clip == null || audioManager.death.clip == null)
+        {
+            Debug.Log("Set UNIT AUDIO");
+            audioManager.setAttack(unitStats.audioClip[2]);
+            audioManager.setDeath(unitStats.audioClip[1]);
+        }
     }
 
     private void FixedUpdate() {

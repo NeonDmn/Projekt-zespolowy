@@ -17,15 +17,14 @@ public class ObjectHealth : MonoBehaviour
 
     public void DealDamage(Unit enemy, float damage)
     {
-        
         if (health <= 0)
         {
             Debug.Log("Kill");
-            
+
             onObjectDie?.Invoke();
             audioManager.getDeath().Play();
             StartCoroutine(Flasher(GetComponent<Renderer>().material.color));
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, audioManager.getDeath().clip.length);
         }
         else
         {

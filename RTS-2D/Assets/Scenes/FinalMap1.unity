@@ -1116,6 +1116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mobs
       objectReference: {fileID: 0}
+    - target: {fileID: 3207835548659832121, guid: da51f2b986da6ef4180d2d04479976d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4078418835371213465, guid: da51f2b986da6ef4180d2d04479976d1, type: 3}
       propertyPath: m_RootOrder
       value: 1
