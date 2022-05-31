@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
         navMeshSurface.hideEditorLogs = true;
 
+        EventManager.OnTownHallDestroyed += EventManager_Handle_OnTownhallDestroy;
     }
     #endregion
 
@@ -96,4 +98,40 @@ public class GameManager : MonoBehaviour
         return b;
     }
 
+    private void EventManager_Handle_OnTownhallDestroy(PlayerTeam.Team team)
+    {
+        EventManager.OnTownHallDestroyed -= EventManager_Handle_OnTownhallDestroy;
+
+        switch(team)
+        {
+            case PlayerTeam.Team.Friendly:
+            InitLose();
+            break;
+            
+            case PlayerTeam.Team.Enemy:
+            InitWin();
+            break;
+        }
+    }
+
+    private void InitWin()
+    {
+        Debug.LogError("Win!");
+
+        Time.timeScale = 0;
+        UIManager.ShowWinScreen();
+    }
+
+    private void InitLose()
+    {
+        Debug.LogError("Lose!");
+
+        Time.timeScale = 0;
+        UIManager.ShowLoseScreen();
+    }
+
+    public void GotoMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
 }

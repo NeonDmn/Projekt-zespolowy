@@ -14,7 +14,7 @@ public class Structure : MonoBehaviour
 
     protected bool buildingFinished;
 
-    [SerializeField] Sprite buildSprite;
+    [SerializeField] protected Sprite buildSprite;
     Sprite structureSprite;
 
     public AudioManager audioManager;
@@ -30,6 +30,8 @@ public class Structure : MonoBehaviour
         structureSprite = GetComponent<SpriteRenderer>().sprite;
         GetComponent<SpriteRenderer>().sprite = buildSprite;
         GetComponent<ObjectHealth>().setMaxHealth(life);
+        GetComponent<ObjectHealth>().onObjectDie += ObjectHealth_Handle_OnObjectDie;
+        GetComponent<ObjectHealth>().onObjectDie += EventManager_OnBuildingDestroyed;
         audioManager.setBuild(audioClip[0]);
         audioManager.getBuild().Play();
     }
@@ -57,7 +59,13 @@ public class Structure : MonoBehaviour
             
     }
 
+    private void ObjectHealth_Handle_OnObjectDie(ObjectHealth oh)
+    {
+        oh.onObjectDie -= ObjectHealth_Handle_OnObjectDie;
+        EventManager.OnBuildingDestroyed?.Invoke(this);
+    }
+
     public virtual void EventManager_OnBuildingFinished(Structure str) {}
-    public virtual void EventManager_OnBuildingDestroyed() {}
+    public virtual void EventManager_OnBuildingDestroyed(ObjectHealth oh) {}
 
 }

@@ -11,7 +11,7 @@ public class Farm : Structure
         th.resources.AddToMaxFood(50);
     }
 
-    public override void EventManager_OnBuildingDestroyed()
+    public override void EventManager_OnBuildingDestroyed(ObjectHealth oh)
     {
         TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
 

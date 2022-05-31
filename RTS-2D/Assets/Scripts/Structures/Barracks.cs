@@ -125,7 +125,7 @@ public class Barracks : Structure
 
     }
 
-    public override void EventManager_OnBuildingDestroyed()
+    public override void EventManager_OnBuildingDestroyed(ObjectHealth oh)
     {
 
     }

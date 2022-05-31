@@ -21,10 +21,12 @@ public class TownHall : Structure
         resources = new ResourceManager();
         units = new UnitsManager();
 
+        
     }
     public override void Start()
     {
         GetComponent<ObjectHealth>().setMaxHealth(life);
+        GetComponent<ObjectHealth>().onObjectDie += SendEvent_OnTownhallDestroyed;
     }
 
     public void CreateWorker()
@@ -74,5 +76,15 @@ public class TownHall : Structure
     private void OnDeselect()
     {
         GameManager.instance.UIManager.HideBuildMenu();
+    }
+
+
+    private void SendEvent_OnTownhallDestroyed(ObjectHealth oh)
+    {
+        oh.onObjectDie -= SendEvent_OnTownhallDestroyed;
+
+        //Instantiate(buildSprite, transform.position, Quaternion.identity);
+
+        EventManager.OnTownHallDestroyed?.Invoke(GetComponent<PlayerTeam>().team);
     }
 }

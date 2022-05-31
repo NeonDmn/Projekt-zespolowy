@@ -320,7 +320,7 @@ MonoBehaviour:
   audioClip:
   - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
   - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
-  buildSprite: {fileID: 0}
+  buildSprite: {fileID: 21300000, guid: cc2d9f0f757eeb840a2597198bda2fa7, type: 3}
   audioManager: {fileID: 4955232750405451229}
   workerPrefab: {fileID: 1844966984230945894, guid: 9f8288a9b9a498c42bc1044e26bb77d6, type: 3}
   workerSpawnPos: {fileID: 962140986}
@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 30
 --- !u!114 &4955232750405451229
 MonoBehaviour:
   m_ObjectHideFlags: 0

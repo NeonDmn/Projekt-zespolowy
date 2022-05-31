@@ -18,6 +18,10 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] ResourceDisplay uiDisplayCrystal;
     [SerializeField] ResourceDisplay uiDisplayFood;
 
+    [Space]
+
+    [SerializeField] GameObject winCanvas;
+    [SerializeField] GameObject LoseCanvas;
     public void ToggleNotificationMenu() {
         notificationMenu.SetActive(!notificationMenu.activeInHierarchy);
     }
@@ -78,5 +82,15 @@ public class GameUIManager : MonoBehaviour
         uiDisplayMetal.UpdateUI(metal, maxMetal);
         uiDisplayCrystal.UpdateUI(crystal, maxCrystal);
         uiDisplayFood.UpdateUI(food, maxFood);
+    }
+
+    public void ShowWinScreen()
+    {
+        winCanvas.SetActive(true);
+    }
+
+    public void ShowLoseScreen()
+    {
+        LoseCanvas.SetActive(true);
     }
 }

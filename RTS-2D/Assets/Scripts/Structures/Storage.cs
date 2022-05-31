@@ -13,7 +13,7 @@ public class Storage : Structure
         th.resources.AddToMaxResource(Resource.Type.METAL, 50);
     }
 
-    public override void EventManager_OnBuildingDestroyed()
+    public override void EventManager_OnBuildingDestroyed(ObjectHealth oh)
     {
         TownHall th = GameManager.instance.GetTownHallObject(GetComponent<PlayerTeam>().team);
 

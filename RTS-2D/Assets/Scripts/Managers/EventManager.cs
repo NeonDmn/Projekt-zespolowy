@@ -12,4 +12,8 @@ public static class EventManager
 
     // Budowanie budynków
     public static UnityAction<Structure> OnBuildingFinished;
+    public static UnityAction<Structure> OnBuildingDestroyed;
+
+    // Zniszczenie townhall
+    public static UnityAction<PlayerTeam.Team> OnTownHallDestroyed;
 }
