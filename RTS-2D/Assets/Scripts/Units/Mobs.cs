@@ -33,11 +33,12 @@ public class Mobs : MonoBehaviour
         // Stat init
         attackDamage = stats.attackValue;
         attackInterval = stats.attackSpeed;
+        attackTimer = stats.attackSpeed;
         GetComponent<ObjectHealth>().setMaxHealth(stats.health);
 
-        if(!audioManager.attack || !audioManager.death )
+        if (audioManager.attack.clip == null || audioManager.death.clip == null)
         {
-            Debug.Log("Set UNIT AUDIO");
+            Debug.Log("Set PIG AUDIO");
             audioManager.setAttack(stats.audioClip[2]);
             audioManager.setDeath(stats.audioClip[1]);
         }
@@ -84,9 +85,9 @@ public class Mobs : MonoBehaviour
             // Idź do ostatrniej pamiętanej pozycji
             navMeshAgent.SetDestination(lastTargetPos);
         }
-
         if (attackTimer > 0f)
             attackTimer -= Time.deltaTime;
+        //attackTimer += Time.deltaTime; chyba powinno byc tak
     }
 
     private bool CanSeeTarget(GameObject customTarget = null)
@@ -98,14 +99,16 @@ public class Mobs : MonoBehaviour
     private void AttackTarget()
     {
         if (attackTimer > 0f)
-        {
-            return;
-        }
-
+            attackTimer -= Time.deltaTime;
+        //if (attackTimer >= stats.attackSpeed) //chyba powinno byc tak
+        //{
+        Debug.Log("PIG ATTACK");
         var targetHelath = target.GetComponent<ObjectHealth>();
-        targetHelath.DealDamage(null, attackDamage);
-
-        attackTimer = attackInterval;
+            targetHelath.DealDamage(null, attackDamage);
+            audioManager.getAttack().Play();
+            attackTimer = attackInterval;
+            //attackTimer = 0; chyba powinno byc tak
+        //}
     }
 
     private void OnDrawGizmosSelected() {

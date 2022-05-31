@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pig
   m_EditorClassIdentifier: 
   attackValue: 5
-  attackRange: 0.3
-  attackSpeed: 1
+  attackRange: 0.5
+  attackSpeed: 2
   health: 30
   audioClip:
   - {fileID: 8300000, guid: 1153e55f28babdf42a792da1b024b492, type: 3}
