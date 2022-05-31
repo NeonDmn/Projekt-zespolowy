@@ -10,6 +10,13 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject buildMenu;
     [SerializeField] GameObject unitMakeMenu;
 
+    [Space]
+
+    [SerializeField] ResourceDisplay uiDisplayWood;
+    [SerializeField] ResourceDisplay uiDisplayMetal;
+    [SerializeField] ResourceDisplay uiDisplayCrystal;
+    [SerializeField] ResourceDisplay uiDisplayFood;
+
     public void ToggleNotificationMenu() {
         notificationMenu.SetActive(!notificationMenu.activeInHierarchy);
     }
@@ -45,4 +52,29 @@ public class GameUIManager : MonoBehaviour
 
     //public void AddNotification()
     //public Notification CreateNotification()
+
+    public void UpdateUIResourceDisplay()
+    {
+        TownHall th = GameManager.instance.GetTownHallObject(PlayerTeam.Team.Friendly);
+
+        // Pobierz maksymalne wartości surowców
+        int maxWood = th.resources.getMaxResource(Resource.Type.WOOD);
+        int maxMetal = th.resources.getMaxResource(Resource.Type.METAL);
+        int maxCrystal = th.resources.getMaxResource(Resource.Type.CRYSTAL);
+
+        // Pobierz obecne wartości surowców
+        int wood = th.resources.GetResourceCount(Resource.Type.WOOD);
+        int metal = th.resources.GetResourceCount(Resource.Type.METAL);
+        int crystal = th.resources.GetResourceCount(Resource.Type.CRYSTAL);
+
+        // Jedzenie
+        int maxFood = th.resources.GetMaxFood();
+        int food = maxFood - th.resources.GetFreeFood();
+
+        // Update
+        uiDisplayWood.UpdateUI(wood, maxWood);
+        uiDisplayMetal.UpdateUI(metal, maxMetal);
+        uiDisplayCrystal.UpdateUI(crystal, maxCrystal);
+        uiDisplayFood.UpdateUI(food, maxFood);
+    }
 }

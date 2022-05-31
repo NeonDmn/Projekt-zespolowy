@@ -34,6 +34,8 @@ public class ResourceManager
 
         foodMAX = 50;
         foodInUse = 0;
+
+        //GameManager.instance.UIManager.UpdateUIResourceDisplay();
     }
 
     public int Add(Resource.Type type, int count)
@@ -48,6 +50,7 @@ public class ResourceManager
             resources[type] = resourcesMAX[type];
             delta = count - delta;
         }
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
         return delta;
     }
 
@@ -89,12 +92,14 @@ public class ResourceManager
         }
 
         resourceCart.Clear();
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
         return true;
     }
 
     public void FreeFood(int amount)
     {
         foodInUse -= amount;
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
     }
 
     public bool TakeFood(int amount)
@@ -102,6 +107,7 @@ public class ResourceManager
         if ((foodInUse + amount) > foodMAX) return false;
 
         foodInUse += amount;
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
         return true;
     }
 
@@ -119,14 +125,20 @@ public class ResourceManager
     {
         return foodMAX - foodInUse;
     }
+    public int GetMaxFood()
+    {
+        return foodMAX;
+    }
 
     public void AddToMaxFood(int amount)
     {
         foodMAX += amount;
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
     }
 
     public void AddToMaxResource(Resource.Type type, int amount)
     {
         resourcesMAX[type] += amount;
+        GameManager.instance.UIManager.UpdateUIResourceDisplay();
     }
 }
