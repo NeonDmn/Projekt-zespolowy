@@ -11,6 +11,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject unitMakeMenu;
 
     [Space]
+    [SerializeField] PlayerTeam.Team resourceDisplayTeam;
 
     [SerializeField] ResourceDisplay uiDisplayWood;
     [SerializeField] ResourceDisplay uiDisplayMetal;
@@ -55,7 +56,8 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateUIResourceDisplay()
     {
-        TownHall th = GameManager.instance.GetTownHallObject(PlayerTeam.Team.Friendly);
+        TownHall th = GameManager.instance.GetTownHallObject(resourceDisplayTeam);
+        if (!th) return;
 
         // Pobierz maksymalne wartości surowców
         int maxWood = th.resources.getMaxResource(Resource.Type.WOOD);
