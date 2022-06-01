@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void GotoMenu()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenuScene");
     }
 }
