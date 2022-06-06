@@ -109,6 +109,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
   buildSprite: {fileID: 21300000, guid: 04ff56baef675d34b8f27934ebd47313, type: 3}
   audioManager: {fileID: 1911349815131694420}
+  storageNotificationFinishedPrefab: {fileID: 3800266174505840215, guid: fc703202166a05260b97c348f6fd6fde, type: 3}
 --- !u!60 &3456202945051578951
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -198,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 30
 --- !u!114 &1911349815131694420
 MonoBehaviour:
   m_ObjectHideFlags: 0

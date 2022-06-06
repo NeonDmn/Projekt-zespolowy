@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Barracks : Structure
 {
+
+    [SerializeField] GameObject barracksNotificationFinishedPrefab;
+
     public GameObject warriorMeleePrefab;
     public GameObject warriorScoutPrefab;
     public GameObject warriorRangedPrefab;
@@ -122,7 +125,13 @@ public class Barracks : Structure
 
     public override void EventManager_OnBuildingFinished(Structure str)
     {
-
+        if(buildingFinished){
+        if(GetComponent<PlayerTeam>().team==PlayerTeam.Team.Friendly && !onlyOnce){
+           onlyOnce = true;
+           var temp =  Instantiate(barracksNotificationFinishedPrefab, new Vector3(transform.position.x, (transform.position.y+1.0f), transform.position.z), Quaternion.identity);
+           Destroy(temp,3.0f);
+        }
+        }
     }
 
     public override void EventManager_OnBuildingDestroyed(ObjectHealth oh)

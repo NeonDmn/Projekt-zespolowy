@@ -102,13 +102,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTime: 20
   life: 100
-  woodCost: 100
-  metalCost: 100
+  woodCost: 0
+  metalCost: 0
   audioClip:
   - {fileID: 8300000, guid: a39b80611eb2f3047aa76ac56b7b6293, type: 3}
   - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
   buildSprite: {fileID: 21300000, guid: 92966cacfd222c54a832766e87e51966, type: 3}
   audioManager: {fileID: -3122925694579213791}
+  farmNotificationFinishedPrefab: {fileID: 5355352659599894766, guid: f0c988cfc11ba22a6944f3e84a823bbd, type: 3}
 --- !u!60 &6590519651824461243
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 30
 --- !u!114 &-3122925694579213791
 MonoBehaviour:
   m_ObjectHideFlags: 0

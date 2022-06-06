@@ -13,6 +13,7 @@ public class Structure : MonoBehaviour
     public AudioClip[] audioClip;
 
     protected bool buildingFinished;
+    protected bool onlyOnce;
 
     [SerializeField] protected Sprite buildSprite;
     Sprite structureSprite;
@@ -34,6 +35,7 @@ public class Structure : MonoBehaviour
         GetComponent<ObjectHealth>().onObjectDie += EventManager_OnBuildingDestroyed;
         audioManager.setBuild(audioClip[0]);
         audioManager.getBuild().Play();
+        onlyOnce =false;
     }
 
     public virtual void Update()
@@ -49,10 +51,12 @@ public class Structure : MonoBehaviour
             }
             else
             {
-                EventManager.OnBuildingFinished?.Invoke(this);
-                GetComponent<SpriteRenderer>().sprite = structureSprite;
                 
                 buildingFinished = true;
+                
+                GetComponent<SpriteRenderer>().sprite = structureSprite;
+                EventManager.OnBuildingFinished?.Invoke(this);
+                
                 audioManager.setDeath(audioClip[1]);
             }
         }

@@ -112,10 +112,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 435855dcd15da5a4cb0a2b64b89cd234, type: 3}
   buildSprite: {fileID: 21300000, guid: 4041fe7c4ac183e48872d438f9481dde, type: 3}
   audioManager: {fileID: -6014835269846748290}
+  barracksNotificationFinishedPrefab: {fileID: 2241710341349005757, guid: 2d93a06ccc544d9f5b241d25747c8613, type: 3}
   warriorMeleePrefab: {fileID: 5416719998123171415, guid: 156b5f3e089f9a343b8b0468d2460493, type: 3}
   warriorScoutPrefab: {fileID: 6246349212491167904, guid: 0056b94816e801645ab7ca96de07998c, type: 3}
   warriorRangedPrefab: {fileID: 6725678236502013398, guid: e8f67218ac583c0479270fe9caaa6bd4, type: 3}
   warriorSpawnPos: {fileID: 4483837627989472560}
+  warriorCreationTime: 0
 --- !u!60 &5523005907021366167
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2c1f5665f29204b96cff8970d81223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealth: 30
 --- !u!114 &-6014835269846748290
 MonoBehaviour:
   m_ObjectHideFlags: 0
