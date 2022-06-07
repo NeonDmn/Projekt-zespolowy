@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject storagePrefab;
     [SerializeField] GameObject farmPrefab;
     [SerializeField] GameObject barracksPrefab;
+    [SerializeField] GameObject unitDeathPrefab;
 
     [SerializeField] PlayerInput mouseInput;
     [Space]
@@ -134,5 +137,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void UnitDeathMessage(Vector3 pos, string message){
+        var temp =  Instantiate(unitDeathPrefab, new Vector3(pos.x, (pos.y+1.0f), pos.z), Quaternion.identity);
+        TextMeshPro textmeshPro = temp.GetComponent<TextMeshPro>();
+        textmeshPro.SetText(message);
+        Destroy(temp,2.0f);
+
     }
 }

@@ -57,6 +57,21 @@ public class Unit : MonoBehaviour
     }
 
     private void OnDestroy() {
+     
+        if(GetComponent<PlayerTeam>().team==PlayerTeam.Team.Friendly){
+        string unit ="";
+        if(gameObject.name == "Blue_Warrior_Melee(Clone)"){
+            unit = "WARRIOR";
+        }else if(gameObject.name =="Worker(Clone)"){
+            unit = "WORKER";
+        }else if(gameObject.name == "Blue_Warrior_Ranged(Clone)"){
+            unit = "ARCHER";
+        }else if(gameObject.name == "Blue_Scout(Clone)"){
+            unit = "SCOUT";
+        }
+        string msg = unit + " DIED!";
+        GameManager.instance.UnitDeathMessage(new Vector3(transform.position.x, transform.position.y, transform.position.z), msg);
+        }
         SwitchTask(null);
         Selection.Instance.unitList.Remove(gameObject.GetComponent<Selectable>());
     }
