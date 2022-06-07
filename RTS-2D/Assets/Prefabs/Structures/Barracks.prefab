@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d63e25497fc99a45b8a015b04229fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildTime: 5
+  buildTime: 20
   life: 500
   woodCost: 300
   metalCost: 150

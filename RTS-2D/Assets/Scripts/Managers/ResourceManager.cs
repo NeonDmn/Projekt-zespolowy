@@ -96,6 +96,10 @@ public class ResourceManager
         return true;
     }
 
+    public void ClearCart()
+    {
+        resourceCart.Clear();
+    }
     public void FreeFood(int amount)
     {
         foodInUse -= amount;

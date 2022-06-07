@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildTime: 0
-  life: 1000
+  life: 100
   woodCost: 0
   metalCost: 0
   audioClip:

@@ -19,11 +19,13 @@ public class Barracks : Structure
     public GameObject warriorToCreate { get; private set; }
 
     PlayerTeam.Team team;
+    ResourceManager resourceManager;
 
     public override void Start() {
         base.Start();
 
         team = GetComponent<PlayerTeam>().team;
+        resourceManager = GameManager.instance.GetTownHallObject(team).resources;
     }
     public override void Update()
     {
@@ -45,7 +47,7 @@ public class Barracks : Structure
 
     private void SpawnWarrior(GameObject warriorGo)
     {
-        GameManager.instance.GetTownHallObject(team).resources.TakeFood(1);
+        //GameManager.instance.GetTownHallObject(team).resources.TakeFood(1);
         var warrior = Instantiate(warriorGo, warriorSpawnPos.transform.position, Quaternion.identity);
         OnUnitSpawned?.Invoke();
 
@@ -54,10 +56,12 @@ public class Barracks : Structure
 
     public void CreateScout()
     {
-        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
+        resourceManager.AddToCart(Resource.Type.CRYSTAL, 5);
+        if (!creatingWarrior && resourceManager.GetFreeFood() >= 3 && resourceManager.FinalizeTransaction())
         {
             // Mo�na tworzy� jednostkę
             // timer start
+            resourceManager.TakeFood(3);
             warriorToCreate = warriorScoutPrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
@@ -67,15 +71,18 @@ public class Barracks : Structure
         {
             // Nie mo�na utworzy� jednostkę
             // error
+            resourceManager.ClearCart();
         }
     }
 
     public void CreateMelee()
     {
-        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
+        resourceManager.AddToCart(Resource.Type.CRYSTAL, 8);
+        if (!creatingWarrior && resourceManager.GetFreeFood() >= 5 && resourceManager.FinalizeTransaction())
         {
             // Mo�na tworzy� jednostkę
             // timer start
+            resourceManager.TakeFood(5);
             warriorToCreate = warriorMeleePrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
@@ -85,15 +92,18 @@ public class Barracks : Structure
         {
             // Nie mo�na utworzy� jednostkę
             // error
+            resourceManager.ClearCart();
         }
     }
 
     public void CreateRanged()
     {
-        if (!creatingWarrior && GameManager.instance.GetTownHallObject(team).resources.TakeFood(1))
+        resourceManager.AddToCart(Resource.Type.CRYSTAL, 10);
+        if (!creatingWarrior && resourceManager.GetFreeFood() >= 2 && resourceManager.FinalizeTransaction())
         {
             // Mo�na tworzy� jednostkę
             // timer start
+            resourceManager.TakeFood(2);
             warriorToCreate = warriorRangedPrefab;
             warriorCreationTime = 3.0f;
             creatingWarrior = true;
@@ -103,6 +113,7 @@ public class Barracks : Structure
         {
             // Nie mo�na utworzy� jednostkę
             // error
+            resourceManager.ClearCart();
         }
     }
 

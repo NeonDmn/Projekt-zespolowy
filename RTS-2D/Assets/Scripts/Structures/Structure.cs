@@ -34,33 +34,24 @@ public class Structure : MonoBehaviour
         GetComponent<ObjectHealth>().onObjectDie += ObjectHealth_Handle_OnObjectDie;
         GetComponent<ObjectHealth>().onObjectDie += EventManager_OnBuildingDestroyed;
         audioManager.setBuild(audioClip[0]);
+        audioManager.setDeath(audioClip[1]);
         audioManager.getBuild().Play();
-        onlyOnce =false;
+        onlyOnce = false;
     }
 
     public virtual void Update()
     {
         if (!buildingFinished)
         {
-            
-
             if (buildTime > 0.0f)
-            {
                 buildTime -= Time.deltaTime;
-                
-            }
             else
             {
-                
                 buildingFinished = true;
-                
                 GetComponent<SpriteRenderer>().sprite = structureSprite;
                 EventManager.OnBuildingFinished?.Invoke(this);
-                
-                audioManager.setDeath(audioClip[1]);
             }
-        }
-            
+        } 
     }
 
     private void ObjectHealth_Handle_OnObjectDie(ObjectHealth oh)

@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db14c509d0bd8c4caeeda0d85ac234c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildTime: 3
-  life: 5
+  buildTime: 15
+  life: 200
   woodCost: 150
   metalCost: 50
   audioClip:

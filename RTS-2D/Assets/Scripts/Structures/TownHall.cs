@@ -31,17 +31,19 @@ public class TownHall : Structure
 
     public void CreateWorker()
     {
-        if (!resources.TakeFood(1))
-        {
-            // Nie można utworzyć workera
-            // error
-        }
-        else
+        resources.AddToCart(Resource.Type.CRYSTAL, 5);
+        if (resources.GetFreeFood() >= 2 && resources.FinalizeTransaction())
         {
             // Można tworzyć
             // timer start
+            resources.TakeFood(2);
             workerCreationTime = 3f;
             workerTimerRunning = true;
+        }
+        else
+        {
+            // Nie można utworzyć workera
+            // error
         }
     }
 
